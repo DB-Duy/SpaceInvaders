@@ -3,6 +3,9 @@ package db.game.db.game;
 import db.game.db.game.display.Assets;
 import db.game.db.game.display.Display;
 import db.game.db.game.display.ImageLoader;
+import db.game.db.game.states.GameState;
+import db.game.db.game.states.MenuState;
+import db.game.db.game.states.State;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -13,13 +16,15 @@ public class Game implements Runnable{
     public int height, width;
     public String title;
 
-    int x=0;
-
     private boolean running=false;
     private Thread thread;
 
     private BufferStrategy bs;
     private Graphics g;
+
+    //States
+    private State gameState;
+    private State menuState;
 
     public Game(String title, int width, int height){
 
@@ -32,9 +37,15 @@ public class Game implements Runnable{
         display = new Display(title, width, height);
         Assets.init();
 
+        gameState=new GameState();
+        menuState=new MenuState();
+        State.setState(gameState);
+
     }
     private void tick(){
-        x+=1;
+        if(State.getState()!=null){
+            State.getState().tick();
+        }
     }
     private void render(){
         bs=display.getCanvas().getBufferStrategy();
@@ -45,7 +56,9 @@ public class Game implements Runnable{
         g=bs.getDrawGraphics();
         g.clearRect(0,0,width,height);
         //draw start
-        g.drawImage(Assets.enemy1,x,10,null);
+        if(State.getState()!=null){
+            State.getState().render(g);
+        }
         //draw end
 
         bs.show();
