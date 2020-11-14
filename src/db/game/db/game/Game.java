@@ -13,7 +13,7 @@ public class Game implements Runnable{
     public int height, width;
     public String title;
 
-
+    int x=0;
 
     private boolean running=false;
     private Thread thread;
@@ -34,7 +34,7 @@ public class Game implements Runnable{
 
     }
     private void tick(){
-
+        x+=1;
     }
     private void render(){
         bs=display.getCanvas().getBufferStrategy();
@@ -45,8 +45,7 @@ public class Game implements Runnable{
         g=bs.getDrawGraphics();
         g.clearRect(0,0,width,height);
         //draw start
-        g.drawImage(Assets.enemy4,50,50,null);
-        g.drawImage(Assets.impact1,10,10,null);
+        g.drawImage(Assets.enemy1,x,10,null);
         //draw end
 
         bs.show();
@@ -54,9 +53,23 @@ public class Game implements Runnable{
     }
     public void run(){
         init();
+
+        int fps=60;
+        double timePerTick=1000000000/fps;
+        double delta=0;
+        long now;
+        long lastTime=System.nanoTime();
+
         while(running){
-            tick();
-            render();
+            now=System.nanoTime();
+            delta+=(now-lastTime)/timePerTick;
+            lastTime=now;
+
+            if(delta>=1) {
+                tick();
+                render();
+                delta--;
+            }
         }
         stop();
     }
