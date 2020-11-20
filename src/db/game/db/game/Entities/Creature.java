@@ -12,12 +12,16 @@ public abstract class Creature extends Entity {
     protected int health;
     protected float speed, xMove, yMove;
 
+    protected Color yellow;
+
     public Creature(float x, float y, int width, int height) {
         super(x, y, width, height);
         health = DEFAULT_HEALTH;
         speed = DEFAULT_SPEED;
         xMove = 0;
         yMove = 0;
+
+        yellow = new Color(241, 217,27);
     }
 
     public void move() {

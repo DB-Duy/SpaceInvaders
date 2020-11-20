@@ -15,9 +15,10 @@ public class Player extends Creature {
         this.game = game;
     }
 
+
+
     public void tick() {
-        /*getInput();
-        move();*/
+
     }
 
     /*public void getInput() {
@@ -39,9 +40,11 @@ public class Player extends Creature {
 
     }*/
 
+
+
     public void render(Graphics g) {
         g.drawImage(Assets.rocket, (int) x, (int) y, width, height, null);
-        g.setColor(Color.cyan);
+        g.setColor(yellow);
         g.setFont(new Font("TimesNewRoman",1,20));
         g.drawString(game.getKeyManager().getWordTyped(),(int) x,(int) y + 95);
     }

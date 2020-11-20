@@ -40,7 +40,6 @@ public class Game implements Runnable{
         return keyManager;
     }
 
-    //int y = height;
 
     private void init() {
         display = new Display(title, width, height);
@@ -61,7 +60,6 @@ public class Game implements Runnable{
             State.getState().tick();
         }
 
-        //y--;
     }
 
 

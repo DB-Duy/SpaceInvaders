@@ -26,7 +26,7 @@ public class Monster extends Creature {
         monsters.add(Assets.monster1);
         monsters.add(Assets.monster2);
         monsters.add(Assets.monster3);
-        this.word=text.randomWord();
+        this.word = text.randomWord();
     }
     public String getWord(){
         return word;
@@ -46,9 +46,9 @@ public class Monster extends Creature {
 
     public void render(Graphics g, int i) {
         g.drawImage(monsters.get(i), (int) x, (int) y, width - 10, height - 10, null);
-        g.setColor(Color.cyan);
-        g.setFont(new Font("TimesNewRoman",1,20));
-        g.drawString(word,(int) x,(int) y + 95);
+        g.setColor(yellow);
+        g.setFont(new Font("TimesNewRoman",1,17));
+        g.drawString(word,(int) x + 45,(int) y + 95);
     }
 
 
