@@ -20,7 +20,7 @@ public class Player extends Creature {
         move();*/
     }
 
-    public void getInput() {
+    /*public void getInput() {
         xMove = 0;
         yMove = 0;
 
@@ -37,8 +37,7 @@ public class Player extends Creature {
             xMove = speed;
         }
 
-
-    }
+    }*/
 
     public void render(Graphics g) {
         g.drawImage(Assets.rocket, (int) x, (int) y, width, height, null);

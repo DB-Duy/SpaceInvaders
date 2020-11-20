@@ -6,6 +6,7 @@ import db.game.db.game.TextReader.Text;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.lang.Math;
 import java.util.ArrayList;
 
 public class Monster extends Creature {
@@ -27,15 +28,23 @@ public class Monster extends Creature {
     }
 
     public void tick() {
+        double angle = Math.tan(650/160);
+        angle = Math.toRadians(angle);
         y = (int) y + 1;
+        if (Math.cos(angle) != 0 && x < 160 && y % 6 == 0) {
+            x += Math.cos(angle);
+        }
+        else if (Math.cos(angle) != 0 && x > 250 && y % 6 == 0) {
+            x -= Math.cos(angle);
+        }
+
     }
 
     public void render(Graphics g, int i) {
         g.drawImage(monsters.get(i), (int) x, (int) y, width - 10, height - 10, null);
         g.setColor(Color.cyan);
         g.setFont(new Font("TimesNewRoman",1,20));
-        g.drawString(word,(int)x,(int)y+95);
-        //g.drawImage(Assets.monster1, (int) x + 100, (int) y, width, height, null);
+        g.drawString(word,(int) x,(int) y + 95);
     }
 
 
