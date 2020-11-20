@@ -2,6 +2,7 @@ package db.game.db.game.Entities;
 
 import db.game.db.game.Game;
 import db.game.db.game.Display.Assets;
+import db.game.db.game.Input.KeyManager;
 import db.game.db.game.TextReader.Text;
 
 import java.awt.*;
@@ -14,6 +15,7 @@ public class Monster extends Creature {
     private Game game;
     private ArrayList<BufferedImage> monsters;
     private Text text=new Text();
+    private KeyManager input=new KeyManager();
 
 
     public Monster(Game game, float x, float y) {
@@ -25,6 +27,9 @@ public class Monster extends Creature {
         monsters.add(Assets.monster2);
         monsters.add(Assets.monster3);
         this.word=text.randomWord();
+    }
+    public String getWord(){
+        return word;
     }
 
     public void tick() {

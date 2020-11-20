@@ -41,6 +41,9 @@ public class Player extends Creature {
 
     public void render(Graphics g) {
         g.drawImage(Assets.rocket, (int) x, (int) y, width, height, null);
+        g.setColor(Color.cyan);
+        g.setFont(new Font("TimesNewRoman",1,20));
+        g.drawString(game.getKeyManager().getWordTyped(),(int) x,(int) y + 95);
     }
 
 

@@ -4,6 +4,5 @@ hehe
 huhu
 lmao
 xnor
-xor 
 and 
 or
