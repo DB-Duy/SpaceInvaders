@@ -10,35 +10,36 @@ import java.awt.*;
 public class GameState extends State {
 
     private Player player;
-    //private ArrayList<Monster> monsters;
-    private Monster monster;
+    private ArrayList<Monster> monsters;
+    static int i=0;
+    private double time=99;
 
     public GameState(Game game) {
         super(game);
         player = new Player(game, 200,650);
-        monster = new Monster(game, (float) Math.random()*301 + 50, 0);
-        /*monsters = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            monsters.add(new Monster(game, (float) Math.random()*301 + 50, 0));
-        }*/
+        monsters = new ArrayList<>();
     }
-
-
-
+    public void addMonster(){
+        if(time>100) {
+            time=0;
+            monsters.add(new Monster(game, (float)Math.random() * 301 + 50, 0));
+        }
+    }
     public void tick() {
-        /*for (int i = 0; i < 10; i++) {
-            monsters.get(i).tick();
-        }*/
-
-        monster.tick();
-        player.tick();
-    }
+        time++;
+        if(monsters.size()<10) {
+            addMonster();
+        }
+            for (int i = 0; i < monsters.size(); i++) {
+                monsters.get(i).tick();
+            }
+            player.tick();
+        }
 
     public void render(Graphics g) {
-        /*for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < monsters.size(); i++) {
             monsters.get(i).render(g,1);
-        }*/
-        monster.render(g,1);
+        }
         player.render(g);
     }
 
