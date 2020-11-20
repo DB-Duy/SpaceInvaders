@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Monster extends Creature {
-
+    private String word;
     private Game game;
     private ArrayList<BufferedImage> monsters;
 
