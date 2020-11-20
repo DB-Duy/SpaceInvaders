@@ -50,7 +50,6 @@ public class Game implements Runnable{
         gameState = new GameState(this);
         menuState = new MenuState(this);
         State.setState(gameState);
-
     }
 
 
