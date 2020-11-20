@@ -37,7 +37,6 @@ public class Monster extends Creature {
         else if (Math.cos(angle) != 0 && x > 250 && y % 6 == 0) {
             x -= Math.cos(angle);
         }
-
     }
 
     public void render(Graphics g, int i) {
