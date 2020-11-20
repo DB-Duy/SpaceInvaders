@@ -40,7 +40,7 @@ public class Game implements Runnable{
         return keyManager;
     }
 
-    int y = height;
+    //int y = height;
 
     private void init() {
         display = new Display(title, width, height);
@@ -61,7 +61,7 @@ public class Game implements Runnable{
             State.getState().tick();
         }
 
-        y--;
+        //y--;
     }
 
 
@@ -98,7 +98,6 @@ public class Game implements Runnable{
         long now, lastTime = System.nanoTime(), timer = 0;
 
         while (running) {
-
             now = System.nanoTime();
             delta += (now - lastTime) / timePerTick;
             timer += now - lastTime;
