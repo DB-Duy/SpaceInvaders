@@ -13,6 +13,7 @@ public class GameState extends State {
     private ArrayList<Monster> monsters;
     private double time = 99;
 
+
     public GameState(Game game) {
         super(game);
         player = new Player(game, 200,650);
@@ -31,6 +32,10 @@ public class GameState extends State {
         }
         for (int i = 0; i < monsters.size(); i++) {
             monsters.get(i).tick();
+            if(game.getKeyManager().getWordTyped().equals(monsters.get(i).getWord())){
+                monsters.remove(i);
+                game.getKeyManager().resetWordTyped();
+            }
         }
         player.tick();
     }
