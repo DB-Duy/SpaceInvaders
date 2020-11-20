@@ -1,6 +1,7 @@
 package db.game.db.game.entities;
 
 import db.game.db.game.display.Assets;
+import db.game.db.game.textreader.ReadFile;
 
 import java.awt.*;
 
@@ -16,5 +17,6 @@ public class Player extends Entity{
 
     public void render(Graphics g) {
         g.drawImage(Assets.ship1,(int)x,(int)y,null);
+
     }
 }

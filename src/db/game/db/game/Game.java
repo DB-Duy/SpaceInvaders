@@ -6,6 +6,8 @@ import db.game.db.game.display.ImageLoader;
 import db.game.db.game.states.GameState;
 import db.game.db.game.states.MenuState;
 import db.game.db.game.states.State;
+import db.game.db.game.textreader.Read;
+import db.game.db.game.textreader.ReadFile;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -15,6 +17,8 @@ public class Game implements Runnable{
     private Display display;
     public int height, width;
     public String title;
+
+    private Read read=new Read();
 
     private boolean running=false;
     private Thread thread;
@@ -36,9 +40,10 @@ public class Game implements Runnable{
     private void init(){
         display = new Display(title, width, height);
         Assets.init();
+        ReadFile.init();
 
-        gameState=new GameState();
-        menuState=new MenuState();
+        gameState=new GameState(this);
+        menuState=new MenuState(this);
         State.setState(gameState);
 
     }
@@ -59,6 +64,7 @@ public class Game implements Runnable{
         if(State.getState()!=null){
             State.getState().render(g);
         }
+        g.drawString(read.randomWord(),10,10);
         //draw end
 
         bs.show();

@@ -1,5 +1,7 @@
 package db.game.db.game.states;
 
+import db.game.db.game.Game;
+
 import java.awt.*;
 
 public abstract class State {
@@ -10,6 +12,11 @@ public abstract class State {
     }
     public static State getState(){
         return currentState;
+    }
+
+    protected Game game;
+    public State(Game game){
+        this.game=game;
     }
 
     public abstract void tick();
