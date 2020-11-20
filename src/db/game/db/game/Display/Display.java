@@ -1,4 +1,4 @@
-package db.game.db.game.display;
+package db.game.db.game.Display;
 import javax.swing.JFrame;
 import java.awt.*;
 

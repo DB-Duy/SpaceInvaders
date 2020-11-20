@@ -1,9 +1,8 @@
 package db.game.db.game.states;
 
 import db.game.db.game.Game;
-import db.game.db.game.display.Assets;
-import db.game.db.game.entities.Monster;
-import db.game.db.game.entities.Player;
+import db.game.db.game.Entities.Monster;
+import db.game.db.game.Entities.Player;
 
 import java.awt.*;
 

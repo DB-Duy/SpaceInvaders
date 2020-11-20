@@ -1,4 +1,4 @@
-package db.game.db.game.display;
+package db.game.db.game.Display;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

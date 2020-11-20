@@ -1,9 +1,8 @@
-package db.game.db.game.entities;
+package db.game.db.game.Entities;
 
 import db.game.db.game.Game;
-import db.game.db.game.display.Assets;
-import db.game.db.game.textreader.ReadFile;
-import db.game.db.game.Launcher;
+import db.game.db.game.Display.Assets;
+
 import java.awt.*;
 
 

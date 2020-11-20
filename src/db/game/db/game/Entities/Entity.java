@@ -1,4 +1,4 @@
-package db.game.db.game.entities;
+package db.game.db.game.Entities;
 import java.awt.*;
 
 public abstract class Entity {

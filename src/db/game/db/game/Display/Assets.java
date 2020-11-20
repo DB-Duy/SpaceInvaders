@@ -1,9 +1,7 @@
-package db.game.db.game.display;
+package db.game.db.game.Display;
 
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Assets {
 

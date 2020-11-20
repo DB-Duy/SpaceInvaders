@@ -1,4 +1,4 @@
-package db.game.db.game.textreader;
+package db.game.db.game.TextReader;
 
 public class Read {
     ReadFile read=new ReadFile();

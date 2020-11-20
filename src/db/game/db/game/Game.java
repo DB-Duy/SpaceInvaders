@@ -1,18 +1,15 @@
 package db.game.db.game;
 
 import db.game.db.game.Input.KeyManager;
-import db.game.db.game.display.Assets;
-import db.game.db.game.display.Display;
-import db.game.db.game.display.ImageLoader;
+import db.game.db.game.Display.Assets;
+import db.game.db.game.Display.Display;
+import db.game.db.game.Display.ImageLoader;
 import db.game.db.game.states.GameState;
 import db.game.db.game.states.MenuState;
 import db.game.db.game.states.State;
-import db.game.db.game.textreader.Read;
-import db.game.db.game.textreader.ReadFile;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
 public class Game implements Runnable{
 

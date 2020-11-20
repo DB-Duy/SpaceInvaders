@@ -1,4 +1,4 @@
-package db.game.db.game.textreader;
+package db.game.db.game.TextReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
