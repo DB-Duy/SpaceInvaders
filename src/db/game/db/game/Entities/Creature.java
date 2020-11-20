@@ -1,4 +1,6 @@
 package db.game.db.game.Entities;
+import db.game.db.game.TextReader.Text;
+
 import java.awt.*;
 
 public abstract class Creature extends Entity {

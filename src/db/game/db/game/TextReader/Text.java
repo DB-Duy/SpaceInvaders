@@ -1,8 +1,8 @@
 package db.game.db.game.TextReader;
 
-public class Read {
+public class Text {
     ReadFile read=new ReadFile();
-    public Read(){
+    public Text(){
         read.init();
     }
     public String randomWord(){
