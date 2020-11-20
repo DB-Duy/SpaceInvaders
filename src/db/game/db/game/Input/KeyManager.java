@@ -4,12 +4,12 @@ import java.awt.event.*;
 
 public class KeyManager implements KeyListener {
 
-    public String wordTyped="";
+    public String wordTyped = "";
 
 
     public KeyManager() { }
 
-    public void tick(){
+    public void tick() {
 
     }
 
@@ -30,13 +30,13 @@ public class KeyManager implements KeyListener {
 
     @Override
     public void keyTyped (KeyEvent e) {
-        wordTyped+=e.getKeyChar();
-        if(e.getKeyChar()==' '){
-            wordTyped="";
+        wordTyped += e.getKeyChar();
+        if (e.getKeyChar() == ' ') {
+            wordTyped = "";
         }
     }
     public void resetWordTyped(){
-        this.wordTyped="";
+        this.wordTyped = "";
     }
 
 

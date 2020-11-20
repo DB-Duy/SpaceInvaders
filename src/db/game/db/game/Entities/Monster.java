@@ -14,8 +14,8 @@ public class Monster extends Creature {
     private String word;
     private Game game;
     private ArrayList<BufferedImage> monsters;
-    private Text text=new Text();
-    private KeyManager input=new KeyManager();
+    private Text text = new Text();
+    private KeyManager input = new KeyManager();
 
 
     public Monster(Game game, float x, float y) {
