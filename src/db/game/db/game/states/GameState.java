@@ -11,8 +11,7 @@ public class GameState extends State {
 
     private Player player;
     private ArrayList<Monster> monsters;
-    static int i=0;
-    private double time=99;
+    private double time = 99;
 
     public GameState(Game game) {
         super(game);
@@ -20,21 +19,21 @@ public class GameState extends State {
         monsters = new ArrayList<>();
     }
     public void addMonster(){
-        if(time>100) {
-            time=0;
+        if (time > 100) {
+            time = 0;
             monsters.add(new Monster(game, (float)Math.random() * 301 + 50, 0));
         }
     }
     public void tick() {
         time++;
-        if(monsters.size()<10) {
+        if (monsters.size() < 10) {
             addMonster();
         }
-            for (int i = 0; i < monsters.size(); i++) {
-                monsters.get(i).tick();
-            }
-            player.tick();
+        for (int i = 0; i < monsters.size(); i++) {
+            monsters.get(i).tick();
         }
+        player.tick();
+    }
 
     public void render(Graphics g) {
         for (int i = 0; i < monsters.size(); i++) {
