@@ -33,7 +33,7 @@ public class Monster extends Creature {
     }
 
     public void tick() {
-        double angle = Math.tan(650/160);
+        double angle = Math.tan(650/(250-x));
         angle = Math.toRadians(angle);
         y = (int) y + 1;
         if (Math.cos(angle) != 0 && x < 160 && y % 6 == 0) {
@@ -48,7 +48,7 @@ public class Monster extends Creature {
         g.drawImage(monsters.get(i), (int) x, (int) y, width - 10, height - 10, null);
         g.setColor(yellow);
         g.setFont(new Font("TimesNewRoman",1,17));
-        g.drawString(word,(int) x + 45,(int) y + 95);
+        g.drawString(word,(int) x,(int) y + 95);
     }
 
 
