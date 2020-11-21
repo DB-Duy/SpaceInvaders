@@ -42,6 +42,7 @@ public class GameState extends State {
 
             if (detection.hasCollided(monsters.get(i)) == true) {
                 System.out.println(detection.getCollision());
+                monsters.remove(i);
             }
 
            /*if (monsters.get(i).getY() == 560 && monsters.get(i).getX() >= 110 && monsters.get(i).getX() <= 300) {
@@ -54,6 +55,9 @@ public class GameState extends State {
             }
         }
         player.tick();
+        if(detection.getCollision()<=0){
+            monsters.clear();
+        }
     }
 
     public void render(Graphics g) {
