@@ -3,18 +3,24 @@ package db.game.db.game.states;
 import db.game.db.game.Display.Assets;
 import db.game.db.game.Game;
 import db.game.db.game.Entities.*;
+import db.game.db.game.LevelManagement.*;
+
 import java.util.*;
 import java.awt.*;
 
 public class GameState extends State {
 
     private Player player;
+    private CollisionDetection detection;
+    private HealthManager health;
     private ArrayList<Monster> monsters;
     private double time = 99;
 
     public GameState(Game game) {
         super(game);
         player = new Player(game, 200,650);
+        detection = new CollisionDetection();
+        health = new HealthManager((player.getHealth()));
         monsters = new ArrayList<>();
     }
 
@@ -33,9 +39,15 @@ public class GameState extends State {
 
         for (int i = 0; i < monsters.size(); i++) {
             monsters.get(i).tick();
-            if (monsters.get(i).getY() == 560 && monsters.get(i).getX() >= 110 && monsters.get(i).getX() <= 300) {
-                System.out.println("Collided");
+
+            if (detection.hasCollided(monsters.get(i)) == true) {
+                System.out.println(detection.getCollision());
             }
+
+           /*if (monsters.get(i).getY() == 560 && monsters.get(i).getX() >= 110 && monsters.get(i).getX() <= 300) {
+                collision++;
+                System.out.println("Collided");
+            }*/
             if (game.getKeyManager().getWordTyped().equals(monsters.get(i).getWord())) {
                 monsters.remove(i);
                 game.getKeyManager().resetWordTyped();
@@ -56,7 +68,7 @@ public class GameState extends State {
                 monsters.get(i).render(g,2);
             }
         }
-
+        health.render(g, detection);
         player.render(g);
     }
 
