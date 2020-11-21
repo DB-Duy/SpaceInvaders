@@ -22,7 +22,7 @@ public class HealthManager {
     }
 
     public void render(Graphics g, CollisionDetection detection) {
-        if (detection.getCollision() == 0) {
+        /*if (detection.getCollision() == 0) {
             for (int i = 0; i < 3; i++) {
                 g.drawImage(Assets.fullHeart, 30 + i*60,20, 50, 50, null);
             }
@@ -42,6 +42,14 @@ public class HealthManager {
         else {
             for (int i = 0; i < 3; i++) {
                 g.drawImage(Assets.emptyHeart, 30 + i * 60, 20, 50, 50, null);
+            }
+        }*/
+        for(int i=0;i<3;i++){
+            if(detection.getCollision()<=i){
+                g.drawImage(Assets.emptyHeart,30+i*60,20,50,50,null);
+            }
+            else {
+                g.drawImage(Assets.fullHeart,30 + i*60,20,50,50,null);
             }
         }
 
