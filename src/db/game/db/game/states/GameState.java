@@ -58,15 +58,16 @@ public class GameState extends State {
 
     public void render(Graphics g) {
         for (int i = 0; i < monsters.size(); i++) {
-            if (i % 3 == 0) {
-                monsters.get(i).render(g,0);
+            if(monsters.get(i).getTexture()==-1) {
+                if (i % 3 == 0) {
+                    monsters.get(i).setTexture(2);
+                } else if (i % 2 == 0 && i % 3 != 0) {
+                    monsters.get(i).setTexture(0);
+                } else {
+                    monsters.get(i).setTexture(1);
+                }
             }
-            else if (i % 2 == 0 && i % 3 != 0 ) {
-                monsters.get(i).render(g,1);
-            }
-            else {
-                monsters.get(i).render(g,2);
-            }
+            monsters.get(i).render(g);
         }
         health.render(g, detection);
         player.render(g);

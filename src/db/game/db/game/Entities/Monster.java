@@ -16,7 +16,7 @@ public class Monster extends Creature {
     private ArrayList<BufferedImage> monsters;
     private Text text = new Text();
     private KeyManager input = new KeyManager();
-
+    private int i=-1;
 
     public Monster(Game game, float x, float y) {
         super(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT);
@@ -44,11 +44,17 @@ public class Monster extends Creature {
         }
     }
 
-    public void render(Graphics g, int i) {
+    public void render(Graphics g) {
         g.drawImage(monsters.get(i), (int) x, (int) y, width - 10, height - 10, null);
         g.setColor(yellow);
         g.setFont(new Font("TimesNewRoman",1,17));
         g.drawString(word,(int) x,(int) y + 95);
+    }
+    public void setTexture(int i){
+        this.i=i;
+    }
+    public int getTexture(){
+        return this.i;
     }
 
 
