@@ -66,16 +66,14 @@ public class Monster extends Creature {
     public void explode(int timeBlown){
         this.blownTime=timeBlown;
         this.isBlown=true;
+        a=(int)this.x;
+        b=(int)this.y;
     }
     public int getTimeBlown(){
         return blownTime;
     }
     public boolean getExploded(){
         return isBlown;
-    }
-    public void setCurrentPosition(){
-        a=(int)this.x;
-        b=(int)this.y;
     }
 
 }

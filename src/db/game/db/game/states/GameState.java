@@ -46,7 +46,6 @@ public class GameState extends State {
             if (detection.hasCollided(monsters.get(i)) == true) {
                 System.out.println(detection.getCollision());
                 monsters.get(i).explode(time);
-                monsters.get(i).setCurrentPosition();
             }
 
            /*if (monsters.get(i).getY() == 560 && monsters.get(i).getX() >= 110 && monsters.get(i).getX() <= 300) {
@@ -54,7 +53,6 @@ public class GameState extends State {
                 System.out.println("Collided");
             }*/
             if (game.getKeyManager().getWordTyped().equals(monsters.get(i).getWord())) {
-                monsters.get(i).setCurrentPosition();
                 monsters.get(i).explode(time);
                 game.getKeyManager().resetWordTyped();
             }
