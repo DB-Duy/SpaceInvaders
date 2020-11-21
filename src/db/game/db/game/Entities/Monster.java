@@ -17,6 +17,10 @@ public class Monster extends Creature {
     private Text text = new Text();
     private KeyManager input = new KeyManager();
     private int i=-1;
+    private boolean isBlown=false;
+    private int blownTime;
+    private int a,b; //current position (so that the explosion doesn't move)
+
 
     public Monster(Game game, float x, float y) {
         super(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT);
@@ -56,6 +60,22 @@ public class Monster extends Creature {
     public int getTexture(){
         return this.i;
     }
-
+    public void renderExplode(Graphics g){
+        g.drawImage(Assets.explosion,a,b,width-10,height-10,null);
+    }
+    public void explode(int timeBlown){
+        this.blownTime=timeBlown;
+        this.isBlown=true;
+    }
+    public int getTimeBlown(){
+        return blownTime;
+    }
+    public boolean getExploded(){
+        return isBlown;
+    }
+    public void setCurrentPosition(){
+        a=(int)this.x;
+        b=(int)this.y;
+    }
 
 }
