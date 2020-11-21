@@ -19,7 +19,7 @@ public class GameState extends State {
     }
 
     public void addMonster() {
-        if (time > 100) {
+        if (time > 50) {
             time = 0;
             monsters.add(new Monster(game, (float)Math.random() * 301 + 50, 0));
         }
