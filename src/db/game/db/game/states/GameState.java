@@ -78,13 +78,7 @@ public class GameState extends State {
         for (int i = 0; i < monsters.size(); i++) {
 
             if (monsters.get(i).getTexture() == -1) {
-                if (i % 3 == 0) {
-                    monsters.get(i).setTexture(2);
-                } else if (i % 2 == 0 && i % 3 != 0) {
-                    monsters.get(i).setTexture(0);
-                } else {
-                    monsters.get(i).setTexture(1);
-                }
+                monsters.get(i).setTexture((int)(3*Math.random()));
             }
 
 
