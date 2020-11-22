@@ -13,7 +13,7 @@ candidate
 collection
 community
 conference
-Democrat
+democrat
 democratic
 difference
 different
@@ -55,7 +55,7 @@ recognize
 relationship
 religious
 represent
-Republican
+republican
 responsibility
 section
 significant
