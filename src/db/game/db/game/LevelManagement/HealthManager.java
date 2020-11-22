@@ -22,8 +22,8 @@ public class HealthManager {
     }
 
     public void render(Graphics g, CollisionDetection detection) {
-        for(int i=0;i<3;i++){
-            if(detection.getCollision()<=i){
+        for (int i = 0; i < 3; i++) {
+            if (detection.getCollision() <= i) {
                 g.drawImage(Assets.emptyHeart,30+i*60,20,50,50,null);
             }
             else {

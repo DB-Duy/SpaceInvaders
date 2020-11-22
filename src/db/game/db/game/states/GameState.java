@@ -44,10 +44,6 @@ public class GameState extends State {
                 System.out.println(detection.getCollision());
             }
 
-           /*if (monsters.get(i).getY() == 560 && monsters.get(i).getX() >= 110 && monsters.get(i).getX() <= 300) {
-                collision++;
-                System.out.println("Collided");
-            }*/
             if (game.getKeyManager().getWordTyped().equals(monsters.get(i).getWord())) {
                 monsters.remove(i);
                 game.getKeyManager().resetWordTyped();
@@ -58,7 +54,7 @@ public class GameState extends State {
 
     public void render(Graphics g) {
         for (int i = 0; i < monsters.size(); i++) {
-            if(monsters.get(i).getTexture()==-1) {
+            if (monsters.get(i).getTexture() == -1) {
                 if (i % 3 == 0) {
                     monsters.get(i).setTexture(2);
                 } else if (i % 2 == 0 && i % 3 != 0) {

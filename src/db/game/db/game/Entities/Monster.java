@@ -51,7 +51,7 @@ public class Monster extends Creature {
         g.drawString(word,(int) x,(int) y + 95);
     }
     public void setTexture(int i){
-        this.i=i;
+        this.i = i;
     }
     public int getTexture(){
         return this.i;
