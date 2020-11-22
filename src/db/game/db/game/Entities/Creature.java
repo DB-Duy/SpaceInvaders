@@ -1,7 +1,10 @@
 package db.game.db.game.Entities;
 import db.game.db.game.TextReader.Text;
 
+import java.io.File;
+import java.io.InputStream;
 import java.awt.*;
+import java.awt.Font;
 
 public abstract class Creature extends Entity {
 
@@ -19,7 +22,7 @@ public abstract class Creature extends Entity {
         xMove = 0;
         yMove = 0;
 
-        yellow = new Color(241, 217,27);
+        yellow = new Color(241, 217, 27);
     }
 
 
@@ -38,5 +41,7 @@ public abstract class Creature extends Entity {
     public void render(Graphics g) {
 
     }
+
+
 
 }

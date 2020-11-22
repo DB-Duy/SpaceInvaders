@@ -34,6 +34,7 @@ public class Monster extends Creature {
         monsters.add(Assets.monster1);
         monsters.add(Assets.monster2);
         monsters.add(Assets.monster3);
+        monsters.add(Assets.monster4);
         this.word = text.randomWord();
     }
 
@@ -56,8 +57,11 @@ public class Monster extends Creature {
     public void render(Graphics g) {
         g.drawImage(monsters.get(i), (int) x, (int) y, width - 10, height - 10, null);
         g.setColor(yellow);
-        g.setFont(new Font("TimesNewRoman",Font.PLAIN,20));
-        g.drawString(word,(int) x,(int) y + 95);
+
+        FontMetrics metrics = g.getFontMetrics(new Font("VCR_OSD_MONO_1_001",Font.PLAIN, 20));
+        int c = (int) this.x + (this.width - metrics.stringWidth(word)) / 2;
+        g.setFont(new Font("VCR_OSD_MONO_1_001",Font.PLAIN, 20));
+        g.drawString(word, c, (int) y + 100);
     }
 
     public void setTexture(int i) {

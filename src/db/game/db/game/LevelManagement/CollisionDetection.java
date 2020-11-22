@@ -4,7 +4,7 @@ import db.game.db.game.Entities.*;
 
 public class CollisionDetection {
 
-    private int collision=3;
+    private int collision = 3;
 
     public CollisionDetection() {
 
