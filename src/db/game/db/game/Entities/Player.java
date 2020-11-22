@@ -20,25 +20,6 @@ public class Player extends Creature {
 
     }
 
-    /*public void getInput() {
-        xMove = 0;
-        yMove = 0;
-
-        if (game.getKeyManager().up) {
-            yMove = - speed;
-        }
-        else if (game.getKeyManager().down) {
-            yMove = speed;
-        }
-        else if (game.getKeyManager().left) {
-            xMove = - speed;
-        }
-        else if (game.getKeyManager().right) {
-            xMove = speed;
-        }
-
-    }*/
-
 
 
     public void render(Graphics g) {
@@ -46,7 +27,7 @@ public class Player extends Creature {
         g.drawImage(Assets.rocket, (int) x, (int) y, width, height, null);
         g.setColor(yellow);
         g.setFont(new Font("TimesNewRoman",1,20));
-        g.drawString(game.getKeyManager().getWordTyped(),(int) x,(int) y + 95);
+        g.drawString(game.getKeyManager().getWordTyped(),(int) x,(int) y + 100);
     }
 
 
