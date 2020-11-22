@@ -13,7 +13,6 @@ public class CollisionDetection {
     public boolean hasCollided(Monster monster) {
         if (monster.getY() == 560 && monster.getX() >= 110 && monster.getX() <= 300) {
             collision--;
-            System.out.println("Collided");
             return true;
         }
         return false;

@@ -7,7 +7,7 @@ import java.util.Random;
 
 
 public class ReadFile{
-    static File file=new File("words.txt");
+    static File file=new File("level1.txt");
     static Scanner readFile;
     Random rand=new Random();
     private static ArrayList<String> words= new ArrayList();
