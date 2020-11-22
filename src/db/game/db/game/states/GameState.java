@@ -42,16 +42,15 @@ public class GameState extends State {
         if (level.getProgressLevel() < 10) {
             addMonster();
         }
-
         for (int i = 0; i < monsters.size(); i++) {
 
             monsters.get(i).setSpeed(level.getLevel());
             monsters.get(i).tick();
 
-            if (detection.hasCollided(monsters.get(i)) == true) {
+            if (detection.hasCollided(monsters.get(i))) {
                 monsters.get(i).explode(time);
             }
-            else if (game.getKeyManager().getWordTyped().equals(monsters.get(i).getWord())) {
+            else if (game.getKeyManager().getWordTyped().equals(monsters.get(i).getWord()) && !monsters.get(i).getExplosion() ) {
                 monsters.get(i).explode(time);
                 game.getKeyManager().resetWordTyped();
                 level.setProgressLevel(level.getProgressLevel() + 1);
@@ -60,11 +59,10 @@ public class GameState extends State {
             if (Math.abs(monsters.get(i).getTimeBlown() - time) > 30 && monsters.get(i).getExplosion()) {
                 monsters.remove(i);
             }
-
-            if (level.getProgressLevel() == 10) {
-                level.setLevel(level.getLevel() + 1);
-                level.setProgressLevel(0);
-            }
+        }
+        if (level.getProgressLevel() == 10) {
+            level.setLevel(level.getLevel() + 1);
+            level.setProgressLevel(0);
         }
 
         player.tick();
@@ -89,9 +87,9 @@ public class GameState extends State {
             else monsters.get(i).render(g);
         }
 
-        level.render(g);
         health.render(g, detection);
         player.render(g);
+        level.render(g);
     }
 
 }
