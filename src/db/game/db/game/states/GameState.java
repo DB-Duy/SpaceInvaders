@@ -73,7 +73,7 @@ public class GameState extends State {
                     monsters.get(i).setTexture(1);
                 }
             }
-            if(monsters.get(i).getExploded()){
+            if (monsters.get(i).getExploded()) {
                 monsters.get(i).renderExplode(g);
             }
             else monsters.get(i).render(g);

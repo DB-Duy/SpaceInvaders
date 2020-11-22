@@ -16,7 +16,7 @@ public class Assets {
 
         sheet1 = new SpriteSheet(ImageLoader.loadImage("/resources/sheet1.png"));
         sheet2 = new SpriteSheet(ImageLoader.loadImage("/resources/sheet2.png"));
-        sheet3 = new SpriteSheet(ImageLoader.loadImage("/resources/level_bars.png"));
+        sheet3 = new SpriteSheet(ImageLoader.loadImage("/resources/sheet3.png"));
 
         emptyHeart = sheet1.crop(0,0, size, size);
         fullHeart = sheet2.crop(0, size + 1, size, size);

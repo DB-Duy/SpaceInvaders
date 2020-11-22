@@ -16,10 +16,10 @@ public class Monster extends Creature {
     private ArrayList<BufferedImage> monsters;
     private Text text = new Text();
     private KeyManager input = new KeyManager();
-    private int i=-1;
-    private boolean isBlown=false;
+    private int i = -1;
+    private boolean isBlown = false;
     private int blownTime;
-    private int a,b; //current position (so that the explosion doesn't move)
+    private int a , b; //current position (so that the explosion doesn't move)
 
 
     public Monster(Game game, float x, float y) {
@@ -32,6 +32,7 @@ public class Monster extends Creature {
         monsters.add(Assets.monster3);
         this.word = text.randomWord();
     }
+
     public String getWord(){
         return word;
     }
@@ -54,25 +55,30 @@ public class Monster extends Creature {
         g.setFont(new Font("TimesNewRoman",1,17));
         g.drawString(word,(int) x,(int) y + 95);
     }
-    public void setTexture(int i){
+
+    public void setTexture(int i) {
         this.i = i;
     }
-    public int getTexture(){
+
+    public int getTexture() {
         return this.i;
     }
-    public void renderExplode(Graphics g){
-        g.drawImage(Assets.explosion,a,b,width-10,height-10,null);
+
+    public void renderExplode(Graphics g) {
+        g.drawImage(Assets.explosion, a, b,width,height,null);
     }
-    public void explode(int timeBlown){
-        this.blownTime=timeBlown;
-        this.isBlown=true;
-        a=(int)this.x;
-        b=(int)this.y;
+
+    public void explode(int timeBlown) {
+        this.blownTime = timeBlown;
+        this.isBlown = true;
+        a = (int) this.x;
+        b = (int) this.y;
     }
-    public int getTimeBlown(){
+    public int getTimeBlown() {
         return blownTime;
     }
-    public boolean getExploded(){
+
+    public boolean getExploded() {
         return isBlown;
     }
 
