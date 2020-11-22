@@ -37,7 +37,7 @@ public class Monster extends Creature {
         return word;
     }
 
-    public void tick() {
+    public void tick() {;
         double angle = Math.tan(650/(250-x));
         angle = Math.toRadians(angle);
         y = (int) y + 1;
