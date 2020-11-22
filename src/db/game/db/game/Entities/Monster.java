@@ -42,7 +42,6 @@ public class Monster extends Creature {
     }
 
     public void tick() {
-        System.out.println(speed);
         double angle = Math.tan(650/(250-x));
         angle = Math.toRadians(angle);
         y = (int) y + speed;
