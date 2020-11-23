@@ -74,7 +74,7 @@ public class Game implements Runnable{
         g = bs.getDrawGraphics();
         g.clearRect(0,0,width,height);
         //g.fillRect(0,0,width,height);
-        g.drawImage(ImageLoader.loadImage("/resources/background.png"),0, 0, null);
+        g.drawImage(ImageLoader.loadImage("/resources/background2.png"),0, 0, null);
 
         // draw start
         if (gameState != null) {

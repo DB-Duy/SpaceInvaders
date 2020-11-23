@@ -21,7 +21,7 @@ public class GameState extends State {
 
     public GameState(Game game) {
         super(game);
-        player = new Player(game, 200,650);
+        player = new Player(game, 450,450);
         detection = new CollisionDetection();
         level = new LevelManager();
         health = new HealthManager((player.getHealth()));
@@ -30,8 +30,9 @@ public class GameState extends State {
 
     public void addMonster() {
         if (time % 100 == 0) {
-            monsters.add(new Monster(game, (float)Math.random() * 301 + 50, 0));
+            monsters.add(new Monster(game, (float)Math.random() * 611 + 150, 0));
         }
+
         if (time > 10000) {
             time = 0;
         }
@@ -39,12 +40,15 @@ public class GameState extends State {
 
     public void tick() {
         time++;
+
         if (level.getProgressLevel() < 10) {
             addMonster();
         }
+
         for (int i = 0; i < monsters.size(); i++) {
 
             monsters.get(i).setSpeed(level.getLevel());
+
             monsters.get(i).tick();
 
             if (detection.hasCollided(monsters.get(i))) {
