@@ -24,10 +24,10 @@ public class HealthManager {
     public void render(Graphics g, CollisionDetection detection) {
         for (int i = 0; i < 3; i++) {
             if (detection.getCollision() <= i) {
-                g.drawImage(Assets.emptyHeart,20 + i*60,24,60,60,null);
+                g.drawImage(Assets.emptyHeart,30 + i*60,7,50,50,null);
             }
             else {
-                g.drawImage(Assets.fullHeart,20 + i*60,24,60,60,null);
+                g.drawImage(Assets.fullHeart,30 + i*60,7,50,50,null);
             }
         }
 
