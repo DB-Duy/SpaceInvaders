@@ -1,14 +1,12 @@
 package db.game.db.game.states;
 
-import db.game.db.game.Display.Assets;
+import db.game.db.game.Entities.Monster;
+import db.game.db.game.Entities.Player;
 import db.game.db.game.Game;
-import db.game.db.game.Entities.*;
-import db.game.db.game.LevelManagement.CollisionDetection;
-import db.game.db.game.LevelManagement.HealthManager;
-import db.game.db.game.LevelManagement.LevelManager;
+import db.game.db.game.LevelManagement.*;
 
-import java.util.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class GameState extends State {
 
@@ -91,7 +89,7 @@ public class GameState extends State {
             else monsters.get(i).render(g);
         }
 
-        health.render(g, detection);
+        health.render(g,detection);
         player.render(g);
         level.render(g);
     }

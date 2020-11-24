@@ -14,7 +14,6 @@ public class HealthManager {
 
     public HealthManager(int health) {
         this.health = health;
-
     }
 
     public void tick() {
