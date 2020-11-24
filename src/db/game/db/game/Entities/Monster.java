@@ -42,7 +42,7 @@ public class Monster extends Creature {
         return word;
     }
 
-    public void tick() {;
+    public void tick() {
         /*double angle = Math.tan(650/(250-x));
         angle = Math.toRadians(angle);
         y = (int) y + speed;
@@ -52,7 +52,9 @@ public class Monster extends Creature {
         else if (Math.cos(angle) != 0 && x > 250 && y % 6 == 0) {
             x -= Math.cos(angle) * speed;
         }*/
-        y = (int) y + speed;
+        if(!this.isBlown) {
+            y = (int) y + speed;
+        }
     }
 
     public void render(Graphics g) {
