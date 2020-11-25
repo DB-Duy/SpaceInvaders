@@ -23,22 +23,21 @@ public class BangBang {
 
         // launch
         double angle1, angle2;
-        double angle = 0;
+        double number1 = (double) (320 - monster.getB())/(monster.getA()-455), number2 = (double) (320 - monster.getB())/(455-monster.getA());
 
-        angle = Math.atan(Math.abs(320 - monster.getB()/monster.getA()-455));
-        System.out.println(angle);
-        //System.out.println("a is " + a + " b is " + b);
-        System.out.println("The angle2 is " + angle);
+        angle1 = Math.atan(number1); angle2 = Math.atan(number2);
+        System.out.println("a = " + monster.getA() + " b = " + monster.getB());
+        System.out.println(angle1 + " " + angle2);
 
 
         if (y > monster.getB() + 90) {
             if (x > monster.getA() + 45) {
-                x -= Math.cos(angle) * 6;
+                x -= Math.cos(angle2) * 9;
             }
             if (x < monster.getA() + 45) {
-                x += Math.cos(angle) * 6;
+                x += Math.cos(angle1) * 9;
             }
-            y -= Math.sin(angle) * 6;
+            y -= Math.abs(Math.sin(angle1)) * 9;
         }
     }
 
