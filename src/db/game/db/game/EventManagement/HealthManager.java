@@ -1,8 +1,6 @@
-package db.game.db.game.LevelManagement;
+package db.game.db.game.EventManagement;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 import db.game.db.game.Display.Assets;
 import db.game.db.game.Game;
@@ -14,7 +12,6 @@ public class HealthManager {
 
     public HealthManager(int health) {
         this.health = health;
-
     }
 
     public void tick() {
@@ -24,10 +21,10 @@ public class HealthManager {
     public void render(Graphics g, CollisionDetection detection) {
         for (int i = 0; i < 3; i++) {
             if (detection.getCollision() <= i) {
-                g.drawImage(Assets.emptyHeart,20 + i*60,24,60,60,null);
+                g.drawImage(Assets.emptyHeart,30 + i*60,7,50,50,null);
             }
             else {
-                g.drawImage(Assets.fullHeart,20 + i*60,24,60,60,null);
+                g.drawImage(Assets.fullHeart,30 + i*60,7,50,50,null);
             }
         }
 

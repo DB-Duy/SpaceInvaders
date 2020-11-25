@@ -1,4 +1,4 @@
-package db.game.db.game.LevelManagement;
+package db.game.db.game.EventManagement;
 
 import db.game.db.game.Entities.*;
 

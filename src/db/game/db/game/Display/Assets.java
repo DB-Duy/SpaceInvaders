@@ -6,17 +6,19 @@ import java.awt.image.BufferedImage;
 public class Assets {
 
     public static BufferedImage emptyHeart, fullHeart, monster1, monster2, monster3, monster4, rocket, explosion;
-    public static ArrayList<BufferedImage> levelBars;
-    private static SpriteSheet sheet1, sheet2, sheet3;
+    public static ArrayList<BufferedImage> levelBars, rays;
+    private static SpriteSheet sheet1, sheet2, sheet3, sheet4;
     private static int size = 249;
 
 
     public static void init() {
+        rays = new ArrayList<>();
         levelBars = new ArrayList<>();
 
         sheet1 = new SpriteSheet(ImageLoader.loadImage("/resources/sheet1.png"));
         sheet2 = new SpriteSheet(ImageLoader.loadImage("/resources/sheet2.png"));
         sheet3 = new SpriteSheet(ImageLoader.loadImage("/resources/sheet4.png"));
+        sheet4 = new SpriteSheet(ImageLoader.loadImage("/resources/rays.png"));
 
         emptyHeart = sheet1.crop(0,0, size, size);
         fullHeart = sheet2.crop(2*(size + 1), 0, size, size);
@@ -29,6 +31,10 @@ public class Assets {
 
         for (int i = 0; i < 11; i++) {
             levelBars.add(sheet3.crop(0, 84 * i, 239, 83));
+        }
+
+        for (int i = 0; i < 3; i++) {
+            rays.add(sheet4.crop(i * 168, 0, 167, 167));
         }
 
     }

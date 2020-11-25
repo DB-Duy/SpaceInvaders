@@ -3,14 +3,13 @@ package db.game.db.game.Entities;
 import db.game.db.game.Game;
 import db.game.db.game.Display.Assets;
 import db.game.db.game.Input.KeyManager;
-import db.game.db.game.LevelManagement.LevelManager;
+import db.game.db.game.EventManagement.BangBang;
+import db.game.db.game.EventManagement.LevelManager;
 import db.game.db.game.TextReader.Text;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.lang.Math;
 import java.util.ArrayList;
-import java.util.logging.Level;
 
 public class Monster extends Creature {
     private String word;
@@ -22,12 +21,14 @@ public class Monster extends Creature {
     private boolean isBlown = false;
     private int blownTime;
     private int a , b;
-    private int speed;
+    private int speed = 1;
     private LevelManager level;
+    private BangBang ray;
 
 
     public Monster(Game game, float x, float y) {
         super(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        ray = new BangBang();
         monsters = new ArrayList<>();
         this.game = game;
         level = new LevelManager();
@@ -42,8 +43,8 @@ public class Monster extends Creature {
         return word;
     }
 
-    public void tick() {;
-        double angle = Math.tan(650/(250-x));
+    public void tick() {
+        /*double angle = Math.tan(650/(250-x));
         angle = Math.toRadians(angle);
         y = (int) y + speed;
         if (Math.cos(angle) != 0 && x < 160 && y % 6 == 0) {
@@ -51,6 +52,9 @@ public class Monster extends Creature {
         }
         else if (Math.cos(angle) != 0 && x > 250 && y % 6 == 0) {
             x -= Math.cos(angle) * speed;
+        }*/
+        if(!this.isBlown) {
+            y = (int) y + speed;
         }
     }
 
@@ -76,11 +80,20 @@ public class Monster extends Creature {
         g.drawImage(Assets.explosion, a, b, width + 20, height + 20, null);
     }
 
+
     public void explode(int time) {
         this.blownTime = time;
         this.isBlown = true;
         a = (int) this.x;
         b = (int) this.y;
+    }
+
+    public int getA() {
+        return a;
+    }
+
+    public int getB() {
+        return b;
     }
 
     public int getTimeBlown() {
