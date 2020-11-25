@@ -1,5 +1,6 @@
-package db.game.db.game.EventManagement;
+package db.game.db.game.LevelManagement;
 import db.game.db.game.Display.Assets;
+
 import java.awt.*;
 
 
@@ -34,17 +35,17 @@ public class LevelManager {
     }
 
     public void render(Graphics g) {
-        g.setFont(new Font("Minecraft", Font.PLAIN, 22));
-        g.drawString("LVL " + this.level, 730, 45);
+        g.setFont(new Font("Minecraft", Font.PLAIN, 20));
+        g.drawString("Level " + this.level, 248, 59);
 
         if (progressLevel == 0) {
-            g.drawImage(Assets.levelBars.get(9), 790, 0, 180, 70, null);
+            g.drawImage(Assets.levelBars.get(9), 310, 10, 180, 80, null);
         }
         else if (progressLevel == 10) {
-            g.drawImage(Assets.levelBars.get(10), 790, 0, 180, 70, null);
+            g.drawImage(Assets.levelBars.get(10), 310, 10, 180, 80, null);
         }
         else {
-            g.drawImage(Assets.levelBars.get(progressLevel-1), 790, 0, 180, 70, null);
+            g.drawImage(Assets.levelBars.get(progressLevel-1), 310, 10, 180, 80, null);
         }
 
     }

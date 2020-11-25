@@ -4,9 +4,9 @@ import db.game.db.game.Input.KeyManager;
 import db.game.db.game.Display.Assets;
 import db.game.db.game.Display.Display;
 import db.game.db.game.Display.ImageLoader;
-import db.game.db.game.States.GameState;
-import db.game.db.game.States.MenuState;
-import db.game.db.game.States.State;
+import db.game.db.game.states.GameState;
+import db.game.db.game.states.MenuState;
+import db.game.db.game.states.State;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -74,7 +74,7 @@ public class Game implements Runnable{
         g = bs.getDrawGraphics();
         g.clearRect(0,0,width,height);
         //g.fillRect(0,0,width,height);
-        g.drawImage(ImageLoader.loadImage("/resources/background2.png"),0, 0, null);
+        g.drawImage(ImageLoader.loadImage("/resources/background.png"),0, 0, null);
 
         // draw start
         if (gameState != null) {

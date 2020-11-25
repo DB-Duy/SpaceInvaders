@@ -1,4 +1,4 @@
-package db.game.db.game.States;
+package db.game.db.game.states;
 
 import db.game.db.game.Game;
 
