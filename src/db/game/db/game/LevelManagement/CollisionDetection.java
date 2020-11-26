@@ -11,7 +11,7 @@ public class CollisionDetection {
     }
 
     public boolean hasCollided(Monster monster) {
-        if (monster.getY() == 360 && monster.getX() >= 360 && monster.getX() <= 550 || monster.getY() == 510) {
+        if ((monster.getY() >= 360 && monster.getX() >= 360 && monster.getX() <= 550) || monster.getY() >= 510) {
             if(!monster.getExplosion()) {
                 collision--;
                 return true;
