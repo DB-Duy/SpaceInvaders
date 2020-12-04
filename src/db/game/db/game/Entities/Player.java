@@ -7,11 +7,10 @@ import java.awt.*;
 
 
 public class Player extends Creature {
-
     private Game game;
 
     public Player(Game game, float x, float y) {
-        super(x, y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT);
+        super(game, x, y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT);
         this.game = game;
     }
 
@@ -19,7 +18,6 @@ public class Player extends Creature {
     public void tick() {
 
     }
-
 
 
     public void render(Graphics g) {
