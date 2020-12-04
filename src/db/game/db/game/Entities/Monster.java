@@ -13,23 +13,22 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 
 public class Monster extends Creature {
-    private String word;
+
     private Game game;
     private ArrayList<BufferedImage> monsters;
-    private Text text = new Text();
-    private KeyManager input = new KeyManager();
-    private int i = -1;
-    private boolean isBlown = false;
-    private int blownTime;
-    private int a , b;
-    private int speed = 1;
+    private Text text;
+    private KeyManager input;
+    private int i;
     private LevelManager level;
 
 
     public Monster(Game game, float x, float y) {
-        super(x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        super(game, x, y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT);
+
+        i = -1;
         monsters = new ArrayList<>();
-        this.game = game;
+        text = new Text();
+        input = new KeyManager();
         level = new LevelManager();
         monsters.add(Assets.monster1);
         monsters.add(Assets.monster2);
@@ -38,22 +37,10 @@ public class Monster extends Creature {
         this.word = text.randomWord();
     }
 
-    public String getWord(){
-        return word;
-    }
 
     public void tick() {
-        /*double angle = Math.tan(650/(250-x));
-        angle = Math.toRadians(angle);
-        y = (int) y + speed;
-        if (Math.cos(angle) != 0 && x < 160 && y % 6 == 0) {
-            x += Math.cos(angle) * speed;
-        }
-        else if (Math.cos(angle) != 0 && x > 250 && y % 6 == 0) {
-            x -= Math.cos(angle) * speed;
-        }*/
-        if(!this.isBlown) {
-            y = (int) y + speed;
+        if (!getExplosion()) {
+            y = (int) y + getSpeed();
         }
     }
 
@@ -62,9 +49,9 @@ public class Monster extends Creature {
         g.setColor(yellow);
 
         FontMetrics metrics = g.getFontMetrics(new Font("VCR_OSD_MONO_1_001",Font.PLAIN, 20));
-        int c = (int) this.x + (this.width - metrics.stringWidth(word)) / 2;
+        int c = (int) this.x + ((this.width-10) - metrics.stringWidth(word)) / 2;
         g.setFont(new Font("VCR_OSD_MONO_1_001",Font.PLAIN, 20));
-        g.drawString(word, c, (int) y + 100);
+        g.drawString(word, c, (int) y + height);
     }
 
     public void setTexture(int i) {
@@ -75,30 +62,6 @@ public class Monster extends Creature {
         return this.i;
     }
 
-    public void renderExplosion(Graphics g) {
-        g.drawImage(Assets.explosion, a, b, width + 20, height + 20, null);
-    }
 
-    public void explode(int time) {
-        this.blownTime = time;
-        this.isBlown = true;
-        a = (int) this.x;
-        b = (int) this.y;
-    }
 
-    public int getTimeBlown() {
-        return blownTime;
-    }
-
-    public boolean getExplosion() {
-        return isBlown;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
 }

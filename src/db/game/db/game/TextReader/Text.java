@@ -1,7 +1,7 @@
 package db.game.db.game.TextReader;
 
 public class Text {
-    ReadFile read=new ReadFile();
+    ReadFile read = new ReadFile();
     public Text(){
         read.init();
     }

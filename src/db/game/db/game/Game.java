@@ -4,9 +4,9 @@ import db.game.db.game.Input.KeyManager;
 import db.game.db.game.Display.Assets;
 import db.game.db.game.Display.Display;
 import db.game.db.game.Display.ImageLoader;
-import db.game.db.game.states.GameState;
-import db.game.db.game.states.MenuState;
-import db.game.db.game.states.State;
+import db.game.db.game.States.GameState;
+import db.game.db.game.States.MenuState;
+import db.game.db.game.States.State;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;

@@ -35,16 +35,16 @@ public class LevelManager {
 
     public void render(Graphics g) {
         g.setFont(new Font("Minecraft", Font.PLAIN, 22));
-        g.drawString("LVL " + this.level, 730, 45);
+        g.drawString("LVL " + this.level, 760, 42);
 
         if (progressLevel == 0) {
-            g.drawImage(Assets.levelBars.get(9), 790, 0, 180, 70, null);
+            g.drawImage(Assets.levelBars.get(9), 815, 0, 170, 65, null);
         }
         else if (progressLevel == 10) {
-            g.drawImage(Assets.levelBars.get(10), 790, 0, 180, 70, null);
+            g.drawImage(Assets.levelBars.get(10), 815, 0, 170, 65, null);
         }
         else {
-            g.drawImage(Assets.levelBars.get(progressLevel-1), 790, 0, 180, 70, null);
+            g.drawImage(Assets.levelBars.get(progressLevel-1), 815, 0, 170, 65, null);
         }
 
     }
