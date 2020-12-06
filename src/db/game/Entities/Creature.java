@@ -8,11 +8,14 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-public abstract class Creature extends Entity {
+public abstract class Creature {
 
-    private Game game;
+    protected Handler handler;
     public static final int DEFAULT_HEALTH = 3;
     public static final int DEFAULT_WIDTH = 100, DEFAULT_HEIGHT = 100;
+
+    protected float x, y;
+    protected int width, height;
 
     protected boolean isBlown;
     protected int health, speed, blownTime, a, b;
@@ -22,10 +25,10 @@ public abstract class Creature extends Entity {
     protected Font font;
 
 
-    File fontFile = new File(".//res//font//font.ttf");
+    File fontFile = new File(".//res//font/gotham.ttf");
     {
         try {
-            font = Font.createFont(Font.TRUETYPE_FONT,fontFile).deriveFont(30f).deriveFont(15f);
+            font = Font.createFont(Font.TRUETYPE_FONT,fontFile).deriveFont(19f);
             GraphicsEnvironment ge= GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, fontFile));
         } catch (FontFormatException e) {
@@ -36,8 +39,9 @@ public abstract class Creature extends Entity {
     }
 
     public Creature(Handler handler, float x, float y, int width, int height) {
-        super(handler, x, y, width, height);
-        this.game = game;
+        this.handler = handler;
+        this.x = x; this.y = y;
+        this.width = width; this.height = height;
         health = DEFAULT_HEALTH;
         speed = 1;
         isBlown = false;
@@ -89,5 +93,37 @@ public abstract class Creature extends Entity {
 
     public String getWord() {
         return word;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 }
