@@ -26,9 +26,9 @@ public class Shield extends Creature {
     public void render(Graphics g) {
         g.drawImage(Assets.shield, (int) x, (int) y, width - 20, height - 20, null);
         g.setColor(yellow);
-        FontMetrics metrics = g.getFontMetrics(new Font("VCR_OSD_MONO_1_001",Font.PLAIN, 20));
+        FontMetrics metrics = g.getFontMetrics(font);
         int c = (int) this.x + ((this.width - 20) - metrics.stringWidth(word)) / 2;
-        g.setFont(new Font("VCR_OSD_MONO_1_001",Font.PLAIN, 20));
+        g.setFont(font);
         g.drawString(word, c, (int) y + height);
     }
 
