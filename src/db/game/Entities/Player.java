@@ -25,10 +25,10 @@ public class Player extends Creature {
         g.drawImage(Assets.rocket, (int) x, (int) y, width, height, null);
         g.setColor(yellow);
 
-        FontMetrics metrics = g.getFontMetrics(new Font("VCR_OSD_MONO_1_001",Font.PLAIN, 20));
+        FontMetrics metrics = g.getFontMetrics(font.deriveFont(22f));
         int c = (int) this.x + (this.width - metrics.stringWidth(handler.getKeyManager().getWordTyped())) / 2;
 
-        g.setFont(new Font("VCR_OSD_MONO_1_001",Font.PLAIN,20));
+        g.setFont(font.deriveFont(22f));
         g.drawString(handler.getKeyManager().getWordTyped(),c ,(int) y + 110);
     }
 
