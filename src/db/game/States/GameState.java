@@ -66,8 +66,9 @@ public class GameState extends State {
 
             if (shieldCollision.hasCollided(shields.get(i))) {
                 shields.get(i).explode(time);
+                handler.getKeyManager().resetWordTyped();
             }
-            else if (handler.getKeyManager().getWordTyped().equals(shields.get(i).getWord()) && !shields.get(i).getExplosion() ) {
+            else if (handler.getKeyManager().getWordTyped().equals(shields.get(i).getWord()) && !shields.get(i).getExplosion()) {
                 shields.get(i).explode(time);
                 handler.getKeyManager().resetWordTyped();
                 shieldManager.setShields(shieldManager.getShields() + 1);
@@ -84,6 +85,7 @@ public class GameState extends State {
 
             if (monsterCollision.hasCollided(monsters.get(i))) {
                 monsters.get(i).explode(time);
+                handler.getKeyManager().resetWordTyped();
                 if (shieldManager.getShields() > 0) {
                     shieldManager.setShields((shieldManager.getShields() - 1));
                 }
