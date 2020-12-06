@@ -13,7 +13,7 @@ public class ReadFile{
     private static ArrayList<String> words;
 
     public ReadFile() {
-        file = new File("level1.txt");
+        file = new File(".//res//text//level1.txt");
         rand = new Random();
         words = new ArrayList<>();
 
