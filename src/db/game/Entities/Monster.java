@@ -49,7 +49,9 @@ public class Monster extends Creature {
 
         FontMetrics metrics = g.getFontMetrics(new Font("VCR_OSD_MONO_1_001",Font.PLAIN, 20));
         int c = (int) this.x + ((this.width-10) - metrics.stringWidth(word)) / 2;
-        g.setFont(new Font("VCR_OSD_MONO_1_001",Font.PLAIN, 20));
+        //g.setFont(new Font("VCR_OSD_MONO_1_001",Font.PLAIN, 20));
+        g.setFont(font);
+        g.setColor(Color.CYAN);
         g.drawString(word, c, (int) y + height);
     }
 

@@ -4,6 +4,9 @@ import db.game.Display.Assets;
 import db.game.Main.Handler;
 
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 public abstract class Creature extends Entity {
 
@@ -15,6 +18,22 @@ public abstract class Creature extends Entity {
     protected int health, speed, blownTime, a, b;
     protected String word;
     protected Color yellow;
+
+    protected Font font;
+
+
+    File fontFile = new File(".//res//font//font.ttf");
+    {
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT,fontFile).deriveFont(30f).deriveFont(15f);
+            GraphicsEnvironment ge= GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, fontFile));
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Creature(Handler handler, float x, float y, int width, int height) {
         super(handler, x, y, width, height);

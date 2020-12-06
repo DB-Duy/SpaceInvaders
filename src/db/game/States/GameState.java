@@ -138,10 +138,10 @@ public class GameState extends State {
             else shields.get(i).render(g);
         }
 
-        shieldManager.render(g);
         health.render(g,monsterCollision);
         player.render(g);
         level.render(g);
+        shieldManager.render(g);
     }
 
 }
