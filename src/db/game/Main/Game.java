@@ -8,6 +8,7 @@ import db.game.Input.MouseManager;
 import db.game.States.GameState;
 import db.game.States.MenuState;
 import db.game.States.State;
+import db.game.Sounds.Sound;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -76,6 +77,8 @@ public class Game implements Runnable{
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
         State.setState(menuState);
+
+        Sound.playSoundLoop(".//res//sounds//background.wav");
     }
 
 
