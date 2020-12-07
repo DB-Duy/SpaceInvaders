@@ -2,6 +2,7 @@ package db.game.Entities;
 import db.game.Main.Game;
 import db.game.Display.Assets;
 import db.game.Main.Handler;
+import db.game.Sounds.Sound;
 
 import java.awt.*;
 import java.io.File;
@@ -61,6 +62,7 @@ public abstract class Creature {
     }
 
     public void setExplosion() {
+        Sound.playSound(".//res//Sounds//die.wav");
         isBlown = true;
     }
 

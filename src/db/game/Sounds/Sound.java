@@ -28,7 +28,7 @@ public class Sound {
             File music = new File(path);
             AudioInputStream audioInput = AudioSystem.getAudioInputStream(music);
             Clip clip = AudioSystem.getClip();
-            clip.open();
+            clip.open(audioInput);
             clip.start();
 
         } catch (UnsupportedAudioFileException e) {
