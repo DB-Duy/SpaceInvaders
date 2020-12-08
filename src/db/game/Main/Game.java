@@ -6,6 +6,7 @@ import db.game.Display.Display;
 import db.game.Display.ImageLoader;
 import db.game.Input.MouseManager;
 import db.game.States.GameState;
+import db.game.States.InstructionState;
 import db.game.States.MenuState;
 import db.game.States.State;
 import db.game.Sounds.Sound;
@@ -27,6 +28,7 @@ public class Game implements Runnable{
 
     public State gameState;
     public State menuState;
+    public State instructionState;
 
     private Handler handler;
 
@@ -76,6 +78,8 @@ public class Game implements Runnable{
         handler = new Handler(this);
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
+        //instructionState = new InstructionState(handler);
+
         State.setState(menuState);
 
         Sound.playSoundLoop(".//res//sounds//background.wav");
@@ -104,7 +108,7 @@ public class Game implements Runnable{
         g = bs.getDrawGraphics();
         g.clearRect(0,0,width,height);
         //g.fillRect(0,0,width,height);
-        g.drawImage(ImageLoader.loadImage("/resources/background.png"),0, 0, null);
+
 
         // draw start
         if (gameState != null) {
