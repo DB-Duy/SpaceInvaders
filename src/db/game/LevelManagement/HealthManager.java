@@ -18,14 +18,12 @@ public class HealthManager {
 
     }
 
-    public void render(Graphics g, CollisionDetection detection) {
-        for (int i = 0; i < 3; i++) {
-            if (detection.getCollision() <= i) {
-                g.drawImage(Assets.emptyHeart,20 + i*60,7,50,50,null);
-            }
-            else {
-                g.drawImage(Assets.fullHeart,20 + i*60,7,50,50,null);
-            }
+    public void render(Graphics g) {
+        for (int i = 0; i < health; i++) {
+            g.drawImage(Assets.fullHeart, 20 + i*60, 7, 50, 50, null);
+        }
+        for (int j = health; j < 3; j++) {
+            g.drawImage(Assets.emptyHeart, 20 + j*60, 7, 50, 50, null);
         }
     }
 
