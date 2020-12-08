@@ -45,13 +45,11 @@ public class Monster extends Creature {
 
     public void render(Graphics g) {
         g.drawImage(monsters.get(i), (int) x, (int) y, width - 10, height - 10, null);
-        g.setColor(yellow);
 
+        g.setColor(yellow);
         FontMetrics metrics = g.getFontMetrics(font);
         int c = (int) this.x + ((this.width-10) - metrics.stringWidth(word)) / 2;
-
         g.setFont(font);
-        g.setColor(Color.CYAN);
         g.drawString(word, c, (int) y + height);
     }
 

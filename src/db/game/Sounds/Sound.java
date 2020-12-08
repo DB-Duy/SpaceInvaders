@@ -12,7 +12,7 @@ public class Sound {
             Clip clip = AudioSystem.getClip();
             clip.open(audioInput);
             FloatControl control= (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            control.setValue(-25.0f);
+            control.setValue(-5.0f);
             clip.start();
             clip.loop(Clip.LOOP_CONTINUOUSLY);
         } catch (LineUnavailableException e) {
