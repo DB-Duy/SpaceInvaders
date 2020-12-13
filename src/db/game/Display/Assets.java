@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 public class Assets {
 
     public static BufferedImage emptyHeart, fullHeart, monster1, monster2, monster3, monster4,
-                                rocket, explosion, shield, startScreen, bomb;
+                                rocket, explosion, shield, startScreen, bomb, gameOverScreen, stars, title;
     public static ArrayList<BufferedImage> levelBars,
                                            startButtons, quitButtons, instructions, settings, tryAgain, next, back,
                                            instructionScreens;
@@ -40,6 +40,7 @@ public class Assets {
         nextChoices = new SpriteSheet(ImageLoader.loadImage("/resources/nextchoices.png"));
         instructionScreen = new SpriteSheet(ImageLoader.loadImage("/resources/instructionscreen.png"));
 
+
         emptyHeart = sheet1.crop(0,0, size, size);
         fullHeart = sheet2.crop(2*(size + 1), 0, size, size);
         monster1 = sheet2.crop(4*(size + 1), 0, size, size);
@@ -51,6 +52,9 @@ public class Assets {
         shield = ImageLoader.loadImage("/resources/shield.png");
         startScreen = ImageLoader.loadImage("/resources/startscreen.png");
         bomb = ImageLoader.loadImage("/resources/bomb.png");
+        gameOverScreen = ImageLoader.loadImage("/resources/gameover.png");
+        stars = ImageLoader.loadImage("/resources/stars.png");
+        title = ImageLoader.loadImage("/resources/title.png");
 
 
         for (int i = 0; i < 11; i++) {

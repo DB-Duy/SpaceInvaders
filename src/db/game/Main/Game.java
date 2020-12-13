@@ -5,10 +5,7 @@ import db.game.Display.Assets;
 import db.game.Display.Display;
 import db.game.Display.ImageLoader;
 import db.game.Input.MouseManager;
-import db.game.States.GameState;
-import db.game.States.InstructionState;
-import db.game.States.MenuState;
-import db.game.States.State;
+import db.game.States.*;
 import db.game.Sounds.Sound;
 
 import java.awt.*;
@@ -29,6 +26,7 @@ public class Game implements Runnable{
     public State gameState;
     public State menuState;
     public State instructionState;
+    public State deathState;
 
     private Handler handler;
 
@@ -78,11 +76,12 @@ public class Game implements Runnable{
         handler = new Handler(this);
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
+        deathState = new DeathState(handler);
         //instructionState = new InstructionState(handler);
 
         State.setState(menuState);
 
-        Sound.playSoundLoop(".//res//sounds//background.wav");
+        //Sound.playSoundLoop(".//res//sounds//background.wav");
     }
 
 
