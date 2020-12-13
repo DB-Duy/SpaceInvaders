@@ -1,6 +1,7 @@
 package db.game.States;
 
 import db.game.Display.Assets;
+import db.game.Display.ImageLoader;
 import db.game.Main.Game;
 import db.game.Main.Handler;
 import db.game.UI.ClickListener;
@@ -12,6 +13,8 @@ import java.awt.*;
 public class MenuState extends State {
 
     private UIManager uiManager;
+    private int y1 = 0;
+    private int y2 = -handler.getGame().getHeight();
 
     public MenuState(Handler handler) {
         super(handler);
@@ -56,11 +59,17 @@ public class MenuState extends State {
     @Override
     public void tick() {
         uiManager.tick();
+        y1++;
     }
 
     @Override
     public void render(Graphics g) {
         g.drawImage(Assets.startScreen, 0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
+
+        g.drawImage(Assets.stars, 0, y1, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
+
+
+        g.drawImage(Assets.title, 0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
         uiManager.render(g);
     }
 
