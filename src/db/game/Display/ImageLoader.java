@@ -14,4 +14,9 @@ public class ImageLoader {
         }
         return null;
     }
+
+    public static BufferedImage cropImage(BufferedImage image, int x, int y, int width, int height) {
+        BufferedImage cropped = image.getSubimage(x, y, width, height);
+        return cropped;
+    }
 }

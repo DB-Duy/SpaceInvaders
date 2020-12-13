@@ -146,7 +146,7 @@ public class GameState extends State {
             monsters.clear();
             shields.clear();
             bombs.clear();
-            System.exit(0);
+            State.setState(handler.getGame().deathState);
         }
     }
 
