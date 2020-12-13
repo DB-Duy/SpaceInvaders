@@ -60,6 +60,9 @@ public class MenuState extends State {
     public void tick() {
         uiManager.tick();
         y1++;
+        if(y1>handler.getHeight()){
+            y1=0;
+        }
     }
 
     @Override
@@ -67,7 +70,7 @@ public class MenuState extends State {
         g.drawImage(Assets.startScreen, 0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
 
         g.drawImage(Assets.stars, 0, y1, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
-
+        g.drawImage(Assets.stars,0,y1-handler.getHeight(),handler.getWidth(),handler.getHeight(),null);
 
         g.drawImage(Assets.title, 0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
         uiManager.render(g);
