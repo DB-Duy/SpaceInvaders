@@ -11,6 +11,7 @@ import java.awt.*;
 public class DeathState extends State {
 
     private UIManager uiManager;
+    private int y = 0;
 
     public DeathState(Handler handler) {
         super(handler);
@@ -37,11 +38,19 @@ public class DeathState extends State {
     @Override
     public void tick() {
         uiManager.tick();
+        y++;
+        if (y > handler.getGame().getHeight()) {
+            y = 0;
+        }
     }
 
     @Override
     public void render(Graphics g) {
         g.drawImage(Assets.gameOverScreen, 0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
+
+        g.drawImage(Assets.stars, 0, y, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
+        g.drawImage(Assets.stars,0,y - handler.getHeight(), handler.getGame().getWidth(), handler.getGame().getHeight(),null);
+
         uiManager.render(g);
     }
 }

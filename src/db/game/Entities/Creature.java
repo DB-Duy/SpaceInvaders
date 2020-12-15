@@ -74,7 +74,19 @@ public abstract class Creature {
     }
 
     public void renderExplosion(Graphics g) {
+        /*for (int i = 0; i < 6; i++) {
+            g.drawImage(Assets.explosions.get(i), a, b, width + 20, height + 20, null);
+            insertDelay(500);
+        }*/
         g.drawImage(Assets.explosion, a, b, width + 20, height + 20, null);
+    }
+
+    private void insertDelay(int delayTime) {
+        try {
+            Thread.sleep(delayTime);
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     public int getSpeed() {
@@ -128,4 +140,5 @@ public abstract class Creature {
     public void setHeight(int height) {
         this.height = height;
     }
+
 }
