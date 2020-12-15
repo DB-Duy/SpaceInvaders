@@ -81,7 +81,7 @@ public class Game implements Runnable{
 
         State.setState(menuState);
 
-        //Sound.playSoundLoop(".//res//sounds//background.wav");
+        Sound.playSoundLoop(".//res//sounds//background.wav");
     }
 
 

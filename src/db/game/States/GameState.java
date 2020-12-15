@@ -1,5 +1,6 @@
 package db.game.States;
 
+import db.game.Display.Assets;
 import db.game.Display.ImageLoader;
 import db.game.Entities.*;
 import db.game.LevelManagement.CollisionDetection;
@@ -23,7 +24,7 @@ public class GameState extends State {
     private ArrayList<Shield> shields;
     private ArrayList<Monster> monsters;
     private ArrayList<Bomb> bombs;
-    private int time = 99;
+    private int time = 99, y = 0;
     private CollisionDetection collision, shieldCollision, bombCollision;
 
     public GameState(Handler handler) {
@@ -42,7 +43,7 @@ public class GameState extends State {
 
 
     public void addCreature() {
-        if (time % 100 == 0) {
+        if (time % 50 == 0) {
             monsters.add(new Monster(handler, (float) Math.random() * 611 + 150, 0));
         }
 
@@ -60,7 +61,11 @@ public class GameState extends State {
     }
 
     public void tick() {
-        time++;
+        time++; y++;
+
+        if (y > handler.getGame().getHeight()) {
+            y = 0;
+        }
 
         if (level.getProgressLevel() < 10) {
             addCreature();
@@ -142,7 +147,7 @@ public class GameState extends State {
         player.tick();
 
 
-        if (collision.getCollision() == 0) {
+        if (health.getHealth() == 0) {
             monsters.clear();
             shields.clear();
             bombs.clear();
@@ -150,8 +155,13 @@ public class GameState extends State {
         }
     }
 
+
+
     public void render(Graphics g) {
         g.drawImage(ImageLoader.loadImage("/resources/background.png"),0, 0, null);
+        g.drawImage(Assets.stars, 0, y, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
+        g.drawImage(Assets.stars,0,y - handler.getHeight(), handler.getGame().getWidth(), handler.getGame().getHeight(),null);
+        g.drawImage(Assets.mountains,0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
 
         for (int i = 0; i < monsters.size(); i++) {
 
@@ -160,6 +170,7 @@ public class GameState extends State {
             }
 
             if (monsters.get(i).getExplosion()) {
+                int j = 0;
                 monsters.get(i).renderExplosion(g);
             }
 
@@ -183,6 +194,7 @@ public class GameState extends State {
             else shields.get(i).render(g);
         }
 
+        g.drawImage(Assets.blackBar,0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
         health.render(g);
         player.render(g);
         level.render(g);

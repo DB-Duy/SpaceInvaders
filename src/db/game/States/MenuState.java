@@ -13,8 +13,8 @@ import java.awt.*;
 public class MenuState extends State {
 
     private UIManager uiManager;
-    private int y1 = 0;
-    private int y2 = -handler.getGame().getHeight();
+    private int y = 0;
+
 
     public MenuState(Handler handler) {
         super(handler);
@@ -59,9 +59,9 @@ public class MenuState extends State {
     @Override
     public void tick() {
         uiManager.tick();
-        y1++;
-        if(y1>handler.getHeight()){
-            y1=0;
+        y++;
+        if (y > handler.getGame().getHeight()) {
+            y = 0;
         }
     }
 
@@ -69,8 +69,8 @@ public class MenuState extends State {
     public void render(Graphics g) {
         g.drawImage(Assets.startScreen, 0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
 
-        g.drawImage(Assets.stars, 0, y1, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
-        g.drawImage(Assets.stars,0,y1-handler.getHeight(),handler.getWidth(),handler.getHeight(),null);
+        g.drawImage(Assets.stars, 0, y, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
+        g.drawImage(Assets.stars,0,y - handler.getHeight(), handler.getGame().getWidth(), handler.getGame().getHeight(),null);
 
         g.drawImage(Assets.title, 0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
         uiManager.render(g);

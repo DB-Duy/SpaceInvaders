@@ -6,13 +6,13 @@ import java.awt.image.BufferedImage;
 public class Assets {
 
     public static BufferedImage emptyHeart, fullHeart, monster1, monster2, monster3, monster4,
-                                rocket, explosion, shield, startScreen, bomb, gameOverScreen, stars, title;
+                                rocket, explosion, shield, startScreen, bomb, gameOverScreen, stars, title, blackBar, mountains;
     public static ArrayList<BufferedImage> levelBars,
                                            startButtons, quitButtons, instructions, settings, tryAgain, next, back,
-                                           instructionScreens;
+                                           instructionScreens, explosions;
     private static SpriteSheet sheet1, sheet2, sheet3,
                                startChoices, quitChoices, instructionChoices, settingChoices, tryAgainChoices, backChoices, nextChoices,
-                               instructionScreen;
+                               instructionScreen, sheet4;
     private static int size = 249;
 
 
@@ -26,11 +26,13 @@ public class Assets {
         back = new ArrayList<>();
         next = new ArrayList<>();
         instructionScreens = new ArrayList<>();
+        explosions = new ArrayList<>();
 
 
         sheet1 = new SpriteSheet(ImageLoader.loadImage("/resources/sheet1.png"));
         sheet2 = new SpriteSheet(ImageLoader.loadImage("/resources/sheet2.png"));
         sheet3 = new SpriteSheet(ImageLoader.loadImage("/resources/sheet4.png"));
+        sheet4 = new SpriteSheet(ImageLoader.loadImage("/resources/explosion.png"));
         startChoices = new SpriteSheet(ImageLoader.loadImage("/resources/startchoices.png"));
         quitChoices = new SpriteSheet(ImageLoader.loadImage("/resources/quitchoices.png"));
         instructionChoices = new SpriteSheet(ImageLoader.loadImage("/resources/instructions.png"));
@@ -55,6 +57,9 @@ public class Assets {
         gameOverScreen = ImageLoader.loadImage("/resources/gameover.png");
         stars = ImageLoader.loadImage("/resources/stars.png");
         title = ImageLoader.loadImage("/resources/title.png");
+        blackBar = ImageLoader.loadImage("/resources/blackbar.png");
+        mountains = ImageLoader.loadImage("/resources/mountains.png");
+
 
 
         for (int i = 0; i < 11; i++) {
@@ -75,6 +80,10 @@ public class Assets {
             for (int j = 0; j < 2; j++) {
                 instructionScreens.add(instructionScreen.crop(j * 1000, i * 600, 999, 599));
             }
+        }
+
+        for (int i = 0; i < 6; i++) {
+            explosions.add(sheet4.crop(i * 250, 0, 249, 249));
         }
 
 
