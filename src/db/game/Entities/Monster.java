@@ -1,5 +1,6 @@
 package db.game.Entities;
 
+import db.game.LevelManagement.ScoreManager;
 import db.game.Main.Game;
 import db.game.Main.Handler;
 import db.game.TextReader.Text;
@@ -61,6 +62,25 @@ public class Monster extends Creature {
         return this.i;
     }
 
-
+    public void scoring(int numKilled, ScoreManager score) {
+        if (numKilled > 0) {
+            if (numKilled < 5) {
+                score.setScore(score.getScore() + score.individual());
+                System.out.println(numKilled + " monsters killed + "  + score.individual());
+            }
+            else if (numKilled < 10) {
+                score.setScore(score.getScore() + score.combo_1());
+                System.out.println(numKilled + " monsters killed + "  + score.combo_1());
+            }
+            else if (numKilled < 20) {
+                score.setScore(score.getScore() + score.combo_2());
+                System.out.println(numKilled + " monsters killed + "  + score.combo_2());
+            }
+            else if (numKilled >= 20) {
+                score.setScore(score.getScore() + score.combo_3());
+                System.out.println(numKilled + " monsters killed + "  + score.combo_3());
+            }
+        }
+    }
 
 }

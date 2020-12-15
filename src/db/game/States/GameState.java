@@ -3,10 +3,7 @@ package db.game.States;
 import db.game.Display.Assets;
 import db.game.Display.ImageLoader;
 import db.game.Entities.*;
-import db.game.LevelManagement.CollisionDetection;
-import db.game.LevelManagement.HealthManager;
-import db.game.LevelManagement.LevelManager;
-import db.game.LevelManagement.ShieldManager;
+import db.game.LevelManagement.*;
 import db.game.Main.Game;
 import db.game.Main.Handler;
 import db.game.Sounds.Sound;
@@ -26,6 +23,8 @@ public class GameState extends State {
     private ArrayList<Bomb> bombs;
     private int time = 99, y = 0;
     private CollisionDetection collision, shieldCollision, bombCollision;
+    private ScoreManager score;
+    private int numKilled;
 
     public GameState(Handler handler) {
         super(handler);
@@ -39,6 +38,8 @@ public class GameState extends State {
         collision = new CollisionDetection();
         shieldCollision = new CollisionDetection();
         bombCollision = new CollisionDetection();
+        score = new ScoreManager(0);
+        numKilled = 0;
     }
 
 
@@ -83,6 +84,7 @@ public class GameState extends State {
             else if (handler.getKeyManager().getWordTyped().equals(shields.get(i).getWord()) && !shields.get(i).getExplosion()) {
                 shields.get(i).explode(time);
                 handler.getKeyManager().resetWordTyped();
+                score.setScore(score.getScore() + score.shield());
                 shieldManager.setShields(shieldManager.getShields() + 1);
                 collision.setCollision(collision.getCollision() + 1);
             }
@@ -104,6 +106,8 @@ public class GameState extends State {
             else if (handler.getKeyManager().getWordTyped().equals(bombs.get(i).getWord()) && !bombs.get(i).getExplosion()) {
                 bombs.get(i).explode(time);
                 handler.getKeyManager().resetWordTyped();
+                numKilled = 0;
+                score.setScore(score.getScore() + score.bomb());
                 if (shieldManager.getShields() > 0) {
                     shieldManager.setShields((shieldManager.getShields() - 1));
                 }
@@ -123,6 +127,7 @@ public class GameState extends State {
             if (collision.hasCollided(monsters.get(i))) {
                 monsters.get(i).explode(time);
                 handler.getKeyManager().resetWordTyped();
+                numKilled = 0;
                 if (shieldManager.getShields() > 0) {
                     shieldManager.setShields((shieldManager.getShields() - 1));
                 }
@@ -131,12 +136,15 @@ public class GameState extends State {
             else if (handler.getKeyManager().getWordTyped().equals(monsters.get(i).getWord()) && !monsters.get(i).getExplosion()) {
                 monsters.get(i).explode(time);
                 handler.getKeyManager().resetWordTyped();
+                numKilled++;
+                monsters.get(i).scoring(numKilled, score);
                 level.setProgressLevel(level.getProgressLevel() + 1);
             }
             if (Math.abs(monsters.get(i).getBlownTime() - time) > 30 && monsters.get(i).getExplosion()) {
                 monsters.remove(i);
             }
         }
+
 
 
         if (level.getProgressLevel() == 10) {
@@ -146,7 +154,7 @@ public class GameState extends State {
 
         player.tick();
 
-
+        System.out.println("Score : " + score.getScore());
         if (health.getHealth() == 0) {
             monsters.clear();
             shields.clear();
@@ -195,6 +203,7 @@ public class GameState extends State {
         }
 
         g.drawImage(Assets.blackBar,0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
+        score.render(g);
         health.render(g);
         player.render(g);
         level.render(g);
