@@ -54,6 +54,10 @@ public class Monster extends Creature {
         g.drawString(word, c, (int) y + height);
     }
 
+    public void renderExplosion(Graphics g, int i){
+        g.drawImage(Assets.explosions.get(i),(int)x,(int)y,width-10,height-10,null);
+    }
+
     public void setTexture(int i) {
         this.i = i;
     }
