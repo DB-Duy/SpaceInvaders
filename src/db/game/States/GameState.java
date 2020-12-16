@@ -178,8 +178,9 @@ public class GameState extends State {
             }
 
             if (monsters.get(i).getExplosion()) {
-                int j = 0;
-                monsters.get(i).renderExplosion(g);
+                int j = (Math.abs(monsters.get(i).getBlownTime()-time))/6;
+                //monsters.get(i).renderExplosion(g);
+                monsters.get(i).renderExplosion(g,j);
             }
 
             else monsters.get(i).render(g);
