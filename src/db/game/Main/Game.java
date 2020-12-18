@@ -27,6 +27,7 @@ public class Game implements Runnable{
     public State menuState;
     public State instructionState;
     public State deathState;
+    public State leaderboardState;
 
     private Handler handler;
 
@@ -77,6 +78,7 @@ public class Game implements Runnable{
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
         deathState = new DeathState(handler);
+        leaderboardState = new LeaderboardState(handler);
         //instructionState = new InstructionState(handler);
 
         State.setState(menuState);

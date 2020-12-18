@@ -12,8 +12,8 @@ public class ReadFile{
     Random rand;
     private static ArrayList<String> words;
 
-    public ReadFile() {
-        file = new File(".//res//text//level1.txt");
+    public ReadFile(String path) {
+        file = new File(path);
         rand = new Random();
         words = new ArrayList<>();
 

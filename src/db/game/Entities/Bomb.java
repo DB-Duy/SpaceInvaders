@@ -14,7 +14,7 @@ public class Bomb extends Creature {
 
     public Bomb(Handler handler, float x, float y) {
         super(handler, x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-        text = new Text();
+        text = new Text(".//res//text//level1.txt");
         input = new KeyManager();
         this.word = text.randomWord();
     }
