@@ -30,6 +30,10 @@ public class ScoreManager {
         setScore(getScore() + 5);
     }
 
+    public void asteroid() {
+        setScore(getScore() + 5);
+    }
+
     public void bomb() {
         setScore(getScore() - 5);
     }

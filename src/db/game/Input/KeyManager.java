@@ -18,6 +18,14 @@ public class KeyManager implements KeyListener {
         return wordTyped;
     }
 
+    public int intValue() {
+        if (wordTyped.matches(".*\\d.*")) {
+            return Integer.valueOf(wordTyped);
+        }
+        else return 100000;
+    }
+
+
 
     @Override
     public void keyPressed (KeyEvent e) {
@@ -38,9 +46,6 @@ public class KeyManager implements KeyListener {
     public void keyTyped (KeyEvent e) {
         if(backspace==false && e.getKeyChar()!=KeyEvent.VK_BACK_SPACE) {
             wordTyped += e.getKeyChar();
-            if (e.getKeyChar() == ' ') {
-                wordTyped = "";
-            }
         }
     }
     public void resetWordTyped(){

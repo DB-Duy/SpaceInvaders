@@ -18,11 +18,12 @@ public class GameState extends State {
     private HealthManager health;
     private LevelManager level;
     private ShieldManager shieldManager;
+    private ArrayList<Asteroid> asteroids;
     private ArrayList<Shield> shields;
     private ArrayList<Monster> monsters;
     private ArrayList<Bomb> bombs;
     private int time = 99, y = 0;
-    private CollisionDetection collision, shieldCollision, bombCollision;
+    private CollisionDetection collision, shieldCollision, bombCollision, asteroidCollision;
     private ScoreManager score;
     private int numKilled;
 
@@ -35,8 +36,10 @@ public class GameState extends State {
         shieldManager = new ShieldManager();
         health = new HealthManager(3);
         monsters = new ArrayList<>();
+        asteroids = new ArrayList<>();
         collision = new CollisionDetection();
         shieldCollision = new CollisionDetection();
+        asteroidCollision = new CollisionDetection();
         bombCollision = new CollisionDetection();
         score = new ScoreManager(0);
         numKilled = 0;
@@ -57,6 +60,12 @@ public class GameState extends State {
             }
         }
 
+        //if (level.getLevel() > 1) {
+            if (time % 300 == 0) {
+                asteroids.add(new Asteroid(handler, (float) Math.random() * 611 + 150, 0));
+            }
+        //}
+
 
         if (time > 10000) {
             time = 0;
@@ -73,6 +82,27 @@ public class GameState extends State {
         if (level.getProgressLevel() < 10) {
             addCreature();
         }
+
+        for (int i = 0; i < asteroids.size(); i++) {
+            asteroids.get(i).setSpeed(level.getLevel());
+            asteroids.get(i).tick();
+
+            if (asteroidCollision.hasCollided(asteroids.get(i))) {
+                asteroids.get(i).explode(time);
+                handler.getKeyManager().resetWordTyped();
+                collision.setCollision(collision.getCollision() + 1);
+            }
+            else if (handler.getKeyManager().intValue() == (asteroids.get(i).getA() + asteroids.get(i).getB()) && !asteroids.get(i).getExplosion()) {
+                asteroids.get(i).explode(time);
+                handler.getKeyManager().resetWordTyped();
+                score.asteroid();
+                collision.setCollision(collision.getCollision() + 1);
+            }
+            if (Math.abs(asteroids.get(i).getBlownTime() - time) > 30 && asteroids.get(i).getExplosion()) {
+                asteroids.remove(i);
+            }
+        }
+
 
         for (int i = 0; i < shields.size(); i++) {
             shields.get(i).setSpeed(level.getLevel());
@@ -156,6 +186,7 @@ public class GameState extends State {
         player.tick();
 
         if (health.getHealth() == 0) {
+            asteroids.clear();
             monsters.clear();
             shields.clear();
             bombs.clear();
@@ -200,6 +231,16 @@ public class GameState extends State {
 
             else shields.get(i).render(g);
         }
+
+        for (int i = 0; i < asteroids.size(); i++) {
+
+            if (asteroids.get(i).getExplosion()) {
+                asteroids.get(i).renderExplosion(g, time);
+            }
+
+            else asteroids.get(i).render(g);
+        }
+
 
         g.drawImage(Assets.blackBar,0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
         score.render(g);
