@@ -27,7 +27,7 @@ public class Monster extends Creature {
 
         i = -1;
         monsters = new ArrayList<>();
-        text = new Text();
+        text = new Text(".//res//text//level1.txt");
         input = new KeyManager();
         level = new LevelManager();
         monsters.add(Assets.monster1);
