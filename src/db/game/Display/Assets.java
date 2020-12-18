@@ -86,6 +86,10 @@ public class Assets {
             explosions.add(sheet4.crop(i * 250, 0, 249, 249));
         }
 
+        /*for (int i = 0; i < 8; i++) {
+            explosions.add(sheet4.crop(i*250, 0, 249, 249));
+        }*/
+
 
 
     }

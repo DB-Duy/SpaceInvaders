@@ -73,20 +73,10 @@ public abstract class Creature {
         b = (int) this.y;
     }
 
-    public void renderExplosion(Graphics g) {
-        /*for (int i = 0; i < 6; i++) {
-            g.drawImage(Assets.explosions.get(i), a, b, width + 20, height + 20, null);
-            insertDelay(500);
-        }*/
-        g.drawImage(Assets.explosion, a, b, width + 20, height + 20, null);
-    }
-
-    private void insertDelay(int delayTime) {
-        try {
-            Thread.sleep(delayTime);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
+    public void renderExplosion(Graphics g, int time) {
+        int i = Math.abs(this.getBlownTime() - time)/6;
+        //System.out.println(i + " drawn");
+        g.drawImage(Assets.explosions.get(i), (int) x, (int) y, width + 60, height + 60,null);
     }
 
     public int getSpeed() {

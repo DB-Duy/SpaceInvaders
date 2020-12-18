@@ -54,9 +54,6 @@ public class Monster extends Creature {
         g.drawString(word, c, (int) y + height);
     }
 
-    public void renderExplosion(Graphics g, int i){
-        g.drawImage(Assets.explosions.get(i),(int)x,(int)y,width-10,height-10,null);
-    }
 
     public void setTexture(int i) {
         this.i = i;
@@ -69,20 +66,16 @@ public class Monster extends Creature {
     public void scoring(int numKilled, ScoreManager score) {
         if (numKilled > 0) {
             if (numKilled < 5) {
-                score.setScore(score.getScore() + score.individual());
-                System.out.println(numKilled + " monsters killed + "  + score.individual());
+                score.individual();
             }
             else if (numKilled < 10) {
-                score.setScore(score.getScore() + score.combo_1());
-                System.out.println(numKilled + " monsters killed + "  + score.combo_1());
+                score.combo_1();
             }
             else if (numKilled < 20) {
-                score.setScore(score.getScore() + score.combo_2());
-                System.out.println(numKilled + " monsters killed + "  + score.combo_2());
+                score.combo_2();
             }
             else if (numKilled >= 20) {
-                score.setScore(score.getScore() + score.combo_3());
-                System.out.println(numKilled + " monsters killed + "  + score.combo_3());
+                score.combo_3();
             }
         }
     }

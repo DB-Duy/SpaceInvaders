@@ -35,6 +35,13 @@ public class MouseManager implements MouseListener, MouseMotionListener {
         return mouseY;
     }
 
+    public void setMouseX(int mouseX) {
+        this.mouseX = mouseX;
+    }
+
+    public void setMouseY(int mouseY) {
+        this.mouseY = mouseY;
+    }
 
     @Override
     public void mousePressed(MouseEvent e) {

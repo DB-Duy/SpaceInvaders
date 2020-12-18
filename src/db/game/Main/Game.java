@@ -84,6 +84,10 @@ public class Game implements Runnable{
         Sound.playSoundLoop(".//res//sounds//background.wav");
     }
 
+    public Display getDisplay() {
+        return this.display;
+    }
+
 
     private void tick() {
 

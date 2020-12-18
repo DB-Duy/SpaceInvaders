@@ -48,13 +48,15 @@ public class GameState extends State {
             monsters.add(new Monster(handler, (float) Math.random() * 611 + 150, 0));
         }
 
-        if (time % 700 == 0 && level.getLevel() > 1) {
-            shields.add(new Shield(handler, (float) Math.random() * 611 + 150, 0));
+        if (level.getLevel() > 1) {
+            if (time % 400 == 0) {
+                bombs.add(new Bomb(handler, (float) Math.random() * 611 + 150, 0));
+            }
+            else if (time % 500 == 0) {
+                shields.add(new Shield(handler, (float) Math.random() * 611 + 150, 0));
+            }
         }
 
-        if (time % 900 == 0 && level.getLevel() > 1) {
-            bombs.add(new Bomb(handler, (float) Math.random() * 611 + 150, 0));
-        }
 
         if (time > 10000) {
             time = 0;
@@ -84,7 +86,7 @@ public class GameState extends State {
             else if (handler.getKeyManager().getWordTyped().equals(shields.get(i).getWord()) && !shields.get(i).getExplosion()) {
                 shields.get(i).explode(time);
                 handler.getKeyManager().resetWordTyped();
-                score.setScore(score.getScore() + score.shield());
+                score.shield();
                 shieldManager.setShields(shieldManager.getShields() + 1);
                 collision.setCollision(collision.getCollision() + 1);
             }
@@ -107,7 +109,7 @@ public class GameState extends State {
                 bombs.get(i).explode(time);
                 handler.getKeyManager().resetWordTyped();
                 numKilled = 0;
-                score.setScore(score.getScore() + score.bomb());
+                score.bomb();
                 if (shieldManager.getShields() > 0) {
                     shieldManager.setShields((shieldManager.getShields() - 1));
                 }
@@ -146,7 +148,6 @@ public class GameState extends State {
         }
 
 
-
         if (level.getProgressLevel() == 10) {
             level.setLevel(level.getLevel() + 1);
             level.setProgressLevel(0);
@@ -154,7 +155,6 @@ public class GameState extends State {
 
         player.tick();
 
-        System.out.println("Score : " + score.getScore());
         if (health.getHealth() == 0) {
             monsters.clear();
             shields.clear();
@@ -178,9 +178,7 @@ public class GameState extends State {
             }
 
             if (monsters.get(i).getExplosion()) {
-                int j = (Math.abs(monsters.get(i).getBlownTime()-time))/6;
-                //monsters.get(i).renderExplosion(g);
-                monsters.get(i).renderExplosion(g,j);
+                monsters.get(i).renderExplosion(g,time);
             }
 
             else monsters.get(i).render(g);
@@ -188,7 +186,7 @@ public class GameState extends State {
 
         for (int i = 0; i < bombs.size(); i++) {
             if (bombs.get(i).getExplosion()) {
-                bombs.get(i).renderExplosion(g);
+                bombs.get(i).renderExplosion(g, time);
             }
 
             else bombs.get(i).render(g);
@@ -197,7 +195,7 @@ public class GameState extends State {
         for (int i = 0; i < shields.size(); i++) {
 
             if (shields.get(i).getExplosion()) {
-                shields.get(i).renderExplosion(g);
+                shields.get(i).renderExplosion(g, time);
             }
 
             else shields.get(i).render(g);
