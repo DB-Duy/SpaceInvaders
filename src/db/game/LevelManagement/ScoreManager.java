@@ -10,28 +10,28 @@ public class ScoreManager {
         this.score = score;
     }
 
-    public int individual() {
-        return 10;
+    public void individual() {
+        setScore(getScore() + 10);
     }
 
-    public int combo_1() {
-        return 20;
+    public void combo_1() {
+        setScore(getScore() + 20);
     }
 
-    public int combo_2() {
-        return 30;
+    public void combo_2() {
+        setScore(getScore() + 30);
     }
 
-    public int combo_3() {
-        return 40;
+    public void combo_3() {
+        setScore(getScore() + 40);
     }
 
-    public int shield() {
-        return 5;
+    public void shield() {
+        setScore(getScore() + 5);
     }
 
-    public int bomb() {
-        return (-1)*5;
+    public void bomb() {
+        setScore(getScore() - 5);
     }
 
     public int getScore() {
