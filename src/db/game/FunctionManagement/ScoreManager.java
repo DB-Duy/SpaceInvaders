@@ -1,13 +1,42 @@
-package db.game.LevelManagement;
+package db.game.FunctionManagement;
+
+import db.game.Entities.Shield;
 
 import java.awt.*;
 
-public class ScoreManager {
+public class ScoreManager extends Functionality {
 
-    private int score;
+    private int score, numKilled;
 
     public ScoreManager(int score) {
         this.score = score;
+        numKilled = 0;
+    }
+
+    public int getNumKilled() {
+        return numKilled;
+    }
+
+    public void setNumKilled(int numKilled) {
+        this.numKilled = numKilled;
+    }
+
+    public void monster() {
+        numKilled++;
+        if (numKilled > 0) {
+            if (numKilled < 5) {
+                individual();
+            }
+            else if (numKilled < 10) {
+                combo_1();
+            }
+            else if (numKilled < 20) {
+                combo_2();
+            }
+            else if (numKilled >= 20) {
+                combo_3();
+            }
+        }
     }
 
     public void individual() {
@@ -35,6 +64,7 @@ public class ScoreManager {
     }
 
     public void bomb() {
+        numKilled = 0;
         setScore(getScore() - 5);
     }
 

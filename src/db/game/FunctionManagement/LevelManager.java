@@ -1,9 +1,9 @@
-package db.game.LevelManagement;
+package db.game.FunctionManagement;
 import db.game.Display.Assets;
 import java.awt.*;
 
 
-public class LevelManager {
+public class LevelManager extends Functionality {
 
     private int progressLevel = 0;
     private int level = 1;
