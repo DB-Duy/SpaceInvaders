@@ -10,12 +10,13 @@ import java.awt.*;
 public class Bomb extends Creature {
 
     private Text text;
-    private KeyManager input;
 
     public Bomb(Handler handler, float x, float y) {
         super(handler, x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-        text = new Text(".//res//text//level1.txt");
-        input = new KeyManager();
+        text = new Text(".//res//text//textfile1.txt");
+        do {
+            this.word = text.randomWord();
+        } while (word.length() > 4);
         this.word = text.randomWord();
     }
 

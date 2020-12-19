@@ -12,12 +12,12 @@ public class Asteroid extends Creature {
 
     public Asteroid(Handler handler, float x, float y) {
         super(handler, x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-        text = new Text(".//res//text//level1.txt");
+        text = new Text(".//res//text//textfile2.txt");
         word = text.randomWord();
     }
 
     public void tick() {
-        y++;
+        y = (int) y + getSpeed();
     }
 
     public void render(Graphics g) {
