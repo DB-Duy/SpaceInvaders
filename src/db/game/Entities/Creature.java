@@ -17,6 +17,7 @@ public abstract class Creature {
 
     protected float x, y;
     protected int width, height;
+    public int i = -1;
 
     protected boolean isBlown;
     protected int health, speed, blownTime, a, b;
@@ -78,6 +79,15 @@ public abstract class Creature {
         //System.out.println(i + " drawn");
         g.drawImage(Assets.explosions.get(i), (int) x, (int) y, width + 60, height + 60,null);
     }
+
+    public int getTexture() {
+        return i;
+    }
+
+    public void setTexture(int i) {
+        this.i = i;
+    }
+
 
     public int getSpeed() {
         return speed;

@@ -1,4 +1,4 @@
-package db.game.LevelManagement;
+package db.game.FunctionManagement;
 
 import db.game.Entities.Creature;
 

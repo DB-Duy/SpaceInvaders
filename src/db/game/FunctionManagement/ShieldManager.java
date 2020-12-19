@@ -1,9 +1,9 @@
-package db.game.LevelManagement;
+package db.game.FunctionManagement;
 import db.game.Display.Assets;
 
 import java.awt.*;
 
-public class ShieldManager {
+public class ShieldManager extends Functionality {
 
     private int shields = 0;
 

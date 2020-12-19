@@ -1,11 +1,11 @@
-package db.game.LevelManagement;
+package db.game.FunctionManagement;
 
 import java.awt.*;
 
 import db.game.Main.Game;
 import db.game.Display.Assets;
 
-public class HealthManager {
+public class HealthManager extends Functionality {
 
     private int health;
     private Game game;
