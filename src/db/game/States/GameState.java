@@ -50,20 +50,20 @@ public class GameState extends State {
 
     public void addCreature() {
         if (time % 50 == 0) {
-            monsters.add(new Monster(handler, (float) Math.random() * 611 + 150, 0));
+            monsters.add(new Monster(handler, (float) Math.random() * 611 + 150, 30));
         }
 
         if (level.getLevel() > 1) {
             if (time % 400 == 0) {
-                bombs.add(new Bomb(handler, (float) Math.random() * 611 + 150, 0));
+                bombs.add(new Bomb(handler, (float) Math.random() * 611 + 150, 30));
             }
             else if (time % 500 == 0) {
-                shields.add(new Shield(handler, (float) Math.random() * 611 + 150, 0));
+                shields.add(new Shield(handler, (float) Math.random() * 611 + 150, 30));
             }
         }
 
             if (time % 300 == 0) {
-                asteroids.add(new Asteroid(handler, (float) Math.random() * 611 + 150, 0));
+                asteroids.add(new Asteroid(handler, (float) Math.random() * 611 + 150, 30));
             }
 
 
@@ -190,7 +190,7 @@ public class GameState extends State {
 
 
     public void render(Graphics g) {
-        g.drawImage(ImageLoader.loadImage("/resources/background.png"),0, 0, null);
+        g.drawImage(ImageLoader.loadImage("/resources/bg.png"),0, 0, null);
         g.drawImage(Assets.stars, 0, y, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
         g.drawImage(Assets.stars,0,y - handler.getHeight(), handler.getGame().getWidth(), handler.getGame().getHeight(),null);
         g.drawImage(Assets.mountains,0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), null);

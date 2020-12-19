@@ -23,7 +23,7 @@ public class Monster extends Creature {
         super(handler, x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT);
 
         monsters = new ArrayList<>();
-        text = new Text(".//res//text//level1.txt");
+        text = new Text(".//res//text//textfile1.txt");
         monsters.add(Assets.monster1);
         monsters.add(Assets.monster2);
         monsters.add(Assets.monster3);

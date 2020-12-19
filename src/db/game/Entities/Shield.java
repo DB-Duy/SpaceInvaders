@@ -12,11 +12,8 @@ public class Shield extends Creature {
 
     public Shield(Handler handler, float x, float y) {
         super(handler, x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-        text = new Text(".//res//text//level1.txt");
-
-        do {
-            this.word = text.randomWord();
-        } while (word.length() <= 7);
+        text = new Text(".//res//text//textfile2.txt");
+        word = text.randomWord();
     }
 
     public void tick() {
