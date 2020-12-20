@@ -1,69 +1,56 @@
 package db.game.States;
 
 import db.game.Display.Assets;
-import db.game.Display.ImageLoader;
-import db.game.Main.Game;
 import db.game.Main.Handler;
-import db.game.UI.ClickListener;
-import db.game.UI.UIImageButton;
-import db.game.UI.UIManager;
+import db.game.UI.ImageButton;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class MenuState extends State {
 
-    private UIManager uiManager;
+    private ImageButton start, settings, instructions, quit;
+    private ArrayList<ImageButton> buttons;
     private int y = 0;
 
 
     public MenuState(Handler handler) {
         super(handler);
-        uiManager = new UIManager(handler);
-        handler.getMouseManager().setUIManager(uiManager);
 
-        uiManager.addObject(new UIImageButton(375, 320, 240, 40, Assets.startButtons, new ClickListener() {
-            @Override
-            public void onClick() {
-                handler.getMouseManager().setUIManager(null);
-                State.setState(handler.getGame().gameState);
-            }
-        }));
+        start = new ImageButton(handler, Assets.startButtons, 375, 320, 240,40);
+        settings = new ImageButton(handler, Assets.settings, 375, 380, 240,40);
+        instructions = new ImageButton(handler, Assets.instructions, 375, 440, 240,40);
+        quit = new ImageButton(handler, Assets.quitButtons, 375, 500, 240,40);
 
-        uiManager.addObject(new UIImageButton(375, 380, 240, 40, Assets.settings, new ClickListener() {
-            @Override
-            public void onClick() {
-                handler.getMouseManager().setUIManager(null);
-            }
-        }));
-
-        uiManager.addObject(new UIImageButton(375, 440, 240, 40, Assets.instructions, new ClickListener() {
-            @Override
-            public void onClick() {
-                handler.getMouseManager().setUIManager(null);
-                //State.setState(handler.getGame().instructionState);
-            }
-        }));
-
-        uiManager.addObject(new UIImageButton(375, 500, 240, 40, Assets.quitButtons, new ClickListener() {
-            @Override
-            public void onClick() {
-                handler.getMouseManager().setUIManager(null);
-                System.exit(0);
-            }
-        }));
-
-
+        buttons = new ArrayList<>();
+        buttons.add(start);
+        buttons.add(settings);
+        buttons.add(instructions);
+        buttons.add(quit);
 
     }
 
     @Override
     public void tick() {
-        uiManager.tick();
+
+        for (int i = 0; i < buttons.size(); i++) {
+            if (buttons.get(i).isHovering() && handler.getMouseManager().isLeftPressed()) {
+                switch(i) {
+                    case 0: State.setState(handler.getGame().gameState); break;
+                    case 1: break;
+                    case 2: State.setState(new InstructionState(handler)); break;
+                    case 3: System.exit(0); break;
+                }
+            }
+        }
+
         y++;
         if (y > handler.getGame().getHeight()) {
             y = 0;
         }
     }
+
+
 
     @Override
     public void render(Graphics g) {
@@ -73,7 +60,10 @@ public class MenuState extends State {
         g.drawImage(Assets.stars,0,y - handler.getHeight(), handler.getGame().getWidth(), handler.getGame().getHeight(),null);
 
         g.drawImage(Assets.title, 0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
-        uiManager.render(g);
+
+        for (int i = 0; i < buttons.size(); i++) {
+            buttons.get(i).render(g);
+        }
     }
 
 }

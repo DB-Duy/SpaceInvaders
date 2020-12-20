@@ -75,6 +75,11 @@ public class GameState extends State {
     public void tick() {
         time++; y++;
 
+        if (level.isMiniGame()) {
+            State.setState(new MiniGameState(handler));
+            level.setMiniGame(false);
+        }
+
         if (y > handler.getGame().getHeight()) {
             y = 0;
         }
@@ -82,94 +87,6 @@ public class GameState extends State {
         if (level.getProgressLevel() < 10) {
             addCreature();
         }
-
-        /*for (int i = 0; i < asteroids.size(); i++) {
-            asteroids.get(i).setSpeed(level.getLevel());
-            asteroids.get(i).tick();
-
-            if (collision.hasCollided(asteroids.get(i))) {
-                asteroids.get(i).explode(time);
-                handler.getKeyManager().resetWordTyped();
-            }
-            else if (handler.getKeyManager().getWordTyped().equals(asteroids.get(i).getWord()) && !asteroids.get(i).getExplosion()) {
-                asteroids.get(i).explode(time);
-                handler.getKeyManager().resetWordTyped();
-                score.asteroid();
-            }
-            if (Math.abs(asteroids.get(i).getBlownTime() - time) > 30 && asteroids.get(i).getExplosion()) {
-                asteroids.remove(i);
-            }
-        }
-
-
-        for (int i = 0; i < shields.size(); i++) {
-            shields.get(i).setSpeed(level.getLevel());
-            shields.get(i).tick();
-
-            if (collision.hasCollided(shields.get(i))) {
-                shields.get(i).explode(time);
-                handler.getKeyManager().resetWordTyped();
-            }
-            else if (handler.getKeyManager().getWordTyped().equals(shields.get(i).getWord()) && !shields.get(i).getExplosion()) {
-                shields.get(i).explode(time);
-                handler.getKeyManager().resetWordTyped();
-                score.shield();
-                shieldManager.setShields(shieldManager.getShields() + 1);
-            }
-            if (Math.abs(shields.get(i).getBlownTime() - time) > 30 && shields.get(i).getExplosion()) {
-                shields.remove(i);
-            }
-        }
-
-
-        for (int i = 0; i < bombs.size(); i++) {
-            bombs.get(i).setSpeed(level.getLevel());
-            bombs.get(i).tick();
-
-            if (collision.hasCollided(bombs.get(i))) {
-                bombs.get(i).explode(time);
-                handler.getKeyManager().resetWordTyped();
-            }
-            else if (handler.getKeyManager().getWordTyped().equals(bombs.get(i).getWord()) && !bombs.get(i).getExplosion()) {
-                bombs.get(i).explode(time);
-                handler.getKeyManager().resetWordTyped();
-                numKilled = 0;
-                score.bomb();
-                if (shieldManager.getShields() > 0) {
-                    shieldManager.setShields((shieldManager.getShields() - 1));
-                }
-                else health.setHealth(health.getHealth() - 1);
-            }
-            if (Math.abs(bombs.get(i).getBlownTime() - time) > 30 && bombs.get(i).getExplosion()) {
-                bombs.remove(i);
-            }
-        }
-
-
-        for (int i = 0; i < monsters.size(); i++) {
-            monsters.get(i).setSpeed(level.getLevel());
-            monsters.get(i).tick();
-
-            if (collision.hasCollided(monsters.get(i))) {
-                monsters.get(i).explode(time);
-                handler.getKeyManager().resetWordTyped();
-                numKilled = 0;
-                if (shieldManager.getShields() > 0) {
-                    shieldManager.setShields((shieldManager.getShields() - 1));
-                }
-                else health.setHealth(health.getHealth() - 1);
-            }
-            else if (handler.getKeyManager().getWordTyped().equals(monsters.get(i).getWord()) && !monsters.get(i).getExplosion()) {
-                monsters.get(i).explode(time);
-                handler.getKeyManager().resetWordTyped();
-                numKilled++;
-                monsters.get(i).scoring(numKilled, score);
-                level.setProgressLevel(level.getProgressLevel() + 1);
-            }
-            if (Math.abs(monsters.get(i).getBlownTime() - time) > 30 && monsters.get(i).getExplosion()) {
-                monsters.remove(i);
-            }
-        }*/
 
         entityManager.tick(level, time);
 
@@ -183,7 +100,7 @@ public class GameState extends State {
 
         if (entityManager.getHealthManager().getHealth() == 0) {
             entityManager.clear();
-            State.setState(handler.getGame().deathState);
+            State.setState(new DeathState(handler));
         }
     }
 

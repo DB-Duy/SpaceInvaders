@@ -81,7 +81,7 @@ public class EntityManager<T> {
                         case 2: score.monster(); level.setProgressLevel(level.getProgressLevel() + 1);
                         break;
 
-                        case 3: score.asteroid();
+                        case 3: score.asteroid(); level.setMiniGame(true);
                         break;
                     }
                 }
