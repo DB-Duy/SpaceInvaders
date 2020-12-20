@@ -78,8 +78,6 @@ public class Game implements Runnable{
         //leaderboardState = new LeaderboardState(handler);
 
         State.setState(menuState);
-
-        Sound.playSoundLoop(".//res//sounds//background.wav");
     }
 
     public Display getDisplay() {

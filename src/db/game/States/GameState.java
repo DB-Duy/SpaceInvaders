@@ -5,6 +5,7 @@ import db.game.Display.ImageLoader;
 import db.game.Entities.*;
 import db.game.FunctionManagement.*;
 import db.game.Main.Handler;
+import db.game.Sounds.Sound;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class GameState extends State {
         entityManager.add(monsters);
         entityManager.add(asteroids);
 
-
+        Sound.playSoundLoop(".//res//sounds//background.wav");
         collision = new CollisionDetection();
     }
 
@@ -76,6 +77,7 @@ public class GameState extends State {
         time++; y++;
 
         if (level.isMiniGame()) {
+            State.setState(null);
             State.setState(new MiniGameState(handler));
             level.setMiniGame(false);
         }
