@@ -6,11 +6,20 @@ import java.awt.*;
 public class LevelManager extends Functionality {
 
     private int progressLevel = 0;
+    private boolean isMiniGame;
     private int level = 1;
 
     public LevelManager() {
 
 
+    }
+
+    public boolean isMiniGame() {
+        return isMiniGame;
+    }
+
+    public void setMiniGame(boolean miniGame) {
+        isMiniGame = miniGame;
     }
 
     public void tick() {

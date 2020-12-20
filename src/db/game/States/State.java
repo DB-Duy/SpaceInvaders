@@ -8,14 +8,17 @@ import java.awt.*;
 public abstract class State {
 
     private static State currentState = null;
-    public static void setState(State state){
+
+    public static void setState(State state) {
         currentState = state;
     }
-    public static State getState(){
+
+    public static State getState() {
         return currentState;
     }
 
     protected Handler handler;
+
     public State(Handler handler) {
         this.handler = handler;
     }
