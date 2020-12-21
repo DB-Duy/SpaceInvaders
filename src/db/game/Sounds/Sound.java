@@ -5,11 +5,13 @@ import java.io.File;
 import java.io.IOException;
 
 public class Sound {
+    static Clip currentLoop;
     public static void playSoundLoop(String path){
         try {
             File music = new File(path);
             AudioInputStream audioInput = AudioSystem.getAudioInputStream(music);
             Clip clip = AudioSystem.getClip();
+            currentLoop = clip;
             clip.open(audioInput);
             FloatControl control= (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             control.setValue(-5.0f);
@@ -38,5 +40,8 @@ public class Sound {
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
+    }
+    public static void stopLoop(){
+        currentLoop.stop();
     }
 }
