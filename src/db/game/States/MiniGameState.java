@@ -20,6 +20,7 @@ public class MiniGameState extends State {
 
     public MiniGameState(Handler handler) {
         super(handler);
+        Sound.stopLoop();
         Sound.playSoundLoop(".//res//sounds//minibg.wav");
         asteroids = new ArrayList<>();
         player = new Player(handler, 450,450);

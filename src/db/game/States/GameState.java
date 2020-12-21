@@ -45,6 +45,7 @@ public class GameState extends State {
         entityManager.add(asteroids);
 
         Sound.playSoundLoop(".//res//sounds//background.wav");
+
         collision = new CollisionDetection();
     }
 
