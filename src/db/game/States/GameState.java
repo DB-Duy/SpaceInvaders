@@ -22,6 +22,7 @@ public class GameState extends State {
     private ArrayList<Shield> shields;
     private ArrayList<Monster> monsters;
     private ArrayList<Bomb> bombs;
+    private ArrayList<Creature> creatures;
 
     private int time = 99, y = 0;
     private CollisionDetection collision;
@@ -37,13 +38,14 @@ public class GameState extends State {
         bombs = new ArrayList<>();
         monsters = new ArrayList<>();
         asteroids = new ArrayList<>();
+        creatures = new ArrayList<>();
 
         entityManager = new EntityManager(handler);
         entityManager.add(shields);
         entityManager.add(bombs);
         entityManager.add(monsters);
         entityManager.add(asteroids);
-
+        entityManager.addList(creatures);
         Sound.playSoundLoop(".//res//sounds//background.wav");
 
         collision = new CollisionDetection();
@@ -53,20 +55,23 @@ public class GameState extends State {
     public void addCreature() {
         if (time % 50 == 0) {
             //monsters.add(new Monster(handler, (float) Math.random() * 611 + 150, 30));
-            monsters.add(new Monster(handler, emptyX(), 30));
+            creatures.add(new Monster(handler, (float) Math.random() * 611 + 150, 30));
         }
 
         if (level.getLevel() > 1) {
             if (time % 400 == 0) {
-                bombs.add(new Bomb(handler, (float) Math.random() * 611 + 150, 30));
+                //bombs.add(new Bomb(handler, (float) Math.random() * 611 + 150, 30));
+                creatures.add(new Bomb(handler, (float) Math.random() * 611 + 150, 30));
             }
             else if (time % 500 == 0) {
-                shields.add(new Shield(handler, (float) Math.random() * 611 + 150, 30));
+                //shields.add(new Shield(handler, (float) Math.random() * 611 + 150, 30));
+                creatures.add(new Shield(handler, (float) Math.random() * 611 + 150, 30));
             }
         }
 
             if (time % 300 == 0) {
-                asteroids.add(new Asteroid(handler, (float) Math.random() * 611 + 150, 30));
+                //asteroids.add(new Asteroid(handler, (float) Math.random() * 611 + 150, 30));
+                creatures.add(new Asteroid(handler, (float) Math.random() * 611 + 150, 30));
             }
 
 
@@ -116,9 +121,10 @@ public class GameState extends State {
         g.drawImage(Assets.stars,0,y - handler.getHeight(), handler.getGame().getWidth(), handler.getGame().getHeight(),null);
         g.drawImage(Assets.mountains,0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
         g.drawImage(Assets.blackBar,0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
+
         entityManager.render(g, time);
-        level.render(g);
         player.render(g);
+        level.render(g);
 
     }
     public float emptyX(){
