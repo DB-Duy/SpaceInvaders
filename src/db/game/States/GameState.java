@@ -52,7 +52,8 @@ public class GameState extends State {
 
     public void addCreature() {
         if (time % 50 == 0) {
-            monsters.add(new Monster(handler, (float) Math.random() * 611 + 150, 30));
+            //monsters.add(new Monster(handler, (float) Math.random() * 611 + 150, 30));
+            monsters.add(new Monster(handler, emptyX(), 30));
         }
 
         if (level.getLevel() > 1) {
@@ -69,7 +70,7 @@ public class GameState extends State {
             }
 
 
-        if (time > 10000) {
+        if (time > 100000) {
             time = 0;
         }
     }
@@ -120,5 +121,15 @@ public class GameState extends State {
         player.render(g);
 
     }
-
+    public float emptyX(){
+        float x=(float)(Math.random()*611+150);
+        boolean isEmpty=true;
+        if(monsters.size()>1) {
+            if (x > monsters.get(monsters.size() - 1).getX() - monsters.get(monsters.size() - 1).getWidth() && x < monsters.get(monsters.size() - 1).getX() + monsters.get(monsters.size() - 1).getWidth()) {
+                return emptyX();
+            } else
+                return x;
+        }
+        else return x;
+    }
 }
