@@ -1,23 +1,16 @@
 package db.game.Input;
 
-import db.game.UI.UIManager;
-
+import java.awt.*;
 import java.awt.event.*;
 
 public class MouseManager implements MouseListener, MouseMotionListener {
 
     private boolean leftPressed, rightPressed;
     private int mouseX, mouseY;
-    private UIManager uiManager;
 
     public MouseManager(){
 
     }
-
-    public void setUIManager(UIManager uiManager){
-        this.uiManager = uiManager;
-    }
-
 
     public boolean isLeftPressed(){
         return leftPressed;
@@ -61,10 +54,6 @@ public class MouseManager implements MouseListener, MouseMotionListener {
         else if (e.getButton() == MouseEvent.BUTTON3) {
             rightPressed = false;
         }
-
-        if (uiManager != null) {
-            uiManager.onMouseRelease(e);
-        }
     }
 
     @Override
@@ -72,9 +61,6 @@ public class MouseManager implements MouseListener, MouseMotionListener {
         mouseX = e.getX();
         mouseY = e.getY();
 
-        if (uiManager != null) {
-            uiManager.onMouseMove(e);
-        }
     }
 
     @Override

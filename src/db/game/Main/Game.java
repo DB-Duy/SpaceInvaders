@@ -25,9 +25,6 @@ public class Game implements Runnable{
 
     public State gameState;
     public State menuState;
-    public State instructionState;
-    public State deathState;
-    public State leaderboardState;
 
     private Handler handler;
 
@@ -77,13 +74,10 @@ public class Game implements Runnable{
         handler = new Handler(this);
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
-        deathState = new DeathState(handler);
-        leaderboardState = new LeaderboardState(handler);
-        //instructionState = new InstructionState(handler);
+
+        //leaderboardState = new LeaderboardState(handler);
 
         State.setState(menuState);
-
-        Sound.playSoundLoop(".//res//sounds//background.wav");
     }
 
     public Display getDisplay() {
@@ -112,15 +106,13 @@ public class Game implements Runnable{
 
         g = bs.getDrawGraphics();
         g.clearRect(0,0,width,height);
-        //g.fillRect(0,0,width,height);
 
 
-        // draw start
         if (gameState != null) {
             State.getState().render(g);
         }
 
-        //draw end
+
         bs.show();
         g.dispose();
     }
