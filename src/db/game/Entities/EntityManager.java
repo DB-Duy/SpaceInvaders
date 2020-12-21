@@ -16,8 +16,9 @@ public class EntityManager<T> {
     private ScoreManager score;
     private Random random;
     private CollisionDetection collision;
+    private ArrayList<Creature> list;
 
-    public EntityManager(Handler handler) {
+    public EntityManager(Handler handler    ) {
         creatures = new ArrayList<>();
         random = new Random();
         shield = new ShieldManager();
@@ -40,13 +41,79 @@ public class EntityManager<T> {
         creatures.add(something);
     }
 
+    public void addList(ArrayList<Creature> list){
+        this.list = list;
+    }
+
     public void setCollision(CollisionDetection collision) {
         this.collision = collision;
     }
 
     public void tick(LevelManager level, int time) {
+        for(int i = 0; i < list.size();i++){
+            list.get(i).setSpeed(level.getLevel());
+            list.get(i).tick();
+            if (collision.hasCollided(list.get(i))) {
+                list.get(i).explode(time);
+                handler.getKeyManager().resetWordTyped();
+                if (list.get(i).getClass().equals(Monster.class)) {
+                    score.setNumKilled(0);
+                    if (shield.getShields() > 0) {
+                        shield.setShields((shield.getShields() - 1));
+                    }
+                    else health.setHealth(health.getHealth() - 1);
+                }
+            }
+            else if (handler.getKeyManager().getWordTyped().equals(list.get(i).getWord()) && !list.get(i).getExplosion()) {
+                list.get(i).explode(time);
+                handler.getKeyManager().resetWordTyped();
+                if(list.get(i).getClass().equals(Shield.class)){
+                    score.shield();
+                    shield.setShields(shield.getShields() + 1);
+                }
+                if(list.get(i).getClass().equals(Bomb.class)){
+                    score.bomb();
+                    if (shield.getShields() > 0) {
+                        shield.setShields((shield.getShields() - 1));
+                    }
+                    else {
+                        health.setHealth(health.getHealth() - 1);
+                    }
+                }
+                if(list.get(i).getClass().equals(Monster.class)){
+                    score.monster(); level.setProgressLevel(level.getProgressLevel() + 1);
+                }
+                if(list.get(i).getClass().equals(Asteroid.class)){
+                    score.asteroid(); level.setMiniGame(true);
+                }
+                /*switch(i) {
+                    case 0: score.shield(); shield.setShields(shield.getShields() + 1);
+                        break;
 
-        for (int i = 0; i < creatures.size(); i++) {
+                    case 1: score.bomb();
+                        if (shield.getShields() > 0) {
+                            shield.setShields((shield.getShields() - 1));
+                        }
+                        else {
+                            health.setHealth(health.getHealth() - 1);
+                        }
+                        break;
+
+                    case 2: score.monster(); level.setProgressLevel(level.getProgressLevel() + 1);
+                        break;
+
+                    case 3: score.asteroid(); level.setMiniGame(true);
+                        break;
+                }*/
+            }
+            if (Math.abs(list.get(i).getBlownTime() - time) > 30 && list.get(i).getExplosion()) {
+                list.remove(i);
+            }
+
+        }
+        }
+
+        /*for (int i = 0; i < creatures.size(); i++) {
             for (int j = 0; j < creatures.get(i).size(); j++) {
                 creatures.get(i).get(j).setSpeed(level.getLevel());
                 creatures.get(i).get(j).tick();
@@ -90,19 +157,18 @@ public class EntityManager<T> {
                 }
 
             }
-        }
-    }
+        }*/
 
 
     public void clear() {
-        for (int i = 0; i < creatures.size(); i++) {
+        /*for (int i = 0; i < creatures.size(); i++) {
             creatures.get(i).clear();
-        }
-
+        }*/
+        list.clear();
     }
 
     public void render(Graphics g, int time) {
-        for (int i = 0; i < creatures.size(); i++) {
+        /*for (int i = 0; i < creatures.size(); i++) {
             for (int j = 0; j < creatures.get(i).size(); j++) {
                 if (creatures.get(i).get(j).getTexture() == -1) {
                     creatures.get(i).get(j).setTexture(random.nextInt(4));
@@ -113,6 +179,17 @@ public class EntityManager<T> {
                 else {
                     creatures.get(i).get(j).render(g);
                 }
+            }
+        }*/
+        for(int i = 0; i < list.size(); i++){
+            if( list.get(i).getTexture() == -1){
+                list.get(i).setTexture(random.nextInt(4));
+            }
+            if(list.get(i).getExplosion()){
+                list.get(i).renderExplosion(g,time);
+            }
+            else{
+                list.get(i).render(g);
             }
         }
 
