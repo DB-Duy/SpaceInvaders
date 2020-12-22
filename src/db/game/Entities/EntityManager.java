@@ -101,6 +101,18 @@ public class EntityManager<T> {
         }
     }
 
+    public float getEmptyX() {
+        float x = (float) (Math.random()*611+150);
+        if (creatures.size() > 1) {
+            if (x > creatures.get(creatures.size() - 1).getX() - creatures.get(creatures.size() - 1).getWidth() && x < creatures.get(creatures.size() - 1).getX() + creatures.get(creatures.size() - 1).getWidth()) {
+                return getEmptyX();
+            }
+            else {
+                return x;
+            }
+        }
+        return x;
+    }
 
     public void clear() {
         creatures.clear();

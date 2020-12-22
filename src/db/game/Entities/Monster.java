@@ -49,22 +49,4 @@ public class Monster extends Creature {
         g.drawString(word, c, (int) y + height);
     }
 
-
-    public void scoring(int numKilled, ScoreManager score) {
-        if (numKilled > 0) {
-            if (numKilled < 5) {
-                score.individual();
-            }
-            else if (numKilled < 10) {
-                score.combo_1();
-            }
-            else if (numKilled < 20) {
-                score.combo_2();
-            }
-            else if (numKilled >= 20) {
-                score.combo_3();
-            }
-        }
-    }
-
 }
