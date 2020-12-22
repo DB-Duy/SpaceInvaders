@@ -15,7 +15,7 @@ public class InstructionState extends State {
     private boolean backHovered, nextHovered;
     private BufferedImage instructionImage;
     private int a = 0;
-
+    private boolean lastState = false;
 
     public InstructionState(Handler handler) {
         super(handler);
@@ -31,26 +31,31 @@ public class InstructionState extends State {
 
     @Override
     public void tick() {
-        for (int i = 0; i < buttons.size(); i++) {
-            if (buttons.get(i).isHovering() && handler.getMouseManager().isLeftPressed()) {
-                switch(i) {
-                    case 0:
-                        if (a == 0) {
-                            State.setState(handler.getGame().menuState);
-                        }
-                        else {
-                            a--;
-                            System.out.println("case 0" + a);
+        if (!lastState && handler.getMouseManager().isLeftPressed()) {
+            lastState = true;
+            for (int i = 0; i < buttons.size(); i++) {
+                if (buttons.get(i).isHovering()) {
+                    switch (i) {
+                        case 0:
+                            if (a == 0) {
+                                State.setState(handler.getGame().menuState);
+                            } else {
+                                a--;
+                                System.out.println("case 0" + a);
+                                setInstructionImage(a);
+                            }
+                            break;
+                        case 1:
+                            a++;
+                            System.out.println("case 1" + a);
                             setInstructionImage(a);
-                        }
-                        break;
-                    case 1:
-                        a++;
-                        System.out.println("case 1" + a);
-                        setInstructionImage(a);
-                        break;
+                            break;
+                    }
                 }
             }
+        }
+        if(!handler.getMouseManager().isLeftPressed()){
+            lastState = false;
         }
     }
 
