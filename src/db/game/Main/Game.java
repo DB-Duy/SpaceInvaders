@@ -145,6 +145,7 @@ public class Game implements Runnable{
             }
 
             if (timer >= 1E9) {
+                System.out.println(ticks);
                 ticks = 0;
                 timer = 0;
             }

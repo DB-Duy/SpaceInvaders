@@ -99,7 +99,7 @@ public class GameState extends State {
         }
 
         entityManager.tick(level, time);
-        //player.tick();
+        player.tick();
 
         if (level.getProgressLevel() == 10) {
             level.setLevel(level.getLevel() + 1);
@@ -122,7 +122,7 @@ public class GameState extends State {
         g.drawImage(Assets.blackBar,0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
 
         entityManager.render(g, time);
-        //player.render(g);
+        player.render(g);
         level.render(g);
 
     }
