@@ -13,7 +13,6 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Creature {
 
-    private double angle = 0, dx = 0, dy = 0;
     private BufferedImage image;
 
     public Player(Handler handler, float x, float y) {
@@ -24,12 +23,9 @@ public class Player extends Creature {
     }
 
 
-    public void tick(int x, int y) {
-        setDestinationBullet(x, y);
-        angle = Math.toDegrees(Math.atan2(dy,dx));
-    }
+    public void tick() { }
 
-    public BufferedImage rotateImage(BufferedImage image, double angle) {
+    /*public BufferedImage rotateImage(BufferedImage image, double angle) {
         int w = image.getWidth();
         int h = image.getHeight();
 
@@ -40,11 +36,11 @@ public class Player extends Creature {
         g2d.dispose();
 
         return rotated;
-    }
+    }*/
 
     public void render(Graphics g) {
 
-        g.drawImage(rotateImage(image, angle), (int) x, (int) y, width, height, null);
+        g.drawImage(image, (int) x, (int) y, width, height, null);
 
         g.setColor(yellow);
 
@@ -55,10 +51,6 @@ public class Player extends Creature {
         g.drawString(handler.getKeyManager().getWordTyped(),c ,(int) y + 110);
     }
 
-    public void setDestinationBullet(int x, int y) {
-        dx = a - 450;
-        dy = b - 430;
-    }
 
     /*@Override
     public void mouseDragged(MouseEvent e) {
