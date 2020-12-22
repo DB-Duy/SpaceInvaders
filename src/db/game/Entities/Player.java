@@ -18,25 +18,12 @@ public class Player extends Creature {
     public Player(Handler handler, float x, float y) {
         super(handler, x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         image = Assets.rocket;
-        //handler.getGame().getDisplay().getFrame().addMouseMotionListener(this);
-        //handler.getGame().getDisplay().getCanvas().addMouseMotionListener(this);
     }
 
 
     public void tick() { }
 
-    /*public BufferedImage rotateImage(BufferedImage image, double angle) {
-        int w = image.getWidth();
-        int h = image.getHeight();
 
-        BufferedImage rotated = new BufferedImage(w, h, image.getType());
-        Graphics2D g2d = rotated.createGraphics();
-        g2d.rotate(Math.toRadians(angle), w/2, h/2);
-        g2d.drawImage(image, null, 0, 0);
-        g2d.dispose();
-
-        return rotated;
-    }*/
 
     public void render(Graphics g) {
 
@@ -52,14 +39,4 @@ public class Player extends Creature {
     }
 
 
-    /*@Override
-    public void mouseDragged(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-        dx = e.getX() - 450;
-        dy = e.getY() - 430;
-    }*/
 }

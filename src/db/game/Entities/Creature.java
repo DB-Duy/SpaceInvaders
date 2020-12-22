@@ -96,6 +96,9 @@ public abstract class Creature {
         this.i = i;
     }
 
+    public void setWord(String word) {
+        this.word = word;
+    }
 
     public int getSpeed() {
         return speed;

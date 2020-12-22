@@ -18,10 +18,6 @@ public class GameState extends State {
 
     private LevelManager level;
 
-    private ArrayList<Asteroid> asteroids;
-    private ArrayList<Shield> shields;
-    private ArrayList<Monster> monsters;
-    private ArrayList<Bomb> bombs;
     private ArrayList<Creature> creatures;
 
     private int time = 99, y = 0;
@@ -34,19 +30,10 @@ public class GameState extends State {
 
         level = new LevelManager();
 
-        shields = new ArrayList<>();
-        bombs = new ArrayList<>();
-        monsters = new ArrayList<>();
-        asteroids = new ArrayList<>();
         creatures = new ArrayList<>();
 
         entityManager = new EntityManager(handler);
         entityManager.setEntityManager(creatures);
-        /*entityManager.add(shields);
-        entityManager.add(bombs);
-        entityManager.add(monsters);
-        entityManager.add(asteroids);
-        entityManager.addList(creatures);*/
         Sound.playSoundLoop(".//res//sounds//background.wav");
 
         collision = new CollisionDetection();
@@ -55,26 +42,21 @@ public class GameState extends State {
 
     public void addCreature() {
         if (time % 50 == 0) {
-            //monsters.add(new Monster(handler, (float) Math.random() * 611 + 150, 30));
-            creatures.add(new Monster(handler, (float) Math.random() * 611 + 150, 30));
+            creatures.add(new Monster(handler, entityManager.getEmptyX(), 30));
         }
 
         if (level.getLevel() > 1) {
             if (time % 400 == 0) {
-                //bombs.add(new Bomb(handler, (float) Math.random() * 611 + 150, 30));
-                creatures.add(new Bomb(handler, (float) Math.random() * 611 + 150, 30));
+                creatures.add(new Bomb(handler, entityManager.getEmptyX(), 30));
             }
             else if (time % 500 == 0) {
-                //shields.add(new Shield(handler, (float) Math.random() * 611 + 150, 30));
-                creatures.add(new Shield(handler, (float) Math.random() * 611 + 150, 30));
+                creatures.add(new Shield(handler, entityManager.getEmptyX(), 30));
             }
         }
 
-            if (time % 300 == 0) {
-                //asteroids.add(new Asteroid(handler, (float) Math.random() * 611 + 150, 30));
-                creatures.add(new Asteroid(handler, (float) Math.random() * 611 + 150, 30));
-            }
-
+        if (time % 100 == 0) {
+            creatures.add(new Asteroid(handler, entityManager.getEmptyX(), 30));
+        }
 
         if (time > 100000) {
             time = 0;
@@ -113,7 +95,6 @@ public class GameState extends State {
     }
 
 
-
     public void render(Graphics g) {
         g.drawImage(ImageLoader.loadImage("/resources/bg.png"),0, 0, null);
         g.drawImage(Assets.stars, 0, y, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
@@ -125,17 +106,5 @@ public class GameState extends State {
         player.render(g);
         level.render(g);
 
-    }
-    public float emptyX() {
-        float x = (float) (Math.random()*611+150);
-        if (creatures.size() > 1) {
-            if (x > monsters.get(monsters.size() - 1).getX() - monsters.get(monsters.size() - 1).getWidth() && x < monsters.get(monsters.size() - 1).getX() + monsters.get(monsters.size() - 1).getWidth()) {
-                return emptyX();
-            }
-            else {
-                return x;
-            }
-        }
-        return x;
     }
 }
