@@ -19,9 +19,14 @@ public class Handler {
         return game.getHeight();
     }
 
+    public void setKeyManager(KeyManager keyManager) {
+        game.setKeyManager(keyManager);
+    }
+
     public KeyManager getKeyManager() {
         return game.getKeyManager();
     }
+
     public MouseManager getMouseManager() {
         return game.getMouseManager();
     }
