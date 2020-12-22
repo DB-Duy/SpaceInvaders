@@ -4,31 +4,35 @@ import db.game.Display.Assets;
 import db.game.Display.ImageLoader;
 import db.game.Entities.Asteroid;
 import db.game.Entities.Player;
+import db.game.Input.KeyManager;
 import db.game.Main.Handler;
 import db.game.Sounds.Sound;
 import db.game.UI.ImageButton;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class MiniGameState extends State {
 
+    private int key;
     private Player player;
     private ArrayList<Asteroid> asteroids;
+    private int playerX = 450;
     int time = 99;
 
     public MiniGameState(Handler handler) {
         super(handler);
+        handler.getKeyManager().setPlayer(player);
         Sound.stopLoop();
         Sound.playSoundLoop(".//res//sounds//minibg.wav");
         asteroids = new ArrayList<>();
-        player = new Player(handler, 450,450);
+        player = new Player(handler, playerX,450);
     }
 
     public void addAsteroid() {
-
-
 
         if (time > 10000) {
             time = 0;
@@ -48,4 +52,5 @@ public class MiniGameState extends State {
         player.render(g);
 
     }
+
 }

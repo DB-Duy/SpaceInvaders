@@ -72,13 +72,17 @@ public class MouseManager implements MouseListener, MouseMotionListener {
     @Override
     public void mouseClicked(MouseEvent e) {
 
-
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
 
 
+
+    }
+
+    public boolean isClicked() {
+        return true;
     }
 
     @Override

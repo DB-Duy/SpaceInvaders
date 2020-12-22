@@ -50,6 +50,14 @@ public abstract class Creature {
         yellow = new Color(241, 217, 27);
     }
 
+    public int getA() {
+        return a;
+    }
+
+    public int getB() {
+        return b;
+    }
+
     public void tick() {
 
     }

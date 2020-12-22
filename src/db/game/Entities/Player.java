@@ -11,7 +11,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 
-public class Player extends Creature implements MouseMotionListener {
+public class Player extends Creature {
 
     private double angle = 0, dx = 0, dy = 0;
     private BufferedImage image;
@@ -19,17 +19,14 @@ public class Player extends Creature implements MouseMotionListener {
     public Player(Handler handler, float x, float y) {
         super(handler, x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         image = Assets.rocket;
-        handler.getGame().getDisplay().getFrame().addMouseMotionListener(this);
-        handler.getGame().getDisplay().getCanvas().addMouseMotionListener(this);
+        //handler.getGame().getDisplay().getFrame().addMouseMotionListener(this);
+        //handler.getGame().getDisplay().getCanvas().addMouseMotionListener(this);
     }
 
 
-    public void tick() {
-        //dx -= 450;
-        //dy -= 400;
-
-        angle = Math.toDegrees(Math.atan2(dy,dx)); System.out.println(angle);
-        //dx = 0; dy = 0;
+    public void tick(int x, int y) {
+        setDestinationBullet(x, y);
+        angle = Math.toDegrees(Math.atan2(dy,dx));
     }
 
     public BufferedImage rotateImage(BufferedImage image, double angle) {
@@ -58,8 +55,12 @@ public class Player extends Creature implements MouseMotionListener {
         g.drawString(handler.getKeyManager().getWordTyped(),c ,(int) y + 110);
     }
 
+    public void setDestinationBullet(int x, int y) {
+        dx = a - 450;
+        dy = b - 430;
+    }
 
-    @Override
+    /*@Override
     public void mouseDragged(MouseEvent e) {
 
     }
@@ -68,5 +69,5 @@ public class Player extends Creature implements MouseMotionListener {
     public void mouseMoved(MouseEvent e) {
         dx = e.getX() - 450;
         dy = e.getY() - 430;
-    }
+    }*/
 }

@@ -42,6 +42,11 @@ public class Game implements Runnable{
     public KeyManager getKeyManager() {
         return keyManager;
     }
+
+    public void setKeyManager(KeyManager keyManager) {
+        this.keyManager = keyManager;
+    }
+
     public MouseManager getMouseManager() {
         return mouseManager;
     }

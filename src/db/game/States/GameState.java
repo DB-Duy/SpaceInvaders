@@ -41,11 +41,12 @@ public class GameState extends State {
         creatures = new ArrayList<>();
 
         entityManager = new EntityManager(handler);
-        entityManager.add(shields);
+        entityManager.setEntityManager(creatures);
+        /*entityManager.add(shields);
         entityManager.add(bombs);
         entityManager.add(monsters);
         entityManager.add(asteroids);
-        entityManager.addList(creatures);
+        entityManager.addList(creatures);*/
         Sound.playSoundLoop(".//res//sounds//background.wav");
 
         collision = new CollisionDetection();
@@ -98,14 +99,12 @@ public class GameState extends State {
         }
 
         entityManager.tick(level, time);
-
+        //player.tick();
 
         if (level.getProgressLevel() == 10) {
             level.setLevel(level.getLevel() + 1);
             level.setProgressLevel(0);
         }
-
-        player.tick();
 
         if (entityManager.getHealthManager().getHealth() == 0) {
             entityManager.clear();
@@ -123,19 +122,20 @@ public class GameState extends State {
         g.drawImage(Assets.blackBar,0, 0, handler.getGame().getWidth(), handler.getGame().getHeight(), null);
 
         entityManager.render(g, time);
-        player.render(g);
+        //player.render(g);
         level.render(g);
 
     }
-    public float emptyX(){
-        float x=(float)(Math.random()*611+150);
-        boolean isEmpty=true;
-        if(monsters.size()>1) {
+    public float emptyX() {
+        float x = (float) (Math.random()*611+150);
+        if (creatures.size() > 1) {
             if (x > monsters.get(monsters.size() - 1).getX() - monsters.get(monsters.size() - 1).getWidth() && x < monsters.get(monsters.size() - 1).getX() + monsters.get(monsters.size() - 1).getWidth()) {
                 return emptyX();
-            } else
+            }
+            else {
                 return x;
+            }
         }
-        else return x;
+        return x;
     }
 }
