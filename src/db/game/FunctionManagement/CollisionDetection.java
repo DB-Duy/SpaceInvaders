@@ -1,10 +1,9 @@
 package db.game.FunctionManagement;
 
 import db.game.Entities.Creature;
+import db.game.Entities.Player;
 
 public class CollisionDetection {
-
-    private int collision = 3;
 
     public CollisionDetection() {
 
@@ -13,18 +12,18 @@ public class CollisionDetection {
     public boolean hasCollided(Creature creature) {
         if ((creature.getY() >= 360 && creature.getX() >= 360 && creature.getX() <= 550) || creature.getY() >= 510) {
             if(!creature.getExplosion()) {
-                collision--;
                 return true;
             }
         }
         return false;
     }
 
-    public void setCollision(int collision) {
-        this.collision = collision;
-    }
-
-    public int getCollision() {
-        return collision;
+    public boolean hasCollided2(Creature creature, Player player) {
+        if (creature.getY() + creature.getHeight() >= 430 && creature.getX() >= (player.getX() - 5) && creature.getX() <= (player.getX() + player.getWidth())) {
+            if (!creature.getExplosion()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

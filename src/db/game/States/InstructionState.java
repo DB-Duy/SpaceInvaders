@@ -14,12 +14,12 @@ public class InstructionState extends State {
     private ArrayList<ImageButton> buttons;
     private boolean backHovered, nextHovered;
     private BufferedImage instructionImage;
-    private int i = 0;
+    private int a = 0;
 
 
     public InstructionState(Handler handler) {
         super(handler);
-        instructionImage = Assets.instructionScreens.get(i);
+        instructionImage = Assets.instructionScreens.get(0);
 
         back = new ImageButton(handler, Assets.back, 10, 30, 250, 45);
         next = new ImageButton(handler, Assets.next, 790, 30, 250, 45);
@@ -31,27 +31,27 @@ public class InstructionState extends State {
 
     @Override
     public void tick() {
-
         for (int i = 0; i < buttons.size(); i++) {
             if (buttons.get(i).isHovering() && handler.getMouseManager().isLeftPressed()) {
                 switch(i) {
                     case 0:
-                        if (i == 0) {
+                        if (a == 0) {
                             State.setState(handler.getGame().menuState);
                         }
                         else {
-                            i--;
-                            setInstructionImage(i);
+                            a--;
+                            System.out.println("case 0" + a);
+                            setInstructionImage(a);
                         }
                         break;
                     case 1:
-                        i++;
-                        setInstructionImage(i);
+                        a++;
+                        System.out.println("case 1" + a);
+                        setInstructionImage(a);
                         break;
                 }
             }
         }
-
     }
 
     public void setInstructionImage(int i) {

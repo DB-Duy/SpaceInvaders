@@ -50,6 +50,14 @@ public abstract class Creature {
         yellow = new Color(241, 217, 27);
     }
 
+    public int getA() {
+        return a;
+    }
+
+    public int getB() {
+        return b;
+    }
+
     public void tick() {
 
     }
@@ -88,6 +96,9 @@ public abstract class Creature {
         this.i = i;
     }
 
+    public void setWord(String word) {
+        this.word = word;
+    }
 
     public int getSpeed() {
         return speed;

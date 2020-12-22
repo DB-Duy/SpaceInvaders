@@ -42,6 +42,11 @@ public class Game implements Runnable{
     public KeyManager getKeyManager() {
         return keyManager;
     }
+
+    public void setKeyManager(KeyManager keyManager) {
+        this.keyManager = keyManager;
+    }
+
     public MouseManager getMouseManager() {
         return mouseManager;
     }
@@ -140,6 +145,7 @@ public class Game implements Runnable{
             }
 
             if (timer >= 1E9) {
+                System.out.println(ticks);
                 ticks = 0;
                 timer = 0;
             }
