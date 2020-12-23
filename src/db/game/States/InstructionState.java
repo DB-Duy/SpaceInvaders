@@ -54,7 +54,7 @@ public class InstructionState extends State {
                 }
             }
         }
-        if(!handler.getMouseManager().isLeftPressed()){
+        if (!handler.getMouseManager().isLeftPressed()) {
             lastState = false;
         }
     }

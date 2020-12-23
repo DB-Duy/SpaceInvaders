@@ -3,6 +3,7 @@ package db.game.States;
 import db.game.Display.Assets;
 import db.game.Display.ImageLoader;
 import db.game.Entities.Asteroid;
+import db.game.Entities.Creature;
 import db.game.Entities.EntityManager;
 import db.game.Entities.Player;
 import db.game.FunctionManagement.CollisionDetection;
@@ -83,16 +84,18 @@ public class MiniGameState extends State {
                 asteroids.remove(i);
                 handler.getKeyManager().typeable = true;
                 State.setState(handler.getGame().gameState);
-            }
+            } 
         }
     }
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(ImageLoader.loadImage("/resources/minibg.png"), 0, 0, 1000, 600, null);
+        g.drawImage(ImageLoader.loadImage("/resources/minibgnew.png"), 0, 0, 1000, 600, null);
         player.render(g);
 
         for (int i = 0; i < asteroids.size(); i++) {
+            asteroids.get(i).setWidth(Creature.DEFAULT_WIDTH + 30);
+            asteroids.get(i).setHeight(Creature.DEFAULT_HEIGHT + 30);
             if (asteroids.get(i).getExplosion()) {
                 asteroids.get(i).renderExplosion(g, time);
             }
