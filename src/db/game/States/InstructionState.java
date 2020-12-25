@@ -41,14 +41,14 @@ public class InstructionState extends State {
                                 State.setState(handler.getGame().menuState);
                             } else {
                                 a--;
-                                System.out.println("case 0" + a);
                                 setInstructionImage(a);
                             }
                             break;
                         case 1:
-                            a++;
-                            System.out.println("case 1" + a);
-                            setInstructionImage(a);
+                            if (a != 6) {
+                                a++;
+                                setInstructionImage(a);
+                            }
                             break;
                     }
                 }
