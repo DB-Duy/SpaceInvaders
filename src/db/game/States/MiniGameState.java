@@ -35,8 +35,6 @@ public class MiniGameState extends State {
         entityManager = new EntityManager(handler);
         entityManager.setEntityManager(asteroids);
         collision = new CollisionDetection();
-        Sound.stopLoop();
-        Sound.playSoundLoop(".//res//sounds//minibg.wav");
         asteroids = new ArrayList<>();
         player = new Player(handler, 450,450);
     }
