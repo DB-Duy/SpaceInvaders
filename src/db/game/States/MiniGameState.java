@@ -53,7 +53,7 @@ public class MiniGameState extends State {
     public float getEmptyX() {
         float x = (float) (Math.random()*611+150);
         if (asteroids.size() > 1) {
-            if (x > asteroids.get(asteroids.size() - 1).getX() && x < asteroids.get(asteroids.size() - 1).getX() + asteroids.get(asteroids.size() - 1).getWidth()) {
+            if (x > asteroids.get(asteroids.size() - 1).getX() && x < (asteroids.get(asteroids.size() - 1).getX() + asteroids.get(asteroids.size() - 1).getWidth())) {
                 return getEmptyX();
             }
             else {
@@ -88,7 +88,7 @@ public class MiniGameState extends State {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(ImageLoader.loadImage("/resources/minibgnew.png"), 0, 0, 1000, 600, null);
+        g.drawImage(Assets.miniGame, 0, 0, 1000, 600, null);
         player.render(g);
 
         for (int i = 0; i < asteroids.size(); i++) {

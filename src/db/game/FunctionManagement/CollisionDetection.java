@@ -19,7 +19,7 @@ public class CollisionDetection {
     }
 
     public boolean hasCollided2(Creature creature, Player player) {
-        if (creature.getY() + creature.getHeight() >= 430 && creature.getX() >= (player.getX() - 5) && creature.getX() <= (player.getX() + player.getWidth())) {
+        if (creature.getY() + creature.getHeight() >= (player.getHeight() - 20) && creature.getX() >= (player.getX() - 5) && creature.getX() <= (player.getX() + player.getWidth())) {
             if (!creature.getExplosion()) {
                 return true;
             }
