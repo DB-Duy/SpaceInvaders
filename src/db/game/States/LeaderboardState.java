@@ -6,10 +6,13 @@ import java.awt.*;
 import java.util.HashMap;
 
 public class LeaderboardState extends State {
+
     private HashMap<String,Integer> leaderboard;
-    private File leaderboardFile = new File(".//res//leaderboard//leaderboard.txt");
+    private File leaderboardFile;
+
     public LeaderboardState(Handler handler) {
         super(handler);
+        leaderboardFile = new File(".//res//leaderboard//leaderboard.txt");
         init();
     }
 
@@ -21,7 +24,9 @@ public class LeaderboardState extends State {
     public void render(Graphics g) {
 
     }
-    public void init(){
+
+
+    public void init() {
         try {
             ObjectInputStream input = new ObjectInputStream(new FileInputStream(leaderboardFile));
             this.leaderboard = (HashMap) input.readObject();
@@ -32,10 +37,13 @@ public class LeaderboardState extends State {
             e.printStackTrace();
         }
     }
-    public void addToLeaderboard(String name, int score){
+    public void addToLeaderboard(String name, int score) {
         this.leaderboard.put(name,score);
     }
+
+
     public void updateLeaderboard() {
+
         try {
             ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream((leaderboardFile)));
             output.writeObject(leaderboard);
@@ -45,6 +53,7 @@ public class LeaderboardState extends State {
         }
         System.out.println(leaderboard.toString());
     }
+
     public void clearLeaderboard(){
         this.leaderboard.clear();
     }

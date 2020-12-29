@@ -6,13 +6,13 @@ import java.awt.image.BufferedImage;
 public class Assets {
 
     public static BufferedImage emptyHeart, fullHeart, monster1, monster2, monster3, monster4, asteroid, miniGame,
-                                rocket, explosion, shield, startScreen, bomb, gameOverScreen, stars, title, blackBar, mountains;
+                                rocket, explosion, shield, startScreen, bomb, gameOverScreen, stars, title, blackBar, mountains, selectScreen;
     public static ArrayList<BufferedImage> levelBars,
                                            startButtons, quitButtons, instructions, settings, tryAgain, next, back,
-                                           instructionScreens, explosions;
+                                           instructionScreens, explosions, selectButtons, createButtons, arrowButtons;
     private static SpriteSheet sheet1, sheet2, sheet3,
                                startChoices, quitChoices, instructionChoices, settingChoices, tryAgainChoices, backChoices, nextChoices,
-                               instructionScreen, sheet4;
+                               instructionScreen, sheet4, selectChoices, createChoices, arrowChoices;
     private static int size = 249;
 
 
@@ -27,6 +27,9 @@ public class Assets {
         next = new ArrayList<>();
         instructionScreens = new ArrayList<>();
         explosions = new ArrayList<>();
+        selectButtons = new ArrayList<>();
+        createButtons = new ArrayList<>();
+        arrowButtons = new ArrayList<>();
 
 
         sheet1 = new SpriteSheet(ImageLoader.loadImage("/resources/sheet1.png"));
@@ -41,6 +44,9 @@ public class Assets {
         backChoices = new SpriteSheet(ImageLoader.loadImage("/resources/backchoices.png"));
         nextChoices = new SpriteSheet(ImageLoader.loadImage("/resources/nextchoices.png"));
         instructionScreen = new SpriteSheet(ImageLoader.loadImage("/resources/instructionscreen.png"));
+        selectChoices = new SpriteSheet(ImageLoader.loadImage("/resources/selectplayer.png"));
+        createChoices = new SpriteSheet(ImageLoader.loadImage("/resources/createnew.png"));
+        arrowChoices = new SpriteSheet(ImageLoader.loadImage("/resources/arrows.png"));
 
 
         emptyHeart = sheet1.crop(0,0, size, size);
@@ -60,7 +66,9 @@ public class Assets {
         blackBar = ImageLoader.loadImage("/resources/blackbar.png");
         mountains = ImageLoader.loadImage("/resources/mountains.png");
         asteroid = ImageLoader.loadImage("/resources/asteroid.png");
-        miniGame = ImageLoader.loadImage("/resources/minigame.png");
+        miniGame = ImageLoader.loadImage("/resources/minibgnew.png");
+        selectScreen = ImageLoader.loadImage("/resources/selectplayerscreen.png");
+
 
 
         for (int i = 0; i < 11; i++) {
@@ -75,6 +83,9 @@ public class Assets {
             next.add(nextChoices.crop(i * 200, 0, 199, 29));
             back.add(backChoices.crop(i * 200, 0, 199, 29));
             tryAgain.add(tryAgainChoices.crop(i * 200, 0, 199, 29));
+            selectButtons.add(selectChoices.crop(i * 200, 0, 199, 29));
+            createButtons.add(createChoices.crop(i * 235, 0, 234, 29));
+            arrowButtons.add(arrowChoices.crop(i * 30, 0, 29, 29));
         }
 
         for (int i = 0; i < 3; i++) {

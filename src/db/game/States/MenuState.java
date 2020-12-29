@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class MenuState extends State {
 
-    private ImageButton start, settings, instructions, quit;
+    private ImageButton start, settings, instructions, quit, select;
     private ArrayList<ImageButton> buttons;
     private int y = 0;
 
@@ -17,14 +17,22 @@ public class MenuState extends State {
     public MenuState(Handler handler) {
         super(handler);
 
-        start = new ImageButton(handler, Assets.startButtons, 375, 320, 240,40);
-        settings = new ImageButton(handler, Assets.settings, 375, 380, 240,40);
-        instructions = new ImageButton(handler, Assets.instructions, 375, 440, 240,40);
-        quit = new ImageButton(handler, Assets.quitButtons, 375, 500, 240,40);
+        /*start = new ImageButton(handler, Assets.startButtons, 375, 300, 240,40);
+        settings = new ImageButton(handler, Assets.settings, 375, 360, 240,40);
+        select = new ImageButton(handler, Assets.selectButtons, 375, 420, 240, 40);
+        instructions = new ImageButton(handler, Assets.instructions, 375, 480, 240,40);
+        quit = new ImageButton(handler, Assets.quitButtons, 375, 540, 240,40);*/
+
+        start = new ImageButton(handler, Assets.startButtons, 220, 340, 280,45);
+        //settings = new ImageButton(handler, Assets.settings, 520, 320, 240,40);
+        select = new ImageButton(handler, Assets.selectButtons, 490, 340, 280, 45);
+        instructions = new ImageButton(handler, Assets.instructions, 220, 420, 280,45);
+        quit = new ImageButton(handler, Assets.quitButtons, 490, 420, 280,45);
 
         buttons = new ArrayList<>();
         buttons.add(start);
-        buttons.add(settings);
+        //buttons.add(settings);
+        buttons.add(select);
         buttons.add(instructions);
         buttons.add(quit);
 
@@ -37,7 +45,8 @@ public class MenuState extends State {
             if (buttons.get(i).isHovering() && handler.getMouseManager().isLeftPressed()) {
                 switch(i) {
                     case 0: State.setState(handler.getGame().gameState); break;
-                    case 1: break;
+                    //case 1: break;
+                    case 1: State.setState(new UserInputState(handler)); break;
                     case 2: State.setState(new InstructionState(handler)); break;
                     case 3: System.exit(0); break;
                 }
