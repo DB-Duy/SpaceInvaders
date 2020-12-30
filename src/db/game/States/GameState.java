@@ -34,6 +34,7 @@ public class GameState extends State {
 
         entityManager = new EntityManager(handler);
         entityManager.setEntityManager(creatures);
+        Sound.stopLoop();
         Sound.playSoundLoop(".//res//sounds//background.wav");
 
         collision = new CollisionDetection();

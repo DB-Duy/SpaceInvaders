@@ -1,6 +1,7 @@
 package db.game.States;
 
 import db.game.Display.Assets;
+import db.game.FunctionManagement.Leaderboard;
 import db.game.Main.Handler;
 import db.game.UI.ImageButton;
 
@@ -20,11 +21,12 @@ public class UserInputState extends State {
     private File file;
     private Scanner scanner;
     private FileWriter fileWriter;
-
+    private Leaderboard leaderboard;
 
     public UserInputState(Handler handler) {
         super(handler);
-        file = new File("leaderboard.txt");
+        leaderboard = Leaderboard.getLeaderboardInstance();
+        file = new File(".//res//leaderboard//leaderboard.txt");
 
 
         buttons = new ArrayList<>();
