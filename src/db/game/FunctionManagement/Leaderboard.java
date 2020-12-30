@@ -1,30 +1,25 @@
-package db.game.States;
+package db.game.FunctionManagement;
 
 import db.game.Main.Handler;
-import java.io.*;
+
 import java.awt.*;
+import java.io.*;
 import java.util.HashMap;
 
-public class LeaderboardState extends State {
-
+public class Leaderboard {
     private HashMap<String,Integer> leaderboard;
     private File leaderboardFile;
+    private static Leaderboard boardInstance = null;
 
-    public LeaderboardState(Handler handler) {
-        super(handler);
-        leaderboardFile = new File(".//res//leaderboard//leaderboard.txt");
+    private Leaderboard(){
         init();
     }
-
-    @Override
-    public void tick() {
+    public static Leaderboard getLeaderboardInstance(){
+        if(boardInstance == null){
+            boardInstance = new Leaderboard();
+        }
+        return boardInstance;
     }
-
-    @Override
-    public void render(Graphics g) {
-
-    }
-
 
     public void init() {
         try {
@@ -40,7 +35,17 @@ public class LeaderboardState extends State {
     public void addToLeaderboard(String name, int score) {
         this.leaderboard.put(name,score);
     }
-
+    public void addToLeaderboard(String name){
+        this.leaderboard.put(name,0);
+    }
+    public void updateScore(String name, int score){
+        if(leaderboard.containsKey(name)){
+            leaderboard.put(name,score);
+        }
+        else{
+            System.out.println("User doesn't exist, please call the addToLeaderboard method instead");
+        }
+    }
 
     public void updateLeaderboard() {
 
@@ -56,5 +61,8 @@ public class LeaderboardState extends State {
 
     public void clearLeaderboard(){
         this.leaderboard.clear();
+    }
+    public HashMap getLeaderboard(){
+        return leaderboard;
     }
 }
