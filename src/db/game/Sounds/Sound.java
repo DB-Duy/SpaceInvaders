@@ -42,6 +42,8 @@ public class Sound {
         }
     }
     public static void stopLoop(){
-        currentLoop.stop();
+        if(currentLoop!=null) {
+            currentLoop.stop();
+        }
     }
 }
