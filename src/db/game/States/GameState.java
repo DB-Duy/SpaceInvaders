@@ -40,6 +40,9 @@ public class GameState extends State {
         collision = new CollisionDetection();
     }
 
+    public Player getPlayer() {
+        return player;
+    }
 
     public void addCreature() {
         if (time % 50 == 0) {

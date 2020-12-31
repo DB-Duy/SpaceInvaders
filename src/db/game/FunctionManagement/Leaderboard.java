@@ -11,11 +11,12 @@ public class Leaderboard {
     private File leaderboardFile;
     private static Leaderboard boardInstance = null;
 
-    private Leaderboard(){
+    private Leaderboard() {
         init();
     }
-    public static Leaderboard getLeaderboardInstance(){
-        if(boardInstance == null){
+
+    public static Leaderboard getLeaderboardInstance() {
+        if (boardInstance == null) {
             boardInstance = new Leaderboard();
         }
         return boardInstance;
@@ -32,17 +33,23 @@ public class Leaderboard {
             e.printStackTrace();
         }
     }
+
+
     public void addToLeaderboard(String name, int score) {
         this.leaderboard.put(name,score);
     }
-    public void addToLeaderboard(String name){
+
+
+    public void addToLeaderboard(String name) {
         this.leaderboard.put(name,0);
     }
-    public void updateScore(String name, int score){
-        if(leaderboard.containsKey(name)){
+
+
+    public void updateScore(String name, int score) {
+        if (leaderboard.containsKey(name)) {
             leaderboard.put(name,score);
         }
-        else{
+        else {
             System.out.println("User doesn't exist, please call the addToLeaderboard method instead");
         }
     }
@@ -59,10 +66,11 @@ public class Leaderboard {
         System.out.println(leaderboard.toString());
     }
 
-    public void clearLeaderboard(){
+    public void clearLeaderboard() {
         this.leaderboard.clear();
     }
-    public HashMap getLeaderboard(){
+
+    public HashMap getLeaderboard() {
         return leaderboard;
     }
 }

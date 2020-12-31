@@ -13,28 +13,32 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class UserInputState extends State {
+public class SelectState extends State {
 
-    private ImageButton back, arrow;
+    private ImageButton back, arrow, createNew;
     private ArrayList<ImageButton> buttons;
-    private ArrayList<String> userNames;
+
     private File file;
     private Scanner scanner;
     private FileWriter fileWriter;
     private Leaderboard leaderboard;
 
-    public UserInputState(Handler handler) {
-        super(handler);
-        leaderboard = Leaderboard.getLeaderboardInstance();
-        file = new File(".//res//leaderboard//leaderboard.txt");
+    public ArrayList<String> userNames;
 
+    public SelectState(Handler handler) {
+        super(handler);
+        //leaderboard = Leaderboard.getLeaderboardInstance();
+        file = new File(".//res//leaderboard//leaderboard2.txt");
+        setLastState(false);
 
         buttons = new ArrayList<>();
         userNames = new ArrayList<>();
         back = new ImageButton(handler, Assets.back, 10, 530, 250, 45);
         arrow = new ImageButton(handler, Assets.arrowButtons, 0, 0, 0, 0);
+        createNew = new ImageButton(handler, Assets.createButtons, 690, 530, 280, 40);
 
         buttons.add(back);
+        buttons.add(createNew);
 
         try {
             scanner = new Scanner(file);
@@ -50,7 +54,12 @@ public class UserInputState extends State {
     public void tick() {
         for (int i = 0; i < buttons.size(); i++) {
             if (buttons.get(i).isHovering() && handler.getMouseManager().isLeftPressed()) {
-                State.setState(new MenuState(handler));
+                if (i == 0) {
+                    State.setState(new MenuState(handler));
+                }
+                else {
+                    State.setState(new CreateUserState(handler));
+                }
             }
         }
 
@@ -61,6 +70,9 @@ public class UserInputState extends State {
                 arrow.setY(210 + i*90);
                 arrow.setWidth(70);
                 arrow.setHeight(45);
+                if (handler.getMouseManager().isLeftPressed()) {
+                    State.setState(new GameState(handler));
+                }
             }
         }
 
