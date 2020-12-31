@@ -70,9 +70,9 @@ public class SelectState extends State {
                 arrow.setY(210 + i*90);
                 arrow.setWidth(70);
                 arrow.setHeight(45);
-                if (handler.getMouseManager().isLeftPressed()) {
-                    State.setState(new GameState(handler));
-                }
+            }
+            if (arrow.isHovering() && handler.getMouseManager().isLeftPressed()) {
+                State.setState(new GameState(handler));
             }
         }
 
