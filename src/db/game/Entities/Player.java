@@ -14,6 +14,15 @@ import java.awt.image.BufferedImage;
 public class Player extends Creature {
 
     private BufferedImage image;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Player(Handler handler, float x, float y) {
         super(handler, x, y, DEFAULT_WIDTH, DEFAULT_HEIGHT);

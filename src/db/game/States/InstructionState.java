@@ -21,6 +21,8 @@ public class InstructionState extends State {
         super(handler);
         instructionImage = Assets.instructionScreens.get(0);
 
+        setLastState(false);
+
         back = new ImageButton(handler, Assets.back, 10, 30, 250, 45);
         next = new ImageButton(handler, Assets.next, 790, 30, 250, 45);
 
@@ -31,8 +33,8 @@ public class InstructionState extends State {
 
     @Override
     public void tick() {
-        if (!lastState && handler.getMouseManager().isLeftPressed()) {
-            lastState = true;
+        if (!isLastState() && handler.getMouseManager().isLeftPressed()) {
+            setLastState(true);
             for (int i = 0; i < buttons.size(); i++) {
                 if (buttons.get(i).isHovering()) {
                     switch (i) {
@@ -55,7 +57,7 @@ public class InstructionState extends State {
             }
         }
         if (!handler.getMouseManager().isLeftPressed()) {
-            lastState = false;
+            setLastState(false);
         }
     }
 

@@ -8,9 +8,18 @@ import java.awt.*;
 public abstract class State {
 
     private static State currentState = null;
+    private boolean lastState;
 
     public static void setState(State state) {
         currentState = state;
+    }
+
+    public boolean isLastState() {
+        return lastState;
+    }
+
+    public void setLastState(boolean lastState) {
+        this.lastState = lastState;
     }
 
     public static State getState() {

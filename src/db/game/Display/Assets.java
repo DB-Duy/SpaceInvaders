@@ -6,7 +6,8 @@ import java.awt.image.BufferedImage;
 public class Assets {
 
     public static BufferedImage emptyHeart, fullHeart, monster1, monster2, monster3, monster4, asteroid, miniGame,
-                                rocket, explosion, shield, startScreen, bomb, gameOverScreen, stars, title, blackBar, mountains, selectScreen;
+                                rocket, explosion, shield, startScreen, bomb, gameOverScreen, stars, title, blackBar, mountains,
+                                selectScreen, enterScreen;
     public static ArrayList<BufferedImage> levelBars,
                                            startButtons, quitButtons, instructions, settings, tryAgain, next, back,
                                            instructionScreens, explosions, selectButtons, createButtons, arrowButtons;
@@ -68,6 +69,7 @@ public class Assets {
         asteroid = ImageLoader.loadImage("/resources/asteroid.png");
         miniGame = ImageLoader.loadImage("/resources/minibgnew.png");
         selectScreen = ImageLoader.loadImage("/resources/selectplayerscreen.png");
+        enterScreen = ImageLoader.loadImage("/resources/entername.png");
 
 
 
