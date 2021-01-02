@@ -4,15 +4,32 @@ import db.game.Main.Handler;
 
 import java.awt.*;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Leaderboard {
     private HashMap<String,Integer> leaderboard;
+    public ArrayList<String> userNames = new ArrayList<>();
+    public ArrayList<Integer> scores = new ArrayList<>();
     private File leaderboardFile = new File(".//res//leaderboard//leaderboard.txt");
     private static Leaderboard boardInstance = null;
 
+    public ArrayList<String> getUserNames() {
+        return userNames;
+    }
+
+    public ArrayList<Integer> getScores() {
+        return scores;
+    }
+
     private Leaderboard() {
         init();
+        for(Object name : this.getLeaderboard().keySet()){
+            userNames.add((String) name);
+        }
+        for(Object score: this.getLeaderboard().values()){
+            scores.add((Integer) score);
+        }
     }
 
     public static Leaderboard getLeaderboardInstance() {

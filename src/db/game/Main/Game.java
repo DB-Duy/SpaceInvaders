@@ -1,5 +1,6 @@
 package db.game.Main;
 
+import db.game.FunctionManagement.Leaderboard;
 import db.game.Input.KeyManager;
 import db.game.Display.Assets;
 import db.game.Display.Display;
@@ -33,6 +34,7 @@ public class Game implements Runnable{
 
     private KeyManager keyManager;
     private MouseManager mouseManager;
+    private Leaderboard board;
 
     public Game(String title, int width, int height) {
         this.width = width;
@@ -82,7 +84,7 @@ public class Game implements Runnable{
         handler = new Handler(this);
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
-
+        board = Leaderboard.getLeaderboardInstance();
 
         State.setState(menuState);
     }
