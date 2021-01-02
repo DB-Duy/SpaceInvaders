@@ -10,19 +10,21 @@ import java.util.ArrayList;
 public class DeathState extends State {
 
 
-    private ImageButton tryAgain, quit;
+    private ImageButton tryAgain, quit, leaderboard;
     private ArrayList<ImageButton> buttons;
     private int y = 0;
 
     public DeathState(Handler handler) {
         super(handler);
 
-        tryAgain = new ImageButton(handler, Assets.tryAgain, 290, 320, 240, 40);
-        quit = new ImageButton(handler, Assets.quitButtons, 480, 320, 240, 40);
+        tryAgain = new ImageButton(handler, Assets.tryAgain, 270, 320, 240, 40);
+        quit = new ImageButton(handler, Assets.quitButtons, 500, 320, 240, 40);
+        leaderboard = new ImageButton(handler, Assets.leaderboardButtons, 370, 380, 260, 40);
 
         buttons = new ArrayList<>();
         buttons.add(tryAgain);
         buttons.add(quit);
+        buttons.add(leaderboard);
     }
 
     @Override
@@ -35,6 +37,9 @@ public class DeathState extends State {
                         break;
                     case 1:
                         System.exit(0);
+                        break;
+                    case 2:
+                        State.setState(new LeaderBoardState(handler));
                         break;
                 }
             }

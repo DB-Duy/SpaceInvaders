@@ -17,6 +17,9 @@ public class Game implements Runnable{
     public int height, width;
     public String title;
 
+    public String playerName;
+    public int playerScore;
+
     private boolean running = false;
     private Thread thread;
 
