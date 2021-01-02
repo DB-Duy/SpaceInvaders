@@ -22,8 +22,7 @@ public class SelectState extends State {
     private Scanner scanner;
     private FileWriter fileWriter;
     private Leaderboard board;
-    public ArrayList<String> userNames;
-    public ArrayList<Integer> scores;
+    private ArrayList<String> userNames ;
 
     public SelectState(Handler handler) {
         super(handler);
@@ -32,8 +31,8 @@ public class SelectState extends State {
         board = Leaderboard.getLeaderboardInstance();
 
         buttons = new ArrayList<>();
-        userNames = new ArrayList<>();
-        scores = new ArrayList<>();
+        userNames =  Leaderboard.getLeaderboardInstance().getUserNames();
+
 
         back = new ImageButton(handler, Assets.back, 10, 530, 250, 45);
         arrow = new ImageButton(handler, Assets.arrowButtons, 0, 0, 0, 0);
@@ -42,12 +41,6 @@ public class SelectState extends State {
         buttons.add(back);
         buttons.add(createNew);
 
-        for(Object name : board.getLeaderboard().keySet()){
-            userNames.add((String) name);
-        }
-        for(Object score: board.getLeaderboard().values()){
-            scores.add((Integer) score);
-        }
 
         /*int num = 0;
 

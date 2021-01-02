@@ -16,8 +16,8 @@ public class LeaderBoardState extends State {
 
     private File file;
     private FileWriter fileWriter;
-    private ArrayList<String> userNames = new ArrayList<>();
-    private ArrayList<Integer> scores = new ArrayList<>();
+    public static ArrayList<String> userNames = Leaderboard.getLeaderboardInstance().getUserNames();
+    public static ArrayList<Integer> scores = Leaderboard.getLeaderboardInstance().scores;
     private ImageButton back;
     private Scanner scanner;
     private Leaderboard board;
@@ -28,12 +28,6 @@ public class LeaderBoardState extends State {
 
         board = Leaderboard.getLeaderboardInstance();
 
-        for(Object name : board.getLeaderboard().keySet()){
-            userNames.add((String) name);
-        }
-        for(Object score: board.getLeaderboard().values()){
-            scores.add((Integer) score);
-        }
 
 
         System.out.println(board.getLeaderboard().toString());
