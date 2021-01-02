@@ -1,0 +1,388 @@
+@startuml
+class db.game.Input.MouseManager {
+- boolean leftPressed
+- int mouseX
++ boolean isLeftPressed()
++ boolean isRightPressed()
++ int getMouseX()
++ int getMouseY()
++ void setMouseX(int)
++ void setMouseY(int)
++ void mousePressed(MouseEvent)
++ void mouseReleased(MouseEvent)
++ void mouseMoved(MouseEvent)
++ void mouseDragged(MouseEvent)
++ void mouseClicked(MouseEvent)
++ void mouseEntered(MouseEvent)
++ boolean isClicked()
++ void mouseExited(MouseEvent)
+}
+class db.game.Display.Assets {
++ {static} BufferedImage emptyHeart
++ {static} ArrayList<BufferedImage> levelBars
+- {static} SpriteSheet sheet1
+- {static} int size
++ {static} void init()
+}
+class db.game.States.MenuState {
+- ImageButton start
+- ArrayList<ImageButton> buttons
+- int y
++ void tick()
++ void render(Graphics)
+}
+class db.game.States.MiniGameState {
+- int health
+- Player player
+- EntityManager entityManager
+- CollisionDetection collision
+- ArrayList<Asteroid> asteroids
+- int incrementX
+~ int time
++ void addAsteroid()
++ float getEmptyX()
++ void tick()
++ void render(Graphics)
+}
+class db.game.Main.Game {
+- Display display
++ int height
++ String title
+- boolean running
+- Thread thread
+- BufferStrategy bs
+- Graphics g
++ State gameState
++ State menuState
+- Handler handler
+- KeyManager keyManager
+- MouseManager mouseManager
++ KeyManager getKeyManager()
++ void setKeyManager(KeyManager)
++ MouseManager getMouseManager()
++ int getHeight()
++ void setHeight(int)
++ int getWidth()
++ void setWidth(int)
+- void init()
++ Display getDisplay()
+- void tick()
+- void render()
++ void run()
++ void start()
++ void stop()
+}
+class db.game.States.InstructionState {
+- ImageButton back
+- ArrayList<ImageButton> buttons
+- boolean backHovered
+- BufferedImage instructionImage
+- int a
+- boolean lastState
++ void tick()
++ void setInstructionImage(int)
++ void render(Graphics)
+}
+class db.game.FunctionManagement.LevelManager {
+- int progressLevel
+- boolean isMiniGame
+- int level
++ boolean isMiniGame()
++ void setMiniGame(boolean)
++ void tick()
++ int getProgressLevel()
++ void setProgressLevel(int)
++ int getLevel()
++ void setLevel(int)
++ void render(Graphics)
+}
+class db.game.Input.KeyManager {
++ String wordTyped
++ boolean typeable
++ boolean backspace
++ boolean movable
++ int increment
+- Player player
++ void tick()
++ String getWordTyped()
++ void keyPressed(KeyEvent)
++ void keyReleased(KeyEvent)
++ void keyTyped(KeyEvent)
++ void resetWordTyped()
+}
+class db.game.States.SelectState {
+- ImageButton back
+- ArrayList<ImageButton> buttons
+- File file
+- Scanner scanner
+- FileWriter fileWriter
+- Leaderboard leaderboard
++ ArrayList<String> userNames
++ void tick()
++ void render(Graphics)
+}
+class db.game.UI.ImageButton {
+- ArrayList<BufferedImage> buttons
+- Handler handler
+- int x
+- boolean hovering
++ boolean isHovering()
++ int getX()
++ void setX(int)
++ int getY()
++ void setY(int)
++ boolean isHovering(int,int,int,int)
++ int getWidth()
++ void setWidth(int)
++ int getHeight()
++ void setHeight(int)
++ void render(Graphics)
+}
+class db.game.TextReader.ReadFile {
+~ {static} File file
+~ {static} Scanner readFile
+~ Random rand
+- {static} ArrayList<String> words
++ {static} void init()
++ String randomWord()
+}
+class db.game.Entities.Bomb {
+- Text text
++ void tick()
++ void render(Graphics)
+}
+class db.game.States.GameState {
+- Player player
+- EntityManager entityManager
+- LevelManager level
+- ArrayList<Creature> creatures
+- int time
+- CollisionDetection collision
++ Player getPlayer()
++ void addCreature()
++ void tick()
++ void render(Graphics)
+}
+class db.game.FunctionManagement.CollisionDetection {
++ boolean hasCollided(Creature)
++ boolean hasCollided2(Creature,Player)
+}
+class db.game.States.DeathState {
+- ImageButton tryAgain
+- ArrayList<ImageButton> buttons
+- int y
++ void tick()
++ void render(Graphics)
+}
+class db.game.Display.SpriteSheet {
+- BufferedImage sheet
++ BufferedImage crop(int,int,int,int)
+}
+class db.game.Entities.Asteroid {
+- Text text
++ void tick()
++ void render(Graphics)
+}
+class db.game.FunctionManagement.HealthManager {
+- int health
+- Game game
++ void tick()
++ void render(Graphics)
++ int getHealth()
++ void setHealth(int)
+}
+class db.game.TextReader.Text {
+- String path
+- ReadFile read
++ String randomWord()
+}
+class db.game.Display.Display {
+- String title
+- int width
+- JFrame frame
+- Canvas canvas
++ void setDisplay()
++ Canvas getCanvas()
++ JFrame getFrame()
+}
+class db.game.FunctionManagement.Leaderboard {
+- HashMap<String,Integer> leaderboard
+- File leaderboardFile
+- {static} Leaderboard boardInstance
++ {static} Leaderboard getLeaderboardInstance()
++ void init()
++ void addToLeaderboard(String,int)
++ void addToLeaderboard(String)
++ void updateScore(String,int)
++ void updateLeaderboard()
++ void clearLeaderboard()
++ HashMap getLeaderboard()
+}
+class db.game.Entities.Shield {
+- Text text
++ void tick()
++ void render(Graphics)
+}
+class db.game.FunctionManagement.ScoreManager {
+- int score
++ int getNumKilled()
++ void setNumKilled(int)
++ void monster()
++ void individual()
++ void combo_1()
++ void combo_2()
++ void combo_3()
++ void shield()
++ void asteroid()
++ void bomb()
++ int getScore()
++ void setScore(int)
++ void tick()
++ void render(Graphics)
+}
+abstract class db.game.States.State {
+- {static} State currentState
+- boolean lastState
+# Handler handler
++ {static} void setState(State)
++ boolean isLastState()
++ void setLastState(boolean)
++ {static} State getState()
++ {abstract}void tick()
++ {abstract}void render(Graphics)
+}
+class db.game.Sounds.Sound {
+~ {static} Clip currentLoop
++ {static} void playSoundLoop(String)
++ {static} void playSound(String)
++ {static} void stopLoop()
+}
+class db.game.Main.Launcher {
++ {static} void main(String[])
+}
+class db.game.Entities.Player {
+- BufferedImage image
+- String name
++ String getName()
++ void setName(String)
++ void tick()
++ void render(Graphics)
+}
+class db.game.Entities.Monster {
+- Game game
+- ArrayList<BufferedImage> monsters
+- Text text
++ void tick()
++ void render(Graphics)
+}
+class db.game.Display.ImageLoader {
++ {static} BufferedImage loadImage(String)
++ {static} BufferedImage cropImage(BufferedImage,int,int,int,int)
+}
+class db.game.FunctionManagement.ShieldManager {
+- int shields
++ void tick()
++ void render(Graphics)
++ int getShields()
++ void setShields(int)
+}
+class db.game.States.CreateUserState {
+- ImageButton back
+- ArrayList<ImageButton> buttons
+- File file
+- FileWriter fileWriter
++ void tick()
++ void render(Graphics)
+}
+class db.game.Entities.EntityManager {
+- Handler handler
+- ShieldManager shield
+- HealthManager health
+- ScoreManager score
+- Random random
+- CollisionDetection collision
+- ArrayList<Creature> creatures
++ HealthManager getHealthManager()
++ void setHandler(Handler)
++ void setEntityManager(ArrayList<Creature>)
++ void setCollision(CollisionDetection)
++ void tick(LevelManager,int)
++ float getEmptyX()
++ void clear()
++ void render(Graphics,int)
+}
+class db.game.Main.Handler {
+- Game game
++ int getWidth()
++ int getHeight()
++ void setKeyManager(KeyManager)
++ KeyManager getKeyManager()
++ MouseManager getMouseManager()
++ Game getGame()
++ void setGame(Game)
+}
+abstract class db.game.Entities.Creature {
+# Handler handler
++ {static} int DEFAULT_HEALTH
++ {static} int DEFAULT_WIDTH
+# float x
+# int width
++ int i
+# boolean isBlown
+# int health
+# String word
+# Color yellow
+# Font font
+~ File fontFile
++ int getA()
++ int getB()
++ void tick()
++ void render(Graphics)
++ boolean getExplosion()
++ void setExplosion()
++ void explode(int)
++ void renderExplosion(Graphics,int)
++ int getTexture()
++ void setTexture(int)
++ void setWord(String)
++ int getSpeed()
++ void setSpeed(int)
++ int getBlownTime()
++ void setBlownTime(int)
++ String getWord()
++ float getX()
++ void setX(float)
++ float getY()
++ void setY(float)
++ int getWidth()
++ void setWidth(int)
++ int getHeight()
++ void setHeight(int)
+}
+abstract class db.game.FunctionManagement.Functionality {
++ {abstract}void tick()
++ {abstract}void render(Graphics)
+}
+
+
+db.game.Input.MouseListener <|.. db.game.Input.MouseManager
+db.game.Input.MouseMotionListener <|.. db.game.Input.MouseManager
+db.game.States.State <|-- db.game.States.MenuState
+db.game.States.State <|-- db.game.States.MiniGameState
+db.game.Main.Runnable <|.. db.game.Main.Game
+db.game.States.State <|-- db.game.States.InstructionState
+db.game.FunctionManagement.Functionality <|-- db.game.FunctionManagement.LevelManager
+db.game.Input.KeyListener <|.. db.game.Input.KeyManager
+db.game.States.State <|-- db.game.States.SelectState
+db.game.Entities.Creature <|-- db.game.Entities.Bomb
+db.game.States.State <|-- db.game.States.GameState
+db.game.States.State <|-- db.game.States.DeathState
+db.game.Entities.Creature <|-- db.game.Entities.Asteroid
+db.game.FunctionManagement.Functionality <|-- db.game.FunctionManagement.HealthManager
+db.game.Entities.Creature <|-- db.game.Entities.Shield
+db.game.FunctionManagement.Functionality <|-- db.game.FunctionManagement.ScoreManager
+db.game.Entities.Creature <|-- db.game.Entities.Player
+db.game.Entities.Creature <|-- db.game.Entities.Monster
+db.game.FunctionManagement.Functionality <|-- db.game.FunctionManagement.ShieldManager
+db.game.States.State <|-- db.game.States.CreateUserState
+@enduml
