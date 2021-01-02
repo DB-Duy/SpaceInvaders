@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class Leaderboard {
     private HashMap<String,Integer> leaderboard;
-    private File leaderboardFile;
+    private File leaderboardFile = new File(".//res//leaderboard//leaderboard.txt");
     private static Leaderboard boardInstance = null;
 
     private Leaderboard() {

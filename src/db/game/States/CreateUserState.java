@@ -1,6 +1,7 @@
 package db.game.States;
 
 import db.game.Display.Assets;
+import db.game.FunctionManagement.Leaderboard;
 import db.game.Main.Handler;
 import db.game.UI.ImageButton;
 
@@ -17,10 +18,12 @@ public class CreateUserState extends State {
     private ArrayList<ImageButton> buttons;
     private File file;
     private FileWriter fileWriter;
-
+    private Leaderboard board;
+    private String name;
     public CreateUserState(Handler handler) {
         super(handler);
-        file = new File(".//res//leaderboard//leaderboard2.txt");
+        board = Leaderboard.getLeaderboardInstance();
+        //file = new File(".//res//leaderboard//leaderboard2.txt");
 
         buttons = new ArrayList<>();
         back = new ImageButton(handler, Assets.back, 10, 530, 250, 45);
@@ -36,15 +39,17 @@ public class CreateUserState extends State {
             if (buttons.get(i).isHovering() && handler.getMouseManager().isLeftPressed()) {
                 if (i == 0) {
                     State.setState(new SelectState(handler));
+                    board.addToLeaderboard(name);
                 }
                 else {
-                    try {
+                    /*try {
                         fileWriter = new FileWriter(file, true);
                         fileWriter.write("\n" + handler.getKeyManager().getWordTyped());
                         fileWriter.close();
                     } catch (IOException a) {
                         a.printStackTrace();
-                    }
+                    }*/
+                    name=handler.getKeyManager().getWordTyped();
                     handler.getKeyManager().resetWordTyped();
                     State.setState(new GameState(handler));
                 }
