@@ -32,6 +32,10 @@ public class EntityManager<T> {
         return health;
     }
 
+    public ScoreManager getScoreManager() {
+        return score;
+    }
+
 
     public void setHandler(Handler handler) {
         this.handler = handler;
