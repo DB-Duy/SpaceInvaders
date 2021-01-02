@@ -21,13 +21,15 @@ public class SelectState extends State {
     private File file;
     private Scanner scanner;
     private FileWriter fileWriter;
-
-    public ArrayList<String> userNames, scores;
+    private Leaderboard board;
+    public ArrayList<String> userNames;
+    public ArrayList<Integer> scores;
 
     public SelectState(Handler handler) {
         super(handler);
-        file = new File(".//res//leaderboard//leaderboard2.txt");
+        //file = new File(".//res//leaderboard//leaderboard2.txt");
         setLastState(false);
+        board = Leaderboard.getLeaderboardInstance();
 
         buttons = new ArrayList<>();
         userNames = new ArrayList<>();
@@ -39,7 +41,15 @@ public class SelectState extends State {
 
         buttons.add(back);
         buttons.add(createNew);
-        int num = 0;
+
+        for(Object name : board.getLeaderboard().keySet()){
+            userNames.add((String) name);
+        }
+        for(Object score: board.getLeaderboard().values()){
+            scores.add((Integer) score);
+        }
+
+        /*int num = 0;
 
         try {
             scanner = new Scanner(file);
@@ -54,7 +64,7 @@ public class SelectState extends State {
             }
         } catch (FileNotFoundException a) {
             a.printStackTrace();
-        }
+        }*/
     }
 
     @Override
