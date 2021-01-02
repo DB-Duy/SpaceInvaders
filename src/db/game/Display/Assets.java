@@ -7,13 +7,14 @@ public class Assets {
 
     public static BufferedImage emptyHeart, fullHeart, monster1, monster2, monster3, monster4, asteroid, miniGame,
                                 rocket, explosion, shield, startScreen, bomb, gameOverScreen, stars, title, blackBar, mountains,
-                                selectScreen, enterScreen;
+                                selectScreen, enterScreen, leaderboardScreen;
     public static ArrayList<BufferedImage> levelBars,
                                            startButtons, quitButtons, instructions, settings, tryAgain, next, back,
-                                           instructionScreens, explosions, selectButtons, createButtons, arrowButtons;
+                                           instructionScreens, explosions, selectButtons, createButtons, arrowButtons,
+                                           leaderboardButtons;
     private static SpriteSheet sheet1, sheet2, sheet3,
                                startChoices, quitChoices, instructionChoices, settingChoices, tryAgainChoices, backChoices, nextChoices,
-                               instructionScreen, sheet4, selectChoices, createChoices, arrowChoices;
+                               instructionScreen, sheet4, selectChoices, createChoices, arrowChoices, leaderboardChoices;
     private static int size = 249;
 
 
@@ -31,6 +32,7 @@ public class Assets {
         selectButtons = new ArrayList<>();
         createButtons = new ArrayList<>();
         arrowButtons = new ArrayList<>();
+        leaderboardButtons = new ArrayList<>();
 
 
         sheet1 = new SpriteSheet(ImageLoader.loadImage("/resources/sheet1.png"));
@@ -48,6 +50,7 @@ public class Assets {
         selectChoices = new SpriteSheet(ImageLoader.loadImage("/resources/selectplayer.png"));
         createChoices = new SpriteSheet(ImageLoader.loadImage("/resources/createnew.png"));
         arrowChoices = new SpriteSheet(ImageLoader.loadImage("/resources/arrows.png"));
+        leaderboardChoices = new SpriteSheet(ImageLoader.loadImage("/resources/leaderboardchoices.png"));
 
 
         emptyHeart = sheet1.crop(0,0, size, size);
@@ -70,6 +73,7 @@ public class Assets {
         miniGame = ImageLoader.loadImage("/resources/minibgnew.png");
         selectScreen = ImageLoader.loadImage("/resources/selectplayerscreen.png");
         enterScreen = ImageLoader.loadImage("/resources/entername.png");
+        leaderboardScreen = ImageLoader.loadImage("/resources/leaderboard.png");
 
 
 
@@ -88,6 +92,7 @@ public class Assets {
             selectButtons.add(selectChoices.crop(i * 200, 0, 199, 29));
             createButtons.add(createChoices.crop(i * 235, 0, 234, 29));
             arrowButtons.add(arrowChoices.crop(i * 30, 0, 29, 29));
+            leaderboardButtons.add(leaderboardChoices.crop(i * 230, 0, 229, 29));
         }
 
         for (int i = 0; i < 3; i++) {

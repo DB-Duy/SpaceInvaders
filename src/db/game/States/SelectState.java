@@ -21,29 +21,36 @@ public class SelectState extends State {
     private File file;
     private Scanner scanner;
     private FileWriter fileWriter;
-    private Leaderboard leaderboard;
 
-    public ArrayList<String> userNames;
+    public ArrayList<String> userNames, scores;
 
     public SelectState(Handler handler) {
         super(handler);
-        //leaderboard = Leaderboard.getLeaderboardInstance();
         file = new File(".//res//leaderboard//leaderboard2.txt");
         setLastState(false);
 
         buttons = new ArrayList<>();
         userNames = new ArrayList<>();
+        scores = new ArrayList<>();
+
         back = new ImageButton(handler, Assets.back, 10, 530, 250, 45);
         arrow = new ImageButton(handler, Assets.arrowButtons, 0, 0, 0, 0);
         createNew = new ImageButton(handler, Assets.createButtons, 690, 530, 280, 40);
 
         buttons.add(back);
         buttons.add(createNew);
+        int num = 0;
 
         try {
             scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
-                userNames.add(scanner.nextLine());
+                num++;
+                if (num % 2 != 0) {
+                    userNames.add(scanner.nextLine());
+                }
+                else {
+                    scores.add(scanner.nextLine());
+                }
             }
         } catch (FileNotFoundException a) {
             a.printStackTrace();
@@ -70,9 +77,11 @@ public class SelectState extends State {
                 arrow.setY(210 + i*90);
                 arrow.setWidth(70);
                 arrow.setHeight(45);
-            }
-            if (arrow.isHovering() && handler.getMouseManager().isLeftPressed()) {
-                State.setState(new GameState(handler));
+                if (handler.getMouseManager().isLeftPressed()) {
+                    handler.getGame().playerName = userNames.get(i);
+                    System.out.println(handler.getGame().playerName);
+                    State.setState(new GameState(handler));
+                }
             }
         }
 
