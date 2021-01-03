@@ -34,54 +34,6 @@ public class LeaderBoardState extends State {
 
         System.out.println(board.getLeaderboard().toString());
 
-
-        /*file = new File(".//res//leaderboard//leaderboard2.txt");
-        userNames = new ArrayList<>();
-        scores = new ArrayList<>();
-
-        back = new ImageButton(handler, Assets.back, 10, 500, 240, 40);
-
-        int lineNum = 0, num = 0;
-
-        try {
-            boolean isName = false;
-            scanner = new Scanner(file);
-            fileWriter = new FileWriter(file, false);
-            while (scanner.hasNextLine()) {
-                lineNum++;
-                if (scanner.nextLine().equals(handler.getGame().playerName)) {
-                    isName = true;
-                    num = lineNum;
-                    System.out.println(num);
-                }
-                if (isName && lineNum == num + 1) {
-                    System.out.println(lineNum);
-                    fileWriter.write(String.valueOf(handler.getGame().playerScore));
-                }
-                else {
-                    continue;
-                }
-            }
-            fileWriter.close();
-        } catch (IOException b) {
-            b.printStackTrace();
-        }
-
-
-        try {
-            scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                lineNum++;
-                if (lineNum % 2 != 0) {
-                    scores.add(scanner.nextLine());
-                }
-                else {
-                    userNames.add(scanner.nextLine());
-                }
-            }
-        } catch (FileNotFoundException a) {
-            a.printStackTrace();
-        }*/
     }
 
     @Override

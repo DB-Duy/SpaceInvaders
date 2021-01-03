@@ -39,17 +39,10 @@ public class CreateUserState extends State {
             if (buttons.get(i).isHovering() && handler.getMouseManager().isLeftPressed()) {
                 if (i == 0) {
                     State.setState(new SelectState(handler));
-                    board.addToLeaderboard(name);
                 }
                 else {
-                    /*try {
-                        fileWriter = new FileWriter(file, true);
-                        fileWriter.write("\n" + handler.getKeyManager().getWordTyped());
-                        fileWriter.close();
-                    } catch (IOException a) {
-                        a.printStackTrace();
-                    }*/
-                    name=handler.getKeyManager().getWordTyped();
+                    name = handler.getKeyManager().getWordTyped();
+                    board.addToLeaderboard(name);
                     handler.getKeyManager().resetWordTyped();
                     State.setState(new GameState(handler));
                 }
