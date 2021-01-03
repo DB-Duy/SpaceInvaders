@@ -79,7 +79,9 @@ public class Leaderboard {
         this.leaderboard.put(name,0);
         updateLeaderboard();
     }
-
+    public int getPlayerScore(String name){
+        return leaderboard.get(name);
+    }
 
     public void updateScore(String name, int score) {
         if (leaderboard.containsKey(name)) {
