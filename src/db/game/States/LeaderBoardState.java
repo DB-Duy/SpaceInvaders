@@ -28,7 +28,9 @@ public class LeaderBoardState extends State {
 
         board = Leaderboard.getLeaderboardInstance();
 
-        board.updateScore(handler.getGame().playerName, handler.getGame().playerScore);
+        if (handler.getGame().playerScore > board.getPlayerScore(handler.getGame().playerName)) {
+            board.updateScore(handler.getGame().playerName, handler.getGame().playerScore);
+        }
 
         System.out.println(board.getLeaderboard().toString());
 
