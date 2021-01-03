@@ -58,10 +58,6 @@ public class GameState extends State {
             }
         }
 
-        if (time % 100 == 0) {
-            creatures.add(new Asteroid(handler, entityManager.getEmptyX(), 30));
-        }
-
         if (time > 100000) {
             time = 0;
         }
