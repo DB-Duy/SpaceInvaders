@@ -54,17 +54,20 @@ public class Leaderboard {
 
     public void addToLeaderboard(String name, int score) {
         this.leaderboard.put(name,score);
+        updateLeaderboard();
     }
 
 
     public void addToLeaderboard(String name) {
         this.leaderboard.put(name,0);
+        updateLeaderboard();
     }
 
 
     public void updateScore(String name, int score) {
         if (leaderboard.containsKey(name)) {
             leaderboard.put(name,score);
+            updateLeaderboard();
         }
         else {
             System.out.println("User doesn't exist, please call the addToLeaderboard method instead");
