@@ -41,23 +41,6 @@ public class SelectState extends State {
         buttons.add(back);
         buttons.add(createNew);
 
-
-        /*int num = 0;
-
-        try {
-            scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                num++;
-                if (num % 2 != 0) {
-                    userNames.add(scanner.nextLine());
-                }
-                else {
-                    scores.add(scanner.nextLine());
-                }
-            }
-        } catch (FileNotFoundException a) {
-            a.printStackTrace();
-        }*/
     }
 
     @Override
