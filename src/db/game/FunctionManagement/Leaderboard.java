@@ -24,6 +24,11 @@ public class Leaderboard {
 
     private Leaderboard() {
         init();
+        updateArrays();
+    }
+    public void updateArrays(){
+        userNames.clear();
+        scores.clear();
         for(Object name : this.getLeaderboard().keySet()){
             userNames.add((String) name);
         }
@@ -84,6 +89,7 @@ public class Leaderboard {
             e.printStackTrace();
         }
         System.out.println(leaderboard.toString());
+        updateArrays();
     }
 
     public void clearLeaderboard() {
