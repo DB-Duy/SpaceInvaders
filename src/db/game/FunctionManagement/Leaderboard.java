@@ -43,6 +43,18 @@ public class Leaderboard {
         }
         return boardInstance;
     }
+    public void changeUserName(String oldName, String newName){
+        int score;
+        if(leaderboard.containsKey(oldName)){
+            score = leaderboard.get(oldName);
+            leaderboard.remove(oldName);
+            leaderboard.put(newName,score);
+        }
+        else{
+            System.out.println("Old name doesn't exist");
+        }
+
+    }
 
     public void init() {
         try {
