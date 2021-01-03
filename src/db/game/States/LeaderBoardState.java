@@ -28,7 +28,7 @@ public class LeaderBoardState extends State {
 
         board = Leaderboard.getLeaderboardInstance();
 
-
+        board.updateScore("Duy",30);
 
         System.out.println(board.getLeaderboard().toString());
 

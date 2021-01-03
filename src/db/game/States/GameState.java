@@ -92,7 +92,7 @@ public class GameState extends State {
             level.setProgressLevel(0);
         }
 
-        if (entityManager.getHealthManager().getHealth() == 0) {
+        if (entityManager.getHealthManager().getHealth() <= 0) {
             entityManager.clear();
             handler.getGame().playerScore = entityManager.getScoreManager().getScore();
             State.setState(new DeathState(handler));
