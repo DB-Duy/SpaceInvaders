@@ -28,7 +28,7 @@ public class LeaderBoardState extends State {
 
         board = Leaderboard.getLeaderboardInstance();
 
-        board.updateScore("Duy",30);
+        board.updateScore(handler.getGame().playerName, handler.getGame().playerScore);
 
         System.out.println(board.getLeaderboard().toString());
 
@@ -98,8 +98,8 @@ public class LeaderBoardState extends State {
         g.setFont(new Font("Minecraft", Font.PLAIN, 50));
 
         for (int i = 0; i < userNames.size(); i++) {
-            g.drawString(userNames.get(i), 600, 250 + i*90);
-            g.drawString(scores.get(i).toString(), 350, 250 + i*90);
+            g.drawString(userNames.get(i), 350, 250 + i*90);
+            g.drawString(scores.get(i).toString(), 580, 250 + i*90);
         }
 
 
