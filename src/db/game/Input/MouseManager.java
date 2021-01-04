@@ -1,15 +1,18 @@
 package db.game.Input;
 
+import db.game.Sounds.Sound;
+
 import java.awt.*;
 import java.awt.event.*;
 
 public class MouseManager implements MouseListener, MouseMotionListener {
 
     private boolean leftPressed, rightPressed;
+    private Sound sound;
     private int mouseX, mouseY;
 
-    public MouseManager(){
-
+    public MouseManager() {
+        sound = new Sound();
     }
 
     public boolean isLeftPressed(){
@@ -49,6 +52,7 @@ public class MouseManager implements MouseListener, MouseMotionListener {
     @Override
     public void mouseReleased(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
+            sound.playSound(".//res//sounds//button.wav");
             leftPressed = false;
         }
         else if (e.getButton() == MouseEvent.BUTTON3) {

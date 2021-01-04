@@ -38,7 +38,7 @@ public class MenuState extends State {
             if (buttons.get(i).isHovering() && handler.getMouseManager().isLeftPressed()) {
                 switch(i) {
                     case 0: State.setState(new SelectState(handler)); break;
-                    case 1: break;
+                    case 1: State.setState(new SettingState(handler)); break;
                     case 2: State.setState(new InstructionState(handler)); break;
                     case 3: System.exit(0); break;
                 }
