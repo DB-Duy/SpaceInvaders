@@ -52,28 +52,28 @@ public class SettingState extends State {
                             if (a != 0) {
                                 a--;
                                 musicImage = Assets.volumeBars.get(a);
-                                sound.setVol(sound.getVolume() + 2.5f, sound.currentLoop);
+                                sound.setLoopVol(sound.getVolume() + 2.5f);
                             }
                             break;
                         case 2:
                             if (a != 7) {
                                 a++;
                                 musicImage = Assets.volumeBars.get(a);
-                                sound.setVol(sound.getVolume() - 2.5f, sound.currentLoop);
+                                sound.setLoopVol(sound.getVolume() - 2.5f);
                             }
                             break;
                         case 3:
                             if (b != 0) {
                                 b--;
                                 soundImage = Assets.volumeBars.get(b);
-                                sound.setVol(sound.getVolume() + 2.5f, sound.currentSoundEffect);
+                                sound.setEffectVol(sound.getVolume() + 2.5f);
                             }
                             break;
                         case 4:
                             if (b != 7) {
                                 b++;
                                 soundImage = Assets.volumeBars.get(b);
-                                sound.setVol(sound.getVolume() - 2.5f, sound.currentSoundEffect);
+                                sound.setEffectVol(sound.getVolume() - 2.5f);
                             }
                             break;
                     }
