@@ -8,7 +8,10 @@ public class Sound {
 
     public static Clip currentLoop;
     public static Clip currentSoundEffect;
-
+    private static FloatControl loopGain = null;
+    private static FloatControl effectGain = null;
+    private static float loopVolume;
+    private static float effectVolume;
     public static void playSoundLoop(String path) {
         try {
             File music = new File(path);
@@ -20,7 +23,9 @@ public class Sound {
 
             FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             control.setValue(-2.0f);
-
+            if(loopGain != null){
+                setLoopVol(loopVolume);
+            }
             clip.start();
             clip.loop(Clip.LOOP_CONTINUOUSLY);
 
@@ -48,7 +53,9 @@ public class Sound {
 
             FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             control.setValue(-7.0f);
-
+            if(effectGain != null){
+                setEffectVol(effectVolume);
+            }
             clip.start();
 
         } catch (UnsupportedAudioFileException e) {
@@ -66,8 +73,14 @@ public class Sound {
         }
     }
 
-    public static void setVol(float vol, Clip clip) {
-        FloatControl gain = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        gain.setValue(vol);
+    public static void setLoopVol(float vol) {
+        loopGain = (FloatControl) currentLoop.getControl(FloatControl.Type.MASTER_GAIN);
+        loopVolume = vol;
+        loopGain.setValue(vol);
+    }
+    public static void setEffectVol(float vol){
+        effectGain = (FloatControl) currentSoundEffect.getControl(FloatControl.Type.MASTER_GAIN);
+        effectVolume = vol;
+        effectGain.setValue(vol);
     }
 }
