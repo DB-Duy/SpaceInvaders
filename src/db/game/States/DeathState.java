@@ -2,6 +2,7 @@ package db.game.States;
 
 import db.game.Display.Assets;
 import db.game.Main.Handler;
+import db.game.Sounds.Sound;
 import db.game.UI.ImageButton;
 
 import java.awt.*;
