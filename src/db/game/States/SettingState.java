@@ -66,14 +66,14 @@ public class SettingState extends State {
                             if (b != 0) {
                                 b--;
                                 soundImage = Assets.volumeBars.get(b);
-                                sound.setEffectVol(sound.getVolume() + 2.5f);
+                                sound.setEffectVol(sound.getEffectVolume() + 4.0f);
                             }
                             break;
                         case 4:
                             if (b != 7) {
                                 b++;
                                 soundImage = Assets.volumeBars.get(b);
-                                sound.setEffectVol(sound.getVolume() - 2.5f);
+                                sound.setEffectVol(sound.getEffectVolume() - 4.0f);
                             }
                             break;
                     }

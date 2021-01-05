@@ -12,6 +12,15 @@ public class Sound {
     private static FloatControl effectGain = null;
     private static float loopVolume;
     private static float effectVolume;
+
+    public static float getLoopVolume() {
+        return loopVolume;
+    }
+
+    public static float getEffectVolume() {
+        return effectVolume;
+    }
+
     public static void playSoundLoop(String path) {
         try {
             File music = new File(path);
@@ -23,7 +32,7 @@ public class Sound {
 
             FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             control.setValue(-2.0f);
-            if(loopGain != null){
+            if (loopGain != null) {
                 setLoopVol(loopVolume);
             }
             clip.start();
@@ -38,10 +47,6 @@ public class Sound {
         }
     }
 
-    public float getVolume() {
-        FloatControl control = (FloatControl) currentLoop.getControl(FloatControl.Type.MASTER_GAIN);
-        return control.getValue();
-    }
 
     public static void playSound(String path) {
         try {
@@ -53,7 +58,8 @@ public class Sound {
 
             FloatControl control = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             control.setValue(-7.0f);
-            if(effectGain != null){
+
+            if (effectGain != null) {
                 setEffectVol(effectVolume);
             }
             clip.start();
@@ -78,6 +84,7 @@ public class Sound {
         loopVolume = vol;
         loopGain.setValue(vol);
     }
+
     public static void setEffectVol(float vol){
         effectGain = (FloatControl) currentSoundEffect.getControl(FloatControl.Type.MASTER_GAIN);
         effectVolume = vol;
