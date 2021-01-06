@@ -120,7 +120,6 @@ public class Assets {
                 instructionScreens.add(instructionScreen.crop(j * 1000, i * 600, 999, 599));
             }
         }
-        instructionScreens.add(ImageLoader.loadImage("/resources/instruction7.png"));
 
         for (int i = 0; i < 6; i++) {
             explosions.add(sheet4.crop(i * 250, 0, 249, 249));

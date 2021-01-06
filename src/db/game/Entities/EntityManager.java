@@ -82,7 +82,6 @@ public class EntityManager<T> {
 
                         else {
                             health.setHealth(health.getHealth() - 1);
-                            Sound.playSound(".//res//sounds//bruh.wav");
                         }
                     }
                 }
@@ -103,7 +102,6 @@ public class EntityManager<T> {
                         }
                         else {
                             health.setHealth(health.getHealth() - 1);
-                            Sound.playSound(".//res//sounds//bruh.wav");
                         }
                     }
 
