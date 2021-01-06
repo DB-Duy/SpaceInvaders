@@ -47,7 +47,7 @@ public class InstructionState extends State {
                             }
                             break;
                         case 1:
-                            if (a != 6) {
+                            if (a != 5) {
                                 a++;
                                 setInstructionImage(a);
                             }

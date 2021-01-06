@@ -8,12 +8,9 @@ import java.awt.event.*;
 public class MouseManager implements MouseListener, MouseMotionListener {
 
     private boolean leftPressed, rightPressed;
-    private Sound sound;
     private int mouseX, mouseY;
 
-    public MouseManager() {
-        sound = new Sound();
-    }
+    public MouseManager() { }
 
     public boolean isLeftPressed(){
         return leftPressed;
@@ -52,7 +49,7 @@ public class MouseManager implements MouseListener, MouseMotionListener {
     @Override
     public void mouseReleased(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
-            sound.playSound(".//res//sounds//button.wav");
+            Sound.playSound(".//res//sounds//button.wav");
             leftPressed = false;
         }
         else if (e.getButton() == MouseEvent.BUTTON3) {

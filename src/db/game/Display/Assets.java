@@ -11,11 +11,11 @@ public class Assets {
     public static ArrayList<BufferedImage> levelBars,
                                            startButtons, quitButtons, instructions, settings, tryAgain, next, back,
                                            instructionScreens, explosions, selectButtons, createButtons, arrowButtons,
-                                           leaderboardButtons, volumeBars, arrowButtons2;
+                                           leaderboardButtons, volumeBars, arrowButtons2, gameOverFlash;
     private static SpriteSheet sheet1, sheet2, sheet3,
                                startChoices, quitChoices, instructionChoices, settingChoices, tryAgainChoices, backChoices, nextChoices,
                                instructionScreen, sheet4, selectChoices, createChoices, arrowChoices, leaderboardChoices,
-                               volumeSheet, arrowChoices2;
+                               volumeSheet, arrowChoices2, gameOver;
     private static int size = 249;
 
 
@@ -36,6 +36,7 @@ public class Assets {
         leaderboardButtons = new ArrayList<>();
         volumeBars = new ArrayList<>();
         arrowButtons2 = new ArrayList<>();
+        gameOverFlash = new ArrayList<>();
 
 
         sheet1 = new SpriteSheet(ImageLoader.loadImage("/resources/sheet1.png"));
@@ -56,6 +57,7 @@ public class Assets {
         leaderboardChoices = new SpriteSheet(ImageLoader.loadImage("/resources/leaderboardchoices.png"));
         volumeSheet = new SpriteSheet(ImageLoader.loadImage("/resources/volume.png"));
         arrowChoices2 = new SpriteSheet(ImageLoader.loadImage("/resources/arrows2.png"));
+        gameOver = new SpriteSheet(ImageLoader.loadImage("/resources/gameoverflash.png"));
 
 
         emptyHeart = sheet1.crop(0,0, size, size);
@@ -81,6 +83,9 @@ public class Assets {
         leaderboardScreen = ImageLoader.loadImage("/resources/leaderboard.png");
         settingScreen = ImageLoader.loadImage("/resources/settingscreen.png");
 
+        for (int i = 0; i < 2; i++) {
+            gameOverFlash.add(gameOver.crop(0, i * 150, 801, 149));
+        }
 
 
         for (int i = 0; i < 11; i++) {
@@ -115,7 +120,6 @@ public class Assets {
                 instructionScreens.add(instructionScreen.crop(j * 1000, i * 600, 999, 599));
             }
         }
-        instructionScreens.add(ImageLoader.loadImage("/resources/instruction7.png"));
 
         for (int i = 0; i < 6; i++) {
             explosions.add(sheet4.crop(i * 250, 0, 249, 249));

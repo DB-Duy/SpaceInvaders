@@ -6,6 +6,7 @@ import db.game.Entities.*;
 import db.game.FunctionManagement.*;
 import db.game.Main.Handler;
 import db.game.Sounds.Sound;
+import db.game.UI.ImageButton;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ import java.util.ArrayList;
 public class GameState extends State {
 
     private Player player;
+
+    private ImageButton gameOverFlash;
 
     private EntityManager entityManager;
 
@@ -37,7 +40,9 @@ public class GameState extends State {
         Sound.stopLoop();
         Sound.playSoundLoop(".//res//sounds//background.wav");
 
+
         collision = new CollisionDetection();
+        gameOverFlash = new ImageButton(handler, Assets.gameOverFlash, 100, 220, 802, 150);
     }
 
     public Player getPlayer() {
@@ -50,14 +55,13 @@ public class GameState extends State {
         }
 
         if (level.getLevel() > 1) {
-            if (time % 400 == 0) {
+            if (time % 100 == 0) {
                 creatures.add(new Bomb(handler, entityManager.getEmptyX(), 30));
             }
-            else if (time % 500 == 0) {
+            else if (time % 200 == 0) {
                 creatures.add(new Shield(handler, entityManager.getEmptyX(), 30));
             }
         }
-
         if (time > 100000) {
             time = 0;
         }
@@ -89,9 +93,13 @@ public class GameState extends State {
         }
 
         if (entityManager.getHealthManager().getHealth() <= 0) {
+            Sound.stopLoop();
+            entityManager.setDead(true);
             entityManager.clear();
             handler.getGame().playerScore = entityManager.getScoreManager().getScore();
-            State.setState(new DeathState(handler));
+            if (gameOverFlash.isHovering() && handler.getMouseManager().isLeftPressed()) {
+                State.setState(new DeathState(handler));
+            }
         }
     }
 
@@ -106,6 +114,10 @@ public class GameState extends State {
         entityManager.render(g, time);
         player.render(g);
         level.render(g);
+
+        if (entityManager.isDead()) {
+            gameOverFlash.render(g);
+        }
 
     }
 }

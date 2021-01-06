@@ -2,6 +2,7 @@ package db.game.Entities;
 
 import db.game.FunctionManagement.*;
 import db.game.Main.Handler;
+import db.game.Sounds.Sound;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class EntityManager<T> {
     private Random random;
     private CollisionDetection collision;
     private ArrayList<Creature> creatures;
+    private boolean isDead = false;
 
     public EntityManager(Handler handler) {
         creatures = new ArrayList<>();
@@ -24,9 +26,17 @@ public class EntityManager<T> {
         health = new HealthManager(3);
         score = new ScoreManager(0);
         collision = new CollisionDetection();
+
         setHandler(handler);
     }
 
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
 
     public HealthManager getHealthManager() {
         return health;
@@ -52,55 +62,62 @@ public class EntityManager<T> {
 
     public void tick(LevelManager level, int time) {
         for (int i = 0; i < creatures.size(); i++) {
-            creatures.get(i).setSpeed(level.getLevel());
-            creatures.get(i).tick();
-
-            if (collision.hasCollided(creatures.get(i))) {
-                creatures.get(i).explode(time);
-                handler.getKeyManager().resetWordTyped();
-
-                if (creatures.get(i).getClass().equals(Monster.class)) {
-                    score.setNumKilled(0);
-
-                    if (shield.getShields() > 0) {
-                        shield.setShields((shield.getShields() - 1));
-                    }
-
-                    else health.setHealth(health.getHealth() - 1);
-                }
+            if (isDead) {
+                creatures.get(i).setSpeed(0);
             }
+            else {
+                creatures.get(i).setSpeed(level.getLevel() + 1);
+                creatures.get(i).tick();
 
-            else if (handler.getKeyManager().getWordTyped().equals(creatures.get(i).getWord()) && !creatures.get(i).getExplosion()) {
-                creatures.get(i).explode(time);
-                handler.getKeyManager().resetWordTyped();
+                if (collision.hasCollided(creatures.get(i))) {
+                    creatures.get(i).explode(time);
+                    handler.getKeyManager().resetWordTyped();
 
-                if (creatures.get(i).getClass().equals(Shield.class)) {
-                    score.shield();
-                    shield.setShields(shield.getShields() + 1);
-                }
+                    if (creatures.get(i).getClass().equals(Monster.class)) {
+                        score.setNumKilled(0);
 
-                if (creatures.get(i).getClass().equals(Bomb.class)) {
-                    score.bomb();
-                    if (shield.getShields() > 0) {
-                        shield.setShields((shield.getShields() - 1));
+                        if (shield.getShields() > 0) {
+                            shield.setShields((shield.getShields() - 1));
+                        }
+
+                        else {
+                            health.setHealth(health.getHealth() - 1);
+                        }
                     }
-                    else {
-                        health.setHealth(health.getHealth() - 1);
+                }
+
+                else if (handler.getKeyManager().getWordTyped().equals(creatures.get(i).getWord()) && !creatures.get(i).getExplosion()) {
+                    creatures.get(i).explode(time);
+                    handler.getKeyManager().resetWordTyped();
+
+                    if (creatures.get(i).getClass().equals(Shield.class)) {
+                        score.shield();
+                        shield.setShields(shield.getShields() + 1);
+                    }
+
+                    if (creatures.get(i).getClass().equals(Bomb.class)) {
+                        score.bomb();
+                        if (shield.getShields() > 0) {
+                            shield.setShields((shield.getShields() - 1));
+                        }
+                        else {
+                            health.setHealth(health.getHealth() - 1);
+                        }
+                    }
+
+                    if (creatures.get(i).getClass().equals(Monster.class)) {
+                        score.monster(); level.setProgressLevel(level.getProgressLevel() + 1);
+                    }
+
+                    if (creatures.get(i).getClass().equals(Asteroid.class)) {
+                        score.asteroid(); level.setMiniGame(true);
                     }
                 }
 
-                if (creatures.get(i).getClass().equals(Monster.class)) {
-                    score.monster(); level.setProgressLevel(level.getProgressLevel() + 1);
+
+                if (Math.abs(creatures.get(i).getBlownTime() - time) > 30 && creatures.get(i).getExplosion()) {
+                    creatures.remove(i);
                 }
-
-                if (creatures.get(i).getClass().equals(Asteroid.class)) {
-                    score.asteroid(); level.setMiniGame(true);
-                }
-            }
-
-
-            if (Math.abs(creatures.get(i).getBlownTime() - time) > 30 && creatures.get(i).getExplosion()) {
-                creatures.remove(i);
             }
         }
     }
