@@ -53,7 +53,6 @@ public class GameState extends State {
         if (time % 50 == 0) {
             creatures.add(new Monster(handler, entityManager.getEmptyX(), 30));
         }
-
         if (level.getLevel() > 1) {
             if (time % 100 == 0) {
                 creatures.add(new Bomb(handler, entityManager.getEmptyX(), 30));
