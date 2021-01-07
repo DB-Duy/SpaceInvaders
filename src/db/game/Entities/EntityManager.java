@@ -140,6 +140,8 @@ public class EntityManager<T> {
     }
 
     public void render(Graphics g, int time) {
+        g.setColor(new Color(241, 217, 27));
+        g.setFont(new Font("Minecraft", Font.PLAIN, 22));
 
         for(int i = 0; i < creatures.size(); i++) {
 
@@ -148,6 +150,12 @@ public class EntityManager<T> {
             }
 
             if (creatures.get(i).getExplosion()) {
+                if (creatures.get(i).getClass().equals(Bomb.class)) {
+                    g.drawString("- " + Integer.toString(Math.abs(score.getScore() - score.getOldScore())), (int) creatures.get(i).getA() + creatures.get(i).getWidth()/2, (int) creatures.get(i).getB() + 40);
+                }
+                else {
+                    g.drawString("+ " + Integer.toString(Math.abs(score.getScore() - score.getOldScore())), (int) creatures.get(i).getA() + creatures.get(i).getWidth()/2, (int) creatures.get(i).getB() + 40);
+                }
                 creatures.get(i).renderExplosion(g,time);
             }
 
