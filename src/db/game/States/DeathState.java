@@ -34,7 +34,7 @@ public class DeathState extends State {
             if (buttons.get(i).isHovering() && handler.getMouseManager().isLeftPressed()) {
                 switch (i) {
                     case 0:
-                        State.setState(new GameState(handler));
+                        State.setState(new SelectState(handler));
                         break;
                     case 1:
                         System.exit(0);

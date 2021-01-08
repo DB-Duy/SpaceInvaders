@@ -66,7 +66,7 @@ public class EntityManager<T> {
                 creatures.get(i).setSpeed(0);
             }
             else {
-                creatures.get(i).setSpeed(level.getLevel() + 1);
+                creatures.get(i).setSpeed(level.getLevel());
                 creatures.get(i).tick();
 
                 if (collision.hasCollided(creatures.get(i))) {

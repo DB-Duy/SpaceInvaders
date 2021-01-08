@@ -42,6 +42,7 @@ public class CreateUserState extends State {
                 }
                 else {
                     name = handler.getKeyManager().getWordTyped();
+                    handler.getGame().playerName = name;
                     board.addToLeaderboard(name);
                     handler.getKeyManager().resetWordTyped();
                     State.setState(new GameState(handler));

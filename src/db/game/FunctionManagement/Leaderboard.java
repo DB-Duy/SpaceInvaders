@@ -74,7 +74,6 @@ public class Leaderboard {
         updateLeaderboard();
     }
 
-
     public void addToLeaderboard(String name) {
         this.leaderboard.put(name,0);
         updateLeaderboard();
