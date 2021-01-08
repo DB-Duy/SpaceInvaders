@@ -24,8 +24,10 @@ public class Leaderboard {
 
     private Leaderboard() {
         init();
+        //clearLeaderboard();
         updateArrays();
     }
+
     public void updateArrays(){
         userNames.clear();
         scores.clear();

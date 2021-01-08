@@ -28,6 +28,7 @@ public class SelectState extends State {
         super(handler);
         //file = new File(".//res//leaderboard//leaderboard2.txt");
         setLastState(false);
+
         board = Leaderboard.getLeaderboardInstance();
 
         buttons = new ArrayList<>();
